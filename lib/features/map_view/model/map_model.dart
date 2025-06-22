@@ -1,4 +1,6 @@
-class MapModel {
+import 'package:equatable/equatable.dart';
+
+class MapModel extends Equatable {
   final int id;
   final String title;
   final String description;
@@ -8,7 +10,7 @@ class MapModel {
   final double longitude;
   final String imageUrl;
 
-  MapModel({
+  const MapModel({
     required this.id,
     required this.title,
     required this.description,
@@ -45,6 +47,17 @@ class MapModel {
     };
   }
 
+  @override
+  List<Object?> get props => [
+    id,
+    title,
+    description,
+    category,
+    date,
+    latitude,
+    longitude,
+    imageUrl,
+  ];
 }
 
 /*
