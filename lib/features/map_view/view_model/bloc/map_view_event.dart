@@ -26,3 +26,11 @@ class SelectMarkerEvent extends MapViewEvent {
 }
 
 class ClearFilters extends MapViewEvent {}
+
+class SearchMapEvents extends MapViewEvent {
+  final String query;
+  const SearchMapEvents(this.query);
+
+  @override
+  List<Object> get props => [query];
+}
