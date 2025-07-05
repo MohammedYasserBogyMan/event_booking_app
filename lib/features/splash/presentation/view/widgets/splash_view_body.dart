@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/utils/assets.dart';
-import 'package:event_booking_app/features/auth/view/login_view.dart';
+import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatefulWidget {

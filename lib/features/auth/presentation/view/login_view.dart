@@ -1,4 +1,4 @@
-import 'package:event_booking_app/features/auth/view/widgets/login_view_body.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
