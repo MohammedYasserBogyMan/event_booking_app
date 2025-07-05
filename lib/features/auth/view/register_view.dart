@@ -18,6 +18,8 @@ class RegisterView extends StatelessWidget {
           SizedBox(height: 19),
           CustomTextFiled(icon: Icons.lock_outline, hintText: "Confirm password"),
           SizedBox(height: 19),
+          CustomTextFiled(icon: Icons.lock_outline, hintText: "Confirm password"),
+          SizedBox(height: 19),
           CustomButton(text: "SIGN UP")
         ],
       ),
