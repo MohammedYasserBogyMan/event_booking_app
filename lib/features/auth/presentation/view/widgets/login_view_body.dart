@@ -22,7 +22,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              Center(child: Image.asset(AssetsData.logo)),
+              Center(child: Image.asset(AssetsData.splashLogo)),
               const SizedBox(height: 40),
               const Text('Sign in', style: Styels.textStyle24),
               const SizedBox(height: 20),

@@ -46,7 +46,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     return Center(
       child: SlideTransition(
         position: _animation,
-        child: Image.asset(AssetsData.logo),
+        child: Image.asset(AssetsData.splashLogo),
       ),
     );
   }
