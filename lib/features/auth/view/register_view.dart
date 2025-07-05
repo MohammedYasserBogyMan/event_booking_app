@@ -5,6 +5,14 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(children: [Text('توكلنا علي الله')]));
+    return Scaffold(
+      body: Column(
+        children: [
+          Text('توكلنا علي الله'),
+          Text('توكلنا علي الله'),
+          Text('توكلنا علي الله'),
+        ],
+      ),
+    );
   }
 }
