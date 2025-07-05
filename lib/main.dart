@@ -1,4 +1,3 @@
-import 'package:event_booking_app/features/auth/view/register_view.dart';
 import 'package:event_booking_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const RegisterView(),
+      home: const SplashView(),
     );
   }
 }
