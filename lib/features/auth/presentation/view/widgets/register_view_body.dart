@@ -7,40 +7,36 @@ class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(backgroundColor: Colors.white),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Text("Sign up", style: Styels.textStyle24),
-              const SizedBox(height: 20),
-              RegistrationAuthFormFields(),
-              SizedBox(height: 36),
-              SocialLoginOptions(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Already have an account? ", style: Styels.textStyle15),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Sign in",
-                      style: Styels.textStyle15.copyWith(
-                        color: Color(0xff5669FF),
-                      ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            Text("Sign up", style: Styels.textStyle24),
+            const SizedBox(height: 20),
+            RegistrationAuthFormFields(),
+            SizedBox(height: 36),
+            SocialLoginOptions(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Already have an account? ", style: Styels.textStyle15),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Sign in",
+                    style: Styels.textStyle15.copyWith(
+                      color: Color(0xff5669FF),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
