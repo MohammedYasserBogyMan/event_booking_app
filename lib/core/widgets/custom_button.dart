@@ -23,10 +23,17 @@ class CustomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Spacer(),
-
             Text(text, style: Styels.textStyle16.copyWith(color: Colors.white)),
             Spacer(),
-            Icon(Icons.arrow_forward, color: Colors.white),
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Color(0xff3D56F0),
+              ),
+              child: Icon(Icons.arrow_forward, color: Colors.white),
+            ),
           ],
         ),
       ),
