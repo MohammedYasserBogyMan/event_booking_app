@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         VerificationView.id: (context) => VerificationView(),
       },
       debugShowCheckedModeBanner: false,
-      home: LoginView(),
+      home: VerificationView(),
     );
   }
 }
