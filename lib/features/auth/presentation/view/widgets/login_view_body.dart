@@ -1,7 +1,7 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/sign_in_auth_form_fields.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
-import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/core/widgets/social_login_options.dart';
 import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
 import 'package:flutter/material.dart';
@@ -30,17 +30,7 @@ class LoginViewBody extends StatelessWidget {
               const SizedBox(height: 30),
               const Text('Sign in', style: Styels.textStyle24),
               const SizedBox(height: 21),
-              CustomTextFiled(
-                hintText: 'abc@email.com',
-                icon: Icons.email_outlined,
-              ),
-              const SizedBox(height: 19),
-              CustomTextFiled(
-                hintText: 'Your password',
-                icon: Icons.lock_outline,
-                isPassword: true,
-              ),
-              const SizedBox(height: 20),
+              SignInAuthFormFields(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

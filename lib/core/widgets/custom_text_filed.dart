@@ -22,7 +22,14 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Field is required";
+        } else {
+          return null;
+        }
+      },
       obscureText: (widget.isPassword ?? false) ? obscureText : false,
       decoration: InputDecoration(
         prefixIcon: Icon(widget.icon, color: Color(0xFFE4DFDF)),
