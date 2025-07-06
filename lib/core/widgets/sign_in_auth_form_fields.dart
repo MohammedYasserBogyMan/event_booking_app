@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 class SignInAuthFormFields extends StatelessWidget {
   SignInAuthFormFields({super.key});
-  GlobalKey<FormState> formkey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final GlobalKey<FormState> formkey = GlobalKey();
+  final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Form(

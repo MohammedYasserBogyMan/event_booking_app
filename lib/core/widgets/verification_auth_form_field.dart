@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class VerificarionAuthFormFields extends StatelessWidget {
   VerificarionAuthFormFields({super.key});
-  GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final GlobalKey<FormState> formKey = GlobalKey();
+  final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Form(
