@@ -31,28 +31,6 @@ class LoginViewBody extends StatelessWidget {
               const Text('Sign in', style: Styels.textStyle24),
               const SizedBox(height: 21),
               SignInAuthFormFields(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SwitchIcon(),
-                      Text("Remember Me", style: Styels.textStyle14),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Text("Forgot Password?", style: Styels.textStyle14),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 36),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: CustomButton(text: 'SIGN IN'),
-              ),
-              SizedBox(height: 24),
               SocialLoginOptions(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
