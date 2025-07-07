@@ -1,6 +1,6 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/core/widgets/social_login_button.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
 
 class SocialLoginOptions extends StatelessWidget {

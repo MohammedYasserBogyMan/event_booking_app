@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/widgets/custom_button.dart';
-import 'package:event_booking_app/core/widgets/otp_text_field.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/otp_text_field.dart';
 import 'package:flutter/material.dart';
 
 class VerificarionAuthFormFields extends StatelessWidget {
