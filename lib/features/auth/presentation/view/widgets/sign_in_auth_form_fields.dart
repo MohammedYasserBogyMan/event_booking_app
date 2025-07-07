@@ -1,7 +1,7 @@
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
-import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_options.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
 
 class SignInAuthFormFields extends StatelessWidget {
