@@ -1,7 +1,7 @@
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
-import 'package:event_booking_app/features/auth/presentation/view/resset_password_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/verification_view.dart';
+import 'package:event_booking_app/features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         VerificationView.id: (context) => VerificationView(),
       },
       debugShowCheckedModeBanner: false,
-      home: RessetPasswordView(),
+      home: OnboardingView(),
     );
   }
 }
