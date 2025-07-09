@@ -1,6 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/core/widgets/verification_auth_form_field.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/verification_auth_form_field.dart';
 import 'package:flutter/material.dart';
 
 class VerificationViewBody extends StatelessWidget {

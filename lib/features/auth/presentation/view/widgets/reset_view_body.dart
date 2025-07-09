@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/core/widgets/reset_password_auth_form_field.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/reset_password_auth_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ResetViewBody extends StatelessWidget {

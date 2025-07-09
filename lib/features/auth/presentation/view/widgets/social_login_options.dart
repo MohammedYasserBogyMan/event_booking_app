@@ -1,6 +1,6 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/core/widgets/social_login_button.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
 
 class SocialLoginOptions extends StatelessWidget {
@@ -28,30 +28,6 @@ class SocialLoginOptions extends StatelessWidget {
         ),
         SizedBox(height: 20),
       ],
-    );
-  }
-}
-
-class SwitchIcon extends StatefulWidget {
-  const SwitchIcon({super.key});
-
-  @override
-  State<SwitchIcon> createState() => _SwitchIconState();
-}
-
-class _SwitchIconState extends State<SwitchIcon> {
-  bool light = true;
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-      value: light,
-      activeColor: Colors.white,
-      activeTrackColor: Color(0xff5669FF),
-      onChanged: (bool value) {
-        setState(() {
-          light = value;
-        });
-      },
     );
   }
 }
