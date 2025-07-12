@@ -1,3 +1,4 @@
+import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
@@ -35,6 +36,7 @@ abstract class AppRouter {
         path: kEmptyNotification,
         builder: (context, state) => EmptyNotificationView(),
       ),
+      GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
     ],
   );
 }

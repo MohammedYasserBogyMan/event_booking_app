@@ -48,7 +48,10 @@ class SignInAuthFormFields extends StatelessWidget {
           const SizedBox(height: 36),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: CustomButton(text: 'SIGN IN'),
+            child: CustomButton(
+              text: 'SIGN IN',
+              onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
+            ),
           ),
           SizedBox(height: 24),
         ],

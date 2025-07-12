@@ -1,6 +1,8 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationAuthFormFields extends StatelessWidget {
   RegistrationAuthFormFields({super.key});
@@ -34,7 +36,10 @@ class RegistrationAuthFormFields extends StatelessWidget {
           const SizedBox(height: 40),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 22),
-            child: CustomButton(text: "SIGN UP"),
+            child: CustomButton(
+              text: "SIGN UP",
+              onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
+            ),
           ),
         ],
       ),

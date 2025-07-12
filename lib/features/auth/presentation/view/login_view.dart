@@ -6,6 +6,6 @@ class LoginView extends StatelessWidget {
   static String id = "LoginView";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white, body: LoginViewBody());
+    return Scaffold(body: LoginViewBody());
   }
 }
