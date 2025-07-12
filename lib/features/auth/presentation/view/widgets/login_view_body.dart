@@ -1,9 +1,10 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_in_auth_form_fields.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_options.dart';
-import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -35,7 +36,7 @@ class LoginViewBody extends StatelessWidget {
                 Text("Don’t have an account? ", style: Styels.textStyle15),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RegisterView.id);
+                    GoRouter.of(context).push(AppRouter.kRegister);
                   },
                   child: Text(
                     "Sign up",

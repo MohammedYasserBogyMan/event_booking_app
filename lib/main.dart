@@ -1,7 +1,4 @@
-import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
-import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
-import 'package:event_booking_app/features/auth/presentation/view/verification_view.dart';
-import 'package:event_booking_app/features/empty_notification/presentation/view/empty_notification_view.dart';
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,15 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        RegisterView.id: (context) => RegisterView(),
-        LoginView.id: (context) => LoginView(),
-        VerificationView.id: (context) => VerificationView(),
-        EmptyNotificationView.id: (context) => EmptyNotificationView(),
-      },
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+
       debugShowCheckedModeBanner: false,
-      home: EmptyNotificationView(),
     );
   }
 }

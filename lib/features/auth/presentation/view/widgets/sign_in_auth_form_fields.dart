@@ -1,8 +1,10 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInAuthFormFields extends StatelessWidget {
   SignInAuthFormFields({super.key});
@@ -36,7 +38,9 @@ class SignInAuthFormFields extends StatelessWidget {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kforgetpassword);
+                },
                 child: Text("Forgot Password?", style: Styels.textStyle14),
               ),
             ],

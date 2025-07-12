@@ -1,6 +1,7 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
-import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -27,11 +28,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _controller.forward();
-
     Future.delayed(const Duration(milliseconds: 5000), () {
-      Navigator.of(context, rootNavigator: true).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => const LoginView()),
-      );
+      GoRouter.of(context).push(AppRouter.kOnboarding);
     });
   }
 
