@@ -13,15 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        RegisterView.id: (context) => RegisterView(),
-        LoginView.id: (context) => LoginView(),
-        VerificationView.id: (context) => VerificationView(),
-        EmptyNotificationView.id: (context) => EmptyNotificationView(),
-      },
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+
       debugShowCheckedModeBanner: false,
-      home: EmptyNotificationView(),
     );
   }
 }

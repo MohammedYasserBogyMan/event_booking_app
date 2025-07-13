@@ -1,8 +1,10 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/onboarding_list.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/custom_painted_background.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_footer.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
@@ -56,7 +58,10 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             OnboardingFooter(
               currentPage: _currentPage,
               pageCount: onboardingList.length,
-              onNext: _onNext,
+              onNext:
+                  _currentPage == 2
+                      ? () => GoRouter.of(context).push(AppRouter.kLogin)
+                      : _onNext,
               onSkip: _onSkip,
             ),
           ],

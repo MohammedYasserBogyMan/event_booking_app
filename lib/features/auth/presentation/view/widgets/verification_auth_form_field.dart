@@ -1,6 +1,8 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/otp_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class VerificarionAuthFormFields extends StatelessWidget {
   VerificarionAuthFormFields({super.key});
@@ -28,7 +30,10 @@ class VerificarionAuthFormFields extends StatelessWidget {
           const SizedBox(height: 40),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 22),
-            child: CustomButton(text: "Continue"),
+            child: CustomButton(
+              text: "Continue",
+              onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
+            ),
           ),
         ],
       ),

@@ -1,10 +1,11 @@
-import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
+
+import 'package:event_booking_app/core/utils/styels.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-
-  const CustomButton({super.key, required this.text});
+  final VoidCallback? onPressed;
+  const CustomButton({super.key, required this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,14 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF5669FF),
+
+          disabledBackgroundColor: Color(0xFF5669FF),
+
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
