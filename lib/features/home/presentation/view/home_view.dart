@@ -1,4 +1,5 @@
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_view_body.dart';
+import 'package:event_booking_app/features/home/presentation/view/widgets/home_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -6,6 +7,20 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeViewBody());
+    return Scaffold(
+      drawer: HomeDrawer(),
+      appBar: AppBar(
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: Icon(Icons.format_align_left),
+              ),
+        ),
+      ),
+      body: HomeViewBody(),
+    );
   }
 }
