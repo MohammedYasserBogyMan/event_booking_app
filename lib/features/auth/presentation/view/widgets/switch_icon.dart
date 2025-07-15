@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class SwitchIcon extends StatefulWidget {
@@ -13,8 +14,8 @@ class _SwitchIconState extends State<SwitchIcon> {
   Widget build(BuildContext context) {
     return Switch(
       value: light,
-      activeColor: Colors.white,
-      activeTrackColor: Color(0xff5669FF),
+      activeColor:AppColor.backgroundColor,
+      activeTrackColor:AppColor.primary,
       onChanged: (bool value) {
         setState(() {
           light = value;

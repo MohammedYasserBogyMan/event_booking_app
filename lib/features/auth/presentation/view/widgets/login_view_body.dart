@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
@@ -40,9 +41,7 @@ class LoginViewBody extends StatelessWidget {
                   },
                   child: Text(
                     "Sign up",
-                    style: Styels.textStyle15.copyWith(
-                      color: Color(0xff5669FF),
-                    ),
+                    style: Styels.textStyle15.copyWith(color: AppColor.primary),
                   ),
                 ),
               ],
