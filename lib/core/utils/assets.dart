@@ -21,4 +21,6 @@ static const shareSkypeIcon = 'assets/images/shareSkypeIcon.png';
 static const shareWhatsappIcon = 'assets/images/shareWhatsappIcon.png';
 static const shareXIcon = 'assets/images/shareXIcon.png';
 static const splashLogo = 'assets/images/splashLogo.png';
+static const profilePhoto = 'assets/images/profilePhoto.png';
+static const proBadge = 'assets/images/proBadge.png';
 }
