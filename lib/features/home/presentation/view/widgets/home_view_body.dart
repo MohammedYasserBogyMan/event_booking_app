@@ -1,3 +1,4 @@
+import 'package:event_booking_app/features/home/presentation/view/widgets/home_view_header.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -5,6 +6,6 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Home View Body'));
+    return Column(children: [HomeViewHeader()]);
   }
 }

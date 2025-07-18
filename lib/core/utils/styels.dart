@@ -2,6 +2,7 @@ import 'package:event_booking_app/core/constants/cons.dart';
 import 'package:flutter/material.dart';
 
 abstract class Styels {
+  static const textStyle20 = TextStyle(fontSize: 20, fontFamily: kFont);
   static const textStyle22 = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w600,
@@ -32,4 +33,5 @@ abstract class Styels {
   );
   static const textStyle15 = TextStyle(fontSize: 15, fontFamily: kFont);
   static const textStyle14 = TextStyle(fontSize: 14, fontFamily: kFont);
+  static const textStyle12 = TextStyle(fontSize: 12, fontFamily: kFont);
 }

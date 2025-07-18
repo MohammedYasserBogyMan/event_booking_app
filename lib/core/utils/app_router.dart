@@ -1,11 +1,11 @@
-import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/resset_password_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/verification_view.dart';
-import 'package:event_booking_app/features/empty_notification/presentation/view/empty_notification_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
+import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:event_booking_app/features/splash/presentation/view/splash_view.dart';
 
