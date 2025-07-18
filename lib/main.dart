@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,10 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
-
-      debugShowCheckedModeBanner: false,
-    );
+    // return MaterialApp.router(
+    //   routerConfig: AppRouter.router,
+    //   debugShowCheckedModeBanner: false,
+    // );
+    return MaterialApp(home: HomeView());
   }
 }

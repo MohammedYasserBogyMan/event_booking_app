@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_button.dart';
@@ -12,7 +13,7 @@ class SocialLoginOptions extends StatelessWidget {
       children: [
         Text(
           "OR",
-          style: Styels.textStyle16.copyWith(color: Color(0xff9D9898)),
+          style: Styels.textStyle16.copyWith(color: AppColor.orTextColor),
         ),
         SizedBox(height: 5),
 

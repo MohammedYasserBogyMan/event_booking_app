@@ -19,7 +19,7 @@ class OtpTextField extends StatelessWidget {
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          enabledBorder: buildBorder(color: Color(0xffE4DFDF)),
+          enabledBorder: buildBorder(color:AppColor.backgroundColor),
           focusedBorder: buildBorder(color: AppColor.primary),
         ),
       ),

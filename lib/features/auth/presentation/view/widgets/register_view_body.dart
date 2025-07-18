@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/register_auth_form_fields.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/social_login_options.dart';
@@ -30,7 +31,7 @@ class RegisterViewBody extends StatelessWidget {
                   child: Text(
                     "Sign in",
                     style: Styels.textStyle15.copyWith(
-                      color: Color(0xff5669FF),
+                      color:AppColor.primary,
                     ),
                   ),
                 ),
