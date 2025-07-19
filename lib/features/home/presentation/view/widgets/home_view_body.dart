@@ -1,4 +1,6 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/constants/cons.dart';
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/home/data/model/event_model.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/event_card.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_view_header.dart';
@@ -44,6 +46,34 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ],
         ),
         const SizedBox(height: 60),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Upcoming Events',
+                style: Styels.textStyle18.copyWith(color: Colors.black),
+              ),
+              Row(
+                children: [
+                  Text(
+                    'See All',
+                    style: Styels.textStyle14.copyWith(
+                      color: AppColor.menuWhiteIconColor,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 10,
+                    color: AppColor.menuWhiteIconColor,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         Expanded(child: _buildCategoryContent(selectedCategoryIndex)),
       ],
     );
