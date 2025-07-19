@@ -9,7 +9,10 @@ class CustomHomeAppbar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(Icons.menu, color: Colors.white, size: 30),
+        GestureDetector(
+          onTap: () => Scaffold.of(context).openDrawer(),
+          child: Icon(Icons.menu, color: Colors.white, size: 30),
+        ),
         Column(
           children: [
             Text(
@@ -18,9 +21,14 @@ class CustomHomeAppbar extends StatelessWidget {
                 color: Colors.white.withAlpha(150),
               ),
             ),
-            Text(
-              'New York, USA',
-              style: Styels.textStyle14.copyWith(color: Colors.white),
+            Row(
+              children: [
+                Text(
+                  'New York, USA',
+                  style: Styels.textStyle14.copyWith(color: Colors.white),
+                ),
+                Icon(Icons.arrow_drop_down, color: Colors.white),
+              ],
             ),
           ],
         ),
