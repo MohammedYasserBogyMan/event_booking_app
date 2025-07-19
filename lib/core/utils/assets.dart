@@ -29,4 +29,7 @@ class AssetsData {
   static const profilePhoto = 'assets/images/profilePhoto.png';
   static const proBadge = 'assets/images/proBadge.png';
   static const addIcon = 'assets/images/add_box_icon.png';
+  static const eventDetailLogo = 'assets/images/eventDetailLogo.png';
+  static const dateIcon = 'assets/images/dateIcon.png';
+  static const mapIcon = 'assets/images/mapIcon.png';
 }
