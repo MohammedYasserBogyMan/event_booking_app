@@ -1,4 +1,4 @@
-import 'package:event_booking_app/features/event_details/presentation/view/empty_events_view.dart';
+import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,9 +15,7 @@ class MyApp extends StatelessWidget {
     // debugShowCheckedModeBanner: false,
     //
     // );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: EmptyEventsView(),
-    );
+
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SearchView());
   }
 }
