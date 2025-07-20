@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/features/home/data/model/event_model.dart';
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:flutter/material.dart';
 
 class EventCard extends StatelessWidget {

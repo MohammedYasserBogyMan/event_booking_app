@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/constants/cons.dart';
-import 'package:event_booking_app/features/home/data/model/event_model.dart';
+import 'package:event_booking_app/core/models/event_model.dart';
 
 final List<List<EventModel>> categoryEvents = [
   [
