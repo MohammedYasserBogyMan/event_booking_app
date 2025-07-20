@@ -1,8 +1,8 @@
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
-class SearchAndFilterAppbarSection extends StatelessWidget {
-  const SearchAndFilterAppbarSection({super.key});
+class SearchAndFilterSection extends StatelessWidget {
+  const SearchAndFilterSection({super.key});
 
   @override
   Widget build(BuildContext context) {

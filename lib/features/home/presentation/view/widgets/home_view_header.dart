@@ -1,6 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_home_appbar.dart';
-import 'package:event_booking_app/features/home/presentation/view/widgets/search_and_filter_appbar_section.dart';
+import 'package:event_booking_app/core/widgets/search_and_filter_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewHeader extends StatelessWidget {
@@ -26,7 +26,7 @@ class HomeViewHeader extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: SearchAndFilterAppbarSection(),
+            child: SearchAndFilterSection(),
           ),
         ],
       ),
