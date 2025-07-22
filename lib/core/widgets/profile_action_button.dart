@@ -18,7 +18,6 @@ class ProfileActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 70,
-      width: 220,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor:
@@ -34,11 +33,9 @@ class ProfileActionButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
             Icon(icon, size: 30),
             const Spacer(),
             Text(text, style: Styels.textStyle24),
-            const Spacer(),
           ],
         ),
       ),
