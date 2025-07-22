@@ -16,6 +16,9 @@ class MyProfileView extends StatelessWidget {
   }
 
   AppBar customAppBar() {
-    return AppBar(title: Text("Profile", style: Styels.textStyle24));
+    return AppBar(
+      backgroundColor: AppColor.whitebackgroundColor,
+      title: Text("Profile", style: Styels.textStyle24),
+    );
   }
 }
