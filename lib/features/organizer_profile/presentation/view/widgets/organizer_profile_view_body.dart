@@ -1,6 +1,7 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/widgets/profile_action_button.dart';
 import 'package:event_booking_app/core/widgets/profile_header.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/tab_bar_section.dart';
 import 'package:flutter/material.dart';
 
 class OrganizerProfileViewBody extends StatelessWidget {
@@ -41,6 +42,8 @@ class OrganizerProfileViewBody extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 30),
+          Expanded(child: TabBarSection()),
         ],
       ),
     );
