@@ -34,6 +34,7 @@ class SignInAuthFormFields extends StatelessWidget {
               Row(
                 children: [
                   SwitchIcon(),
+                  const SizedBox(width: 5),
                   Text("Remember Me", style: Styels.textStyle14),
                 ],
               ),
@@ -53,7 +54,7 @@ class SignInAuthFormFields extends StatelessWidget {
               onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
         ],
       ),
     );

@@ -22,7 +22,7 @@ class LoginViewBody extends StatelessWidget {
             Column(
               children: [
                 Center(child: Image.asset(AssetsData.logoMark)),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text("EventHub", style: Styels.textStyle35),
               ],
             ),

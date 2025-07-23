@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/empty_events_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OrganizerProfileView(),
+      home: LoginView(),
     );
   }
 }
