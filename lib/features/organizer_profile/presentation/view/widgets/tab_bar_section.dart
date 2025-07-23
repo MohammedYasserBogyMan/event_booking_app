@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/features/search/presentation/view/widgets/search_news_list.dart';
+import 'package:event_booking_app/core/widgets/news_list.dart';
 import 'package:flutter/material.dart';
 
 class TabBarSection extends StatelessWidget {
