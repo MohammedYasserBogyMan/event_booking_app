@@ -32,4 +32,5 @@ class AssetsData {
   static const eventDetailLogo = 'assets/images/eventDetailLogo.png';
   static const dateIcon = 'assets/images/dateIcon.png';
   static const mapIcon = 'assets/images/mapIcon.png';
+  static const notificationImage = 'assets/images/notificationImage.png';
 }

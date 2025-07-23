@@ -23,10 +23,12 @@ class NotificationActionButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           color: isFilled ? AppColor.primary : Colors.white,
         ),
-        child: Text(
-          text,
-          style: Styels.textStyle14.copyWith(
-            color: isFilled ? Colors.white : Color(0xff706D6D),
+        child: Center(
+          child: Text(
+            text,
+            style: Styels.textStyle14.copyWith(
+              color: isFilled ? Colors.white : Color(0xff706D6D),
+            ),
           ),
         ),
       ),
