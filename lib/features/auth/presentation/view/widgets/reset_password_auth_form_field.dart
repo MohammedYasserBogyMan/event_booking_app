@@ -17,7 +17,7 @@ class ResetPasswordAuthFormField extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFiled(icon: Icons.mail_outlined, hintText: "abc@email.com"),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: CustomButton(
