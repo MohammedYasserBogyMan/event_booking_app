@@ -22,7 +22,6 @@ class VerificationViewBody extends StatelessWidget {
             const SizedBox(height: 27),
             VerificarionAuthFormFields(),
             const SizedBox(height: 24),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 70),
               child: Row(

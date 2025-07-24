@@ -10,8 +10,12 @@ class VerificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whitebackgroundColor,
-      appBar: AppBar(backgroundColor: AppColor.whitebackgroundColor),
+      appBar: _buildAppBar(),
       body: VerificationViewBody(),
     );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(backgroundColor: AppColor.whitebackgroundColor);
   }
 }
