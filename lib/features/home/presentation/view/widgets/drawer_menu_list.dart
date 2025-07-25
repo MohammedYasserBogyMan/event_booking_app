@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/home/data/model/drawer_menu_item_model.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/drawer_menu_item.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,43 @@ class DrawerMenuList extends StatelessWidget {
     DrawerMenuItemModel(
       text: "My Profile",
       icon: Icons.person_outline_outlined,
+      route: AppRouter.kMyProfile,
     ),
-    DrawerMenuItemModel(text: "Message", icon: Icons.message_outlined),
-    DrawerMenuItemModel(text: "Calender", icon: Icons.calendar_today_outlined),
-    DrawerMenuItemModel(text: "Bookmark", icon: Icons.bookmark_outline),
-    DrawerMenuItemModel(text: "Contact Us", icon: Icons.mail_outline),
-    DrawerMenuItemModel(text: "Settings", icon: Icons.settings_outlined),
-    DrawerMenuItemModel(text: "Helps & FAQs", icon: Icons.help_outline),
-    DrawerMenuItemModel(text: "Sign Out", icon: Icons.search),
+    DrawerMenuItemModel(
+      text: "Message",
+      icon: Icons.message_outlined,
+      route: AppRouter.kMassageView,
+    ),
+    DrawerMenuItemModel(
+      text: "Calender",
+      icon: Icons.calendar_today_outlined,
+      route: AppRouter.kCalenderView,
+    ),
+    DrawerMenuItemModel(
+      text: "Bookmark",
+      icon: Icons.bookmark_outline,
+      route: AppRouter.kBookMarkView,
+    ),
+    DrawerMenuItemModel(
+      text: "Contact Us",
+      icon: Icons.mail_outline,
+      route: AppRouter.kContactUsView,
+    ),
+    DrawerMenuItemModel(
+      text: "Settings",
+      icon: Icons.settings_outlined,
+      route: AppRouter.kSettingView,
+    ),
+    DrawerMenuItemModel(
+      text: "Helps & FAQs",
+      icon: Icons.help_outline,
+      route: AppRouter.kHelpAndFaqsView,
+    ),
+    DrawerMenuItemModel(
+      text: "Sign Out",
+      icon: Icons.search,
+      route: AppRouter.kSignOutView,
+    ),
   ];
   @override
   Widget build(BuildContext context) {

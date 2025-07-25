@@ -1,4 +1,12 @@
+import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/sign_out_view.dart';
+import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,8 +26,31 @@ abstract class AppRouter {
   static const kforgetpassword = '/forgetpassword';
   static const kEmptyNotification = '/empty_notification';
   static const kVerification = '/verification';
+  static const kBookMarkView = '/bookmark';
+  static const kCalenderView = '/calender';
+  static const kContactUsView = '/contactus';
+  static const kHelpAndFaqsView = '/helpandfaqs';
+  static const kMassageView = '/massage';
+  static const kSettingView = '/setting';
+  static const kSignOutView = '/signout';
+  static const kMyProfile = '/myprofile';
   static final router = GoRouter(
     routes: [
+      GoRoute(path: kMyProfile, builder: (context, state) => MyProfileView()),
+      GoRoute(path: kBookMarkView, builder: (context, state) => BookmarkView()),
+      GoRoute(path: kCalenderView, builder: (context, state) => CalenderView()),
+      GoRoute(
+        path: kContactUsView,
+        builder: (context, state) => ContactUsView(),
+      ),
+      GoRoute(
+        path: kHelpAndFaqsView,
+        builder: (context, state) => HelpsAndFaqsView(),
+      ),
+      GoRoute(path: kMassageView, builder: (context, state) => MassageView()),
+      GoRoute(path: kSettingView, builder: (context, state) => SettingsView()),
+      GoRoute(path: kSignOutView, builder: (context, state) => SignOutView()),
+
       GoRoute(path: splash, builder: (context, state) => SplashView()),
       GoRoute(path: kOnboarding, builder: (context, state) => OnboardingView()),
       GoRoute(path: kLogin, builder: (context, state) => LoginView()),

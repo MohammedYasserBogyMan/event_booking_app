@@ -22,9 +22,9 @@ class HomeDrawer extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               Text("Ashfak Sayem", style: Styels.textStyle19),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               DrawerMenuList(),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               GestureDetector(
                 child: Image(
                   width: 150,
