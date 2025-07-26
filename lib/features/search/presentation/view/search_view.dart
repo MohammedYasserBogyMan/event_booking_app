@@ -8,7 +8,6 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.lightBackground,
       appBar: _buildAppBar(),
       body: SearchViewBody(),
     );
@@ -16,7 +15,6 @@ class SearchView extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColor.lightBackground,
       title: Text("Search", style: Styels.textStyle24),
     );
   }

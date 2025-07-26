@@ -9,7 +9,6 @@ class SeeAllEventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.lightBackground,
       appBar: _buildAppBar(),
       body: SeeAllEventsViewBody(),
     );
@@ -17,7 +16,6 @@ class SeeAllEventsView extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColor.lightBackground,
       actions: [
         IconButton(icon: Icon(Icons.search, size: 30), onPressed: () {}),
         IconButton(icon: Icon(Icons.more_vert, size: 30), onPressed: () {}),

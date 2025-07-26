@@ -8,7 +8,6 @@ class EmptyNotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: _buildAppBar(),
       body: EmptyNotificationViewBody(),
     );
@@ -18,7 +17,6 @@ class EmptyNotificationView extends StatelessWidget {
     return AppBar(
       actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
       title: Text("Notification", style: Styels.textStyle24),
-      backgroundColor: Colors.white,
     );
   }
 }
