@@ -9,13 +9,13 @@ class MyProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(),
+      appBar: _buildAppBar(),
       backgroundColor: AppColor.lightBackground,
       body: MyProfileViewBody(),
     );
   }
 
-  AppBar customAppBar() {
+  AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: AppColor.lightBackground,
       title: Text("Profile", style: Styels.textStyle24),

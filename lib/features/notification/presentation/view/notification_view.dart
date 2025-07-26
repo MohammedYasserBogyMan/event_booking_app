@@ -7,10 +7,10 @@ class NotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: buildAppBar(), body: NotificationViewBody());
+    return Scaffold(appBar: _buildAppBar(), body: NotificationViewBody());
   }
 
-  AppBar buildAppBar() {
+  AppBar _buildAppBar() {
     return AppBar(
       actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
       title: const Text("Notification", style: Styels.textStyle24),

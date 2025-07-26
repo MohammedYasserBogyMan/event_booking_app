@@ -9,12 +9,16 @@ class EmptyNotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
-        title: Text("Notification", style: Styels.textStyle24),
-        backgroundColor: Colors.white,
-      ),
+      appBar: _buildAppBar(),
       body: EmptyNotificationViewBody(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
+      title: Text("Notification", style: Styels.textStyle24),
+      backgroundColor: Colors.white,
     );
   }
 }

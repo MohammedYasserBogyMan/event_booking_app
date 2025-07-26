@@ -8,12 +8,12 @@ class OrganizerProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.lightBackground,
-      appBar: customAppBar(),
+      appBar: _buildAppBar(),
       body: OrganizerProfileViewBody(),
     );
   }
 
-  AppBar customAppBar() {
+  AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: AppColor.lightBackground,
       actions: [
