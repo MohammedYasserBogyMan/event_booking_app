@@ -7,7 +7,7 @@ class OrganizerProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whitebackgroundColor,
+      backgroundColor: AppColor.lightBackground,
       appBar: customAppBar(),
       body: OrganizerProfileViewBody(),
     );
@@ -15,7 +15,7 @@ class OrganizerProfileView extends StatelessWidget {
 
   AppBar customAppBar() {
     return AppBar(
-      backgroundColor: AppColor.whitebackgroundColor,
+      backgroundColor: AppColor.lightBackground,
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.double_arrow_outlined)),
       ],

@@ -21,9 +21,9 @@ class ProfileActionButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor:
-              isFilled ? AppColor.whitebackgroundColor : AppColor.primary,
+              isFilled ? AppColor.lightBackground : AppColor.primary,
           backgroundColor:
-              isFilled ? AppColor.primary : AppColor.whitebackgroundColor,
+              isFilled ? AppColor.primary : AppColor.lightBackground,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: AppColor.primary),
             borderRadius: BorderRadius.circular(20),

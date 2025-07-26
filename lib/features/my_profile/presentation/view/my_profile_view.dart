@@ -10,14 +10,14 @@ class MyProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(),
-      backgroundColor: AppColor.whitebackgroundColor,
+      backgroundColor: AppColor.lightBackground,
       body: MyProfileViewBody(),
     );
   }
 
   AppBar customAppBar() {
     return AppBar(
-      backgroundColor: AppColor.whitebackgroundColor,
+      backgroundColor: AppColor.lightBackground,
       title: Text("Profile", style: Styels.textStyle24),
     );
   }

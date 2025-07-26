@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: AppTheme.lightTheme,
       routerConfig: AppRouter.router,
-    debugShowCheckedModeBanner: false,
-    
+      debugShowCheckedModeBanner: false,
     );
     // return MaterialApp(debugShowCheckedModeBanner: false, home: HomeView());
   }

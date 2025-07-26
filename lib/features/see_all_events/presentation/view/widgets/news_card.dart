@@ -12,7 +12,7 @@ class NewsCard extends StatelessWidget {
       height: 120,
       child: Card(
         elevation: 1,
-        color: AppColor.whitebackgroundColor,
+        color: AppColor.lightBackground,
         child: Row(
           children: [
             Padding(

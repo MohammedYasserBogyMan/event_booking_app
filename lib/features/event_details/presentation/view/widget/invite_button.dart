@@ -10,7 +10,7 @@ class InviteButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.primary,
-        foregroundColor: AppColor.whitebackgroundColor,
+        foregroundColor: AppColor.lightBackground,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       onPressed: () {},

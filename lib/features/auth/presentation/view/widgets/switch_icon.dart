@@ -14,7 +14,7 @@ class _SwitchIconState extends State<SwitchIcon> {
   Widget build(BuildContext context) {
     return Switch(
       value: light,
-      activeColor:AppColor.whitebackgroundColor,
+      activeColor:AppColor.lightBackground,
       activeTrackColor:AppColor.primary,
       onChanged: (bool value) {
         setState(() {
