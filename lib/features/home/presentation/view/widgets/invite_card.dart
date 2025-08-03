@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +22,7 @@ class InviteCard extends StatelessWidget {
             top: 0,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/images/invite_image.png',
+              child: Image.asset(AssetsData.inviteImage,
                 height: 150,
                 width: 300,
                 fit: BoxFit.cover,

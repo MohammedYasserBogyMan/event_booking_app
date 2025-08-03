@@ -33,4 +33,5 @@ class AssetsData {
   static const dateIcon = 'assets/images/dateIcon.png';
   static const mapIcon = 'assets/images/mapIcon.png';
   static const notificationImage = 'assets/images/notificationImage.png';
+  static const inviteImage = "assets/images/invite_image.png";
 }

@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -116,17 +117,17 @@ class _GoingUsersSection extends StatelessWidget {
       children: [
         const CircleAvatar(
           radius: 10,
-          backgroundImage: NetworkImage("https://i.pravatar.cc/30"),
+          backgroundImage: AssetImage(AssetsData.eventDetailLogo),
         ),
         const SizedBox(width: 4),
         const CircleAvatar(
           radius: 10,
-          backgroundImage: NetworkImage("https://i.pravatar.cc/31"),
+          backgroundImage: AssetImage(AssetsData.eventDetailLogo),
         ),
         const SizedBox(width: 4),
         const CircleAvatar(
           radius: 10,
-          backgroundImage: NetworkImage("https://i.pravatar.cc/32"),
+          backgroundImage: AssetImage(AssetsData.eventDetailLogo),
         ),
         const SizedBox(width: 6),
         Text(
