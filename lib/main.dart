@@ -25,11 +25,10 @@ class EventBooking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp.router(
-    //   theme: AppTheme.lightTheme,
-    //   routerConfig: AppRouter.router,
-    //   debugShowCheckedModeBanner: false,
-    // );
-    return MaterialApp(home: HomeView());
+    return MaterialApp.router(
+      theme: AppTheme.lightTheme,
+      routerConfig: AppRouter.router,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

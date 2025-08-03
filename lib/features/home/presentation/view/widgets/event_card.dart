@@ -1,7 +1,9 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EventCard extends StatelessWidget {
   final EventModel event;
@@ -10,30 +12,35 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      margin: const EdgeInsets.only(right: 16),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _EventImageWithOverlay(event: event),
-          const SizedBox(height: 10),
-          Text(
-            event.title,
-            style: Styels.textStyle18.copyWith(color: Colors.black),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 5),
-          _GoingUsersSection(going: event.going),
-          const SizedBox(height: 6),
-          _LocationSection(location: event.location),
-        ],
+    return GestureDetector(
+      onTap: (){
+        GoRouter.of(context).push(AppRouter.kEventDetailsView);
+      },
+      child: Container(
+        width: 250,
+        margin: const EdgeInsets.only(right: 16),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _EventImageWithOverlay(event: event),
+            const SizedBox(height: 10),
+            Text(
+              event.title,
+              style: Styels.textStyle18.copyWith(color: Colors.black),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 5),
+            _GoingUsersSection(going: event.going),
+            const SizedBox(height: 6),
+            _LocationSection(location: event.location),
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
@@ -41,8 +42,13 @@ abstract class AppRouter {
   static const kSeeAllEvents = '/see_all_events';
   static const kSearchView = '/search';
   static const kOrganizerProfile = '/organizer_profile';
+  static const kEventDetailsView = "/event_details";
   static final router = GoRouter(
     routes: [
+      GoRoute(
+        path: kEventDetailsView,
+        builder: (context, state) => EventDetailsView(),
+      ),
       GoRoute(
         path: kNotificationView,
         builder: (context, state) => NotificationView(),
