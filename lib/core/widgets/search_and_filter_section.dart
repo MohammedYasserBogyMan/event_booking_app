@@ -29,22 +29,27 @@ class SearchAndFilterSection extends StatelessWidget {
               style: Styels.textStyle20,
             ),
           ),
-          Container(
-            height: 45,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-              color: colors.filterBackgroundColor,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.tune, color: colors.filterIconColor),
-                SizedBox(width: 5),
-                Text(
-                  'Filters',
-                  style: TextStyle(color: colors.filterTextColor),
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push("Filter bottom sheet");
+            },
+            child: Container(
+              height: 45,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                color: colors.filterBackgroundColor,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.tune, color: colors.filterIconColor),
+                  SizedBox(width: 5),
+                  Text(
+                    'Filters',
+                    style: TextStyle(color: colors.filterTextColor),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
