@@ -1,14 +1,14 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/about_section.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_info_tile.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/organizer_info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EventInfoBody extends StatelessWidget {
-  const EventInfoBody({
-    super.key,
-  });
+  const EventInfoBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,7 @@ class EventInfoBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 25),
-        Text(
-          "International Band \nMusic Concert",
-          style: Styels.textStyle35,
-        ),
+        Text("International Band \nMusic Concert", style: Styels.textStyle35),
         const SizedBox(height: 20),
         EventInfoTile(
           imageIcon: AssetsData.dateIcon,
@@ -33,10 +30,15 @@ class EventInfoBody extends StatelessWidget {
           time: "36 Guild Street London, UK ",
         ),
         const SizedBox(height: 30),
-        OrganizerInfoCard(
-          organizerEventPhoto: AssetsData.organizerEventPhoto,
-          name: "Ashfak Sayem",
-          job: "Organizer",
+        GestureDetector(
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.kOrganizerProfile);
+          },
+          child: OrganizerInfoCard(
+            organizerEventPhoto: AssetsData.organizerEventPhoto,
+            name: "Ashfak Sayem",
+            job: "Organizer",
+          ),
         ),
         const SizedBox(height: 40),
         AboutSection(
@@ -47,4 +49,3 @@ class EventInfoBody extends StatelessWidget {
     );
   }
 }
-

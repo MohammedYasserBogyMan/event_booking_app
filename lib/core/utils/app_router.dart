@@ -10,6 +10,7 @@ import 'package:event_booking_app/features/home/presentation/view/sign_out_view.
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/organizer_profile_view.dart';
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/view/see_all_events_view.dart';
 import 'package:go_router/go_router.dart';
@@ -45,6 +46,10 @@ abstract class AppRouter {
   static const kEventDetailsView = "/event_details";
   static final router = GoRouter(
     routes: [
+      GoRoute(
+        path: kOrganizerProfile,
+        builder: (context, state) => OrganizerProfileView(),
+      ),
       GoRoute(
         path: kEventDetailsView,
         builder: (context, state) => EventDetailsView(),
