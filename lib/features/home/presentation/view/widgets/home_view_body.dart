@@ -37,10 +37,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ),
           const SizedBox(height: 16),
           const InviteCard(),
-
           const SizedBox(height: 16),
           const HomeEventSectionHeader(title: 'Nearby You'),
-
           SizedBox(
             height: 260,
             child: _buildCategoryContent(selectedCategoryIndex),
