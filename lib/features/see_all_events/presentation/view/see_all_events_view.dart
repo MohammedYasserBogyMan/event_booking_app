@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/view/widgets/see_all_events_view_body.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,7 @@ class SeeAllEventsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: SeeAllEventsViewBody(),
-    );
+    return Scaffold(appBar: _buildAppBar(), body: SeeAllEventsViewBody());
   }
 
   AppBar _buildAppBar() {

@@ -1,6 +1,7 @@
 import 'package:event_booking_app/core/theme/search_filter_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/features/search/filters/filter_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,7 +32,7 @@ class SearchAndFilterSection extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push("Filter bottom sheet");
+              showFilterBottomSheet(context);
             },
             child: Container(
               height: 45,
