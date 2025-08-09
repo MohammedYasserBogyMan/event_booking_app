@@ -1,5 +1,6 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/features/event_invitation/presentation/view/invite_friend_view.dart';
 import 'package:flutter/material.dart';
 
 class InviteCard extends StatelessWidget {
@@ -22,7 +23,8 @@ class InviteCard extends StatelessWidget {
             top: 0,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(AssetsData.inviteImage,
+              child: Image.asset(
+                AssetsData.inviteImage,
                 height: 150,
                 width: 300,
                 fit: BoxFit.cover,
@@ -45,7 +47,18 @@ class InviteCard extends StatelessWidget {
                   const Text('Get \$20 for ticket', style: Styels.textStyle14),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16),
+                          ),
+                        ),
+                        builder: (_) => const InviteFriendSheet(),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       backgroundColor: const Color(0xff00F8FF),

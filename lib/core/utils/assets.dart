@@ -18,6 +18,8 @@ class AssetsData {
   static const organizerEventPhoto = 'assets/images/organizerEventPhoto.png';
   static const photoProfileOrganizer =
       'assets/images/photoProfileOrganizer.png';
+  static const shareLink = 'assets/images/sharelink.png';
+
   static const shareFacebookIcon = 'assets/images/shareFacebookIcon.png';
   static const shareInstgramIcon = 'assets/images/shareInstgramIcon.png';
   static const shareMassengerIcon = 'assets/images/shareMassengerIcon.png';

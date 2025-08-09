@@ -47,7 +47,10 @@ class _PriceSliderState extends State<PriceSlider> {
             showTicks: false,
             showLabels: false,
             enableTooltip: false,
-            thumbShape: ImageThumbShape("assets/images/thumbshape.png"),
+            thumbShape: ImageThumbShape(
+              "assets/images/thumbshape.png",
+              onImageLoaded: () => setState(() {}),
+            ),
             onChanged: (SfRangeValues values) {
               setState(() {
                 rangeValues = values;
