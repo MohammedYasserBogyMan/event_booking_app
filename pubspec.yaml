@@ -30,6 +30,7 @@ environment:
 dependencies:
   animated_introduction: ^1.0.4
   cupertino_icons: ^1.0.8
+  firebase_core: ^4.0.0
   flutter:
     sdk: flutter
   go_router: ^16.0.0
