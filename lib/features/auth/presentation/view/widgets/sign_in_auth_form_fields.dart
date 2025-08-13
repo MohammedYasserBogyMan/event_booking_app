@@ -3,13 +3,22 @@ import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInAuthFormFields extends StatelessWidget {
-  SignInAuthFormFields({super.key});
-  final GlobalKey<FormState> formkey = GlobalKey();
-  final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+class SignInAuthFormFields extends StatefulWidget {
+  const SignInAuthFormFields({super.key});
+
+  @override
+  State<SignInAuthFormFields> createState() => _SignInAuthFormFieldsState();
+}
+
+class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
+  String? email, password;
+  GlobalKey<FormState> formkey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -18,11 +27,19 @@ class SignInAuthFormFields extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFiled(
+            onSaved: (p0) {
+              email = p0;
+              controller.clear();
+            },
             hintText: 'abc@email.com',
             icon: Icons.email_outlined,
           ),
           const SizedBox(height: 19),
           CustomTextFiled(
+            onSaved: (p0) {
+              password = p0;
+              controller.clear();
+            },
             hintText: 'Your password',
             icon: Icons.lock_outline,
             isPassword: true,
@@ -40,7 +57,7 @@ class SignInAuthFormFields extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.kforgetpassword);
+                  GoRouter.of(context).go(AppRouter.kforgetpassword);
                 },
                 child: Text("Forgot Password?", style: Styels.textStyle14),
               ),
@@ -51,12 +68,44 @@ class SignInAuthFormFields extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 22),
             child: CustomButton(
               text: 'SIGN IN',
-              onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
+              onPressed: () async {
+                if (formkey.currentState!.validate()) {
+                  formkey.currentState!.save();
+                  try {
+                    await signIn();
+                    showSnackBar(context, message: "Success");
+                    GoRouter.of(context).go(AppRouter.kHomeView);
+                    formkey.currentState!.reset();
+                    controller.clear();
+                  } catch (error) {
+                    showSnackBar(context, message: error.toString());
+                  }
+                } else {
+                  setState(() {
+                    autovalidateMode = AutovalidateMode.always;
+                  });
+                }
+              },
             ),
           ),
           const SizedBox(height: 24),
         ],
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, {required String message}) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Future<void> signIn() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    UserCredential userCredential = await auth.signInWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
+    userCredential.user;
   }
 }
