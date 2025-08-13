@@ -1,13 +1,25 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_in_auth_form_fields.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class RegistrationAuthFormFields extends StatelessWidget {
-  RegistrationAuthFormFields({super.key});
-  final GlobalKey<FormState> formKey = GlobalKey();
-  final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+class RegistrationAuthFormFields extends StatefulWidget {
+  const RegistrationAuthFormFields({super.key});
+
+  @override
+  State<RegistrationAuthFormFields> createState() =>
+      _RegistrationAuthFormFieldsState();
+}
+
+class _RegistrationAuthFormFieldsState
+    extends State<RegistrationAuthFormFields> {
+  String? email, name, password;
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -15,9 +27,18 @@ class RegistrationAuthFormFields extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
-          CustomTextFiled(icon: Icons.person_outline, hintText: "Full name"),
+          CustomTextFiled(
+            icon: Icons.person_outline,
+            hintText: "Full name",
+            onSaved: (p0) {
+              name = p0;
+            },
+          ),
           const SizedBox(height: 19),
           CustomTextFiled(
+            onSaved: (p0) {
+              email = p0;
+            },
             icon: Icons.email_outlined,
             hintText: "abc@email.com",
           ),
@@ -25,12 +46,18 @@ class RegistrationAuthFormFields extends StatelessWidget {
           CustomTextFiled(
             icon: Icons.lock_outlined,
             hintText: "Your password",
+            onSaved: (p0) {
+              password = p0;
+            },
             isPassword: true,
           ),
           const SizedBox(height: 19),
           CustomTextFiled(
             icon: Icons.lock_outlined,
             hintText: "Confirm password",
+            onSaved: (p0) {
+              password = p0;
+            },
             isPassword: true,
           ),
           const SizedBox(height: 40),
@@ -38,11 +65,36 @@ class RegistrationAuthFormFields extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 22),
             child: CustomButton(
               text: "SIGN UP",
-              onPressed: () => GoRouter.of(context).push(AppRouter.kHomeView),
+              onPressed: () async {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  try {
+                    await register();
+                    showSnackBar(context, message: "Success Register");
+                    GoRouter.of(context).go(AppRouter.kHomeView);
+                    formKey.currentState!.reset();
+                  } catch (error) {
+                    showSnackBar(context, message: error.toString());
+                  }
+                } else {
+                  setState(() {
+                    autovalidateMode = AutovalidateMode.always;
+                  });
+                }
+              },
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> register() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
+    userCredential.user;
   }
 }

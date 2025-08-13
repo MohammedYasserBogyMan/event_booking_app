@@ -73,7 +73,7 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                   formkey.currentState!.save();
                   try {
                     await signIn();
-                    showSnackBar(context, message: "Success");
+                    showSnackBar(context, message: "Success Login");
                     GoRouter.of(context).go(AppRouter.kHomeView);
                     formkey.currentState!.reset();
                     controller.clear();
@@ -94,12 +94,6 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
     );
   }
 
-  void showSnackBar(BuildContext context, {required String message}) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
-  }
-
   Future<void> signIn() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -108,4 +102,8 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
     );
     userCredential.user;
   }
+}
+
+void showSnackBar(BuildContext context, {required String message}) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }
