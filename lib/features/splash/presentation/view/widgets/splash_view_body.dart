@@ -20,19 +20,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2000),
-    );
-    _animation = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
-
+    slidingTransitionAnimation();
+    navigateToLogin();
     _controller.forward();
-    Future.delayed(const Duration(milliseconds: 5000), () {
-      GoRouter.of(context).push(AppRouter.kOnboarding);
-    });
   }
 
   @override
@@ -49,5 +39,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
         child: Image.asset(AssetsData.splashLogo),
       ),
     );
+  }
+
+  void slidingTransitionAnimation() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    );
+    _animation = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+  }
+
+  void navigateToLogin() {
+    Future.delayed(const Duration(milliseconds: 5000), () {
+      GoRouter.of(context).go(AppRouter.kOnboarding);
+    });
   }
 }
