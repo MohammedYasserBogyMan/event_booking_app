@@ -4,7 +4,8 @@ import 'package:event_booking_app/features/auth/presentation/view/widgets/verifi
 import 'package:flutter/material.dart';
 
 class VerificationViewBody extends StatelessWidget {
-  const VerificationViewBody({super.key});
+  const VerificationViewBody({super.key, this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,20 @@ class VerificationViewBody extends StatelessWidget {
             Text("Verification", style: Styels.textStyle24),
             const SizedBox(height: 12),
             Text("We’ve send you the verification", style: Styels.textStyle15),
-            Text("code on +1 2620 0323 7631", style: Styels.textStyle15),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "code on ",
+                    style: Styels.textStyle15.copyWith(color: Colors.black),
+                  ),
+                  TextSpan(
+                    text: "$email",
+                    style: Styels.textStyle15.copyWith(color: AppColor.primary),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 27),
             VerificarionAuthFormFields(),
             const SizedBox(height: 24),

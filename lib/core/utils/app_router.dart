@@ -88,7 +88,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kVerification,
-        builder: (context, state) => VerificationView(),
+        builder: (context, state) {
+          final String email = state.extra as String;
+          return VerificationView(email: email);
+        },
       ),
       GoRoute(
         path: kEmptyNotification,

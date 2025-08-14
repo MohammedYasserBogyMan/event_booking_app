@@ -71,7 +71,7 @@ class _RegistrationAuthFormFieldsState
                   try {
                     await register();
                     showSnackBar(context, message: "Success Register");
-                    GoRouter.of(context).go(AppRouter.kHomeView);
+                    GoRouter.of(context).go(AppRouter.kVerification,extra: email);
                     formKey.currentState!.reset();
                   } catch (error) {
                     showSnackBar(context, message: error.toString());
@@ -95,6 +95,6 @@ class _RegistrationAuthFormFieldsState
       email: email!,
       password: password!,
     );
-    userCredential.user;
+    await userCredential.user!.sendEmailVerification();
   }
 }
