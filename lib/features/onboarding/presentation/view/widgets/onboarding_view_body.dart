@@ -60,7 +60,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               pageCount: onboardingList.length,
               onNext:
                   _currentPage == 2
-                      ? () => GoRouter.of(context).push(AppRouter.kLogin)
+                      ? () => GoRouter.of(context).go(AppRouter.kLogin)
                       : _onNext,
               onSkip: _onSkip,
             ),
@@ -70,3 +70,5 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
     );
   }
 }
+
+
