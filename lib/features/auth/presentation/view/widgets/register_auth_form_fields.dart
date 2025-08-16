@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
@@ -71,8 +73,21 @@ class _RegistrationAuthFormFieldsState
                   try {
                     await register();
                     showSnackBar(context, message: "Success Register");
-                    GoRouter.of(context).go(AppRouter.kVerification,extra: email);
+                    GoRouter.of(
+                      context,
+                    ).go(AppRouter.kVerification, extra: email);
                     formKey.currentState!.reset();
+                  } on FirebaseAuthException catch (firebaseAuthException) {
+                    if (firebaseAuthException.code == "email-already-in-use") {
+                      showSnackBar(
+                        context,
+                        message: "This Email Already In use, \nplease Sign In",
+                      );
+                    } else if (firebaseAuthException.code == "weak-password") {
+                      showSnackBar(context, message: "This Password Is Weak");
+                    } else if (firebaseAuthException.code == "invalid-email") {
+                      showSnackBar(context, message: "This Email Is invalid");
+                    }
                   } catch (error) {
                     showSnackBar(context, message: error.toString());
                   }
