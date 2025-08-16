@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
-import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_in_auth_form_fields.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -70,27 +66,12 @@ class _RegistrationAuthFormFieldsState
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  try {
-                    await register();
-                    showSnackBar(context, message: "Success Register");
-                    GoRouter.of(
-                      context,
-                    ).go(AppRouter.kVerification, extra: email);
-                    formKey.currentState!.reset();
-                  } on FirebaseAuthException catch (firebaseAuthException) {
-                    if (firebaseAuthException.code == "email-already-in-use") {
-                      showSnackBar(
-                        context,
-                        message: "This Email Already In use, \nplease Sign In",
-                      );
-                    } else if (firebaseAuthException.code == "weak-password") {
-                      showSnackBar(context, message: "This Password Is Weak");
-                    } else if (firebaseAuthException.code == "invalid-email") {
-                      showSnackBar(context, message: "This Email Is invalid");
-                    }
-                  } catch (error) {
-                    showSnackBar(context, message: error.toString());
-                  }
+                  // trigger cubit here.
+                  GoRouter.of(
+                    context,
+                  ).go(AppRouter.kVerification, extra: email);
+
+                  formKey.currentState!.reset();
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
@@ -102,14 +83,5 @@ class _RegistrationAuthFormFieldsState
         ],
       ),
     );
-  }
-
-  Future<void> register() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-      email: email!,
-      password: password!,
-    );
-    await userCredential.user!.sendEmailVerification();
   }
 }
