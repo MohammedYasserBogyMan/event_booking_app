@@ -19,11 +19,11 @@ class AuthCubit extends Cubit<AuthStates> {
       if (firebaseException.code == "invalid-credential") {
         emit(
           FailureLoginState(
-            errorMessage: "Invalid credentials, please try again or SignUp",
+            errMessage: "Invalid credentials, please try again or SignUp",
           ),
         );
       } else if (firebaseException.code == "invalid-email") {
-        emit(FailureLoginState(errorMessage: "This Email Is invalid"));
+        emit(FailureLoginState(errMessage: "This Email Is invalid"));
       }
     }
   }

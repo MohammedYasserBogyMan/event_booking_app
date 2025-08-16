@@ -5,8 +5,8 @@ class AuthInitial extends AuthStates {}
 class SuccessLoginState extends AuthStates {}
 
 class FailureLoginState extends AuthStates {
-  final String errorMessage;
-  FailureLoginState({required this.errorMessage});
+  final String errMessage;
+  FailureLoginState({required this.errMessage});
 }
 
 class LoadingLoginState extends AuthStates {}
