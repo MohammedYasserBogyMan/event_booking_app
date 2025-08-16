@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/constants/cons.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
@@ -77,6 +81,14 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                     GoRouter.of(context).go(AppRouter.kHomeView);
                     formkey.currentState!.reset();
                     controller.clear();
+                  } on FirebaseAuthException catch (firebaseException) {
+                    if (firebaseException.code == "invalid-credential") {
+                      showSnackBar(
+                        context,
+                        message:
+                            "Invalid credentials, please try again or SignUp",
+                      );
+                    }
                   } catch (error) {
                     showSnackBar(context, message: error.toString());
                   }
@@ -105,5 +117,20 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
 }
 
 void showSnackBar(BuildContext context, {required String message}) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      duration: Duration(seconds: 4),
+      backgroundColor: AppColor.primary,
+      content: Center(
+        child: Text(
+          message,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            fontFamily: kFont,
+          ),
+        ),
+      ),
+    ),
+  );
 }
