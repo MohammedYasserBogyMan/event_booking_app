@@ -33,7 +33,6 @@ class VerificarionAuthFormFields extends StatelessWidget {
             child: CustomButton(
               text: "Continue",
               onPressed: () {
-                
                 GoRouter.of(context).push(AppRouter.kHomeView);
               },
             ),
