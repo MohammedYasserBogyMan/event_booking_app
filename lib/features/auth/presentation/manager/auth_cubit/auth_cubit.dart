@@ -45,13 +45,13 @@ class AuthCubit extends Cubit<AuthStates> {
       if (firebaseException.code == "email-already-in-use") {
         emit(
           FailureRegisterState(
-            errorMessage: "This Email Already In use, \nplease Sign In",
+            errMessage: "This Email Already In use, \nplease Sign In",
           ),
         );
       } else if (firebaseException.code == "weak-password") {
-        emit(FailureRegisterState(errorMessage: "This Password Is Weak"));
+        emit(FailureRegisterState(errMessage: "This Password Is Weak"));
       } else if (firebaseException.code == "invalid-email") {
-        emit(FailureRegisterState(errorMessage: "This Email Is invalid"));
+        emit(FailureRegisterState(errMessage: "This Email Is invalid"));
       }
     }
   }
