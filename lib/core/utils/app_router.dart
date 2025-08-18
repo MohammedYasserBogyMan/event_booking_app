@@ -3,6 +3,7 @@ import 'package:event_booking_app/features/event_details/presentation/view/event
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
@@ -45,6 +46,7 @@ abstract class AppRouter {
   static const kSearchView = '/search';
   static const kOrganizerProfile = '/organizer_profile';
   static const kEventDetailsView = "/event_details";
+  static const kCreateEventView = "/create_event";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -103,6 +105,10 @@ abstract class AppRouter {
         builder: (context, state) => EmptyNotificationView(),
       ),
       GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: kCreateEventView,
+        builder: (context, state) => CreateEventView(),
+      ),
     ],
   );
 }
