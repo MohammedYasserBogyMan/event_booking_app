@@ -1,10 +1,12 @@
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/buy_ticket_overlay_button.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_app_bar.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_info_body.dart';
 import 'package:flutter/material.dart';
 
 class EventDetailsViewBody extends StatelessWidget {
-  const EventDetailsViewBody({super.key});
+  final EventModel event;
+  const EventDetailsViewBody({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {

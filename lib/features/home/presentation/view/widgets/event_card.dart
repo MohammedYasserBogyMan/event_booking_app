@@ -16,7 +16,7 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kEventDetailsView);
+        GoRouter.of(context).push(AppRouter.kEventDetailsView, extra: event);
       },
       child: Container(
         width: 250,

@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
@@ -52,8 +53,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kEventDetailsView,
-        builder: (context, state) => EventDetailsView(),
+        builder: (context, state) {
+          final event = state.extra as EventModel;
+          return EventDetailsView(event: event);
+        },
       ),
+
       GoRoute(
         path: kNotificationView,
         builder: (context, state) => NotificationView(),
