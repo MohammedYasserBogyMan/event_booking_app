@@ -38,7 +38,7 @@ class EventCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 5),
-            GoingUsersSection(going: event.going),
+            GoingUsersSection(going: event.attendeeCount),
             const SizedBox(height: 6),
             LocationSection(location: event.location),
           ],

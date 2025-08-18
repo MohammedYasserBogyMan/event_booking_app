@@ -38,15 +38,17 @@ dependencies:
   go_router: ^16.0.0
   modal_progress_hud_nsn: ^0.5.1
   syncfusion_flutter_sliders: ^30.2.4
+  syncfusion_flutter_core: ^30.2.4
+  dartz: ^0.10.1
+  cloud_firestore: ^6.0.0
+  intl: ^0.20.2
+  flutter_svg: ^2.2.0
 
 dev_dependencies:
-  cloud_firestore: ^6.0.0
   flutter_lints: ^5.0.0
-  flutter_svg: ^2.2.0
   flutter_test:
     sdk: flutter
-  intl: ^0.20.2
-  syncfusion_flutter_core: ^30.2.4
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

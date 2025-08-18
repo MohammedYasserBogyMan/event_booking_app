@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DateTag extends StatelessWidget {
   final DateTime date;
 
-  const DateTag({required this.date});
+  const DateTag({super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {

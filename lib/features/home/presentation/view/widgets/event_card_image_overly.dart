@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class EventImageWithOverlay extends StatelessWidget {
   final EventModel event;
 
-  const EventImageWithOverlay({required this.event});
+  const EventImageWithOverlay({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
