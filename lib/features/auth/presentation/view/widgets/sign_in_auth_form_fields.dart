@@ -1,11 +1,10 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
-import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
-import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/remember_me_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -61,27 +60,7 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                     isPassword: true,
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SwitchIcon(),
-                          const SizedBox(width: 5),
-                          Text("Remember Me", style: Styels.textStyle14),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).go(AppRouter.kforgetpassword);
-                        },
-                        child: Text(
-                          "Forgot Password?",
-                          style: Styels.textStyle14,
-                        ),
-                      ),
-                    ],
-                  ),
+                  RememberMeSection(),
                   const SizedBox(height: 36),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 22),
