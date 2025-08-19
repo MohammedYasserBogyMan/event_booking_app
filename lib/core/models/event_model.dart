@@ -7,10 +7,12 @@ class EventModel {
   final String description;
   final DateTime date;
   final String location;
+  final String subLocation;
   final String imageUrl;
   final int attendeeCount;
   final String publisherId;
   final int? maxAttendees;
+  final int price;
 
   EventModel({
     required this.id,
@@ -19,10 +21,12 @@ class EventModel {
     required this.description,
     required this.date,
     required this.location,
+    required this.subLocation,
     required this.imageUrl,
     required this.attendeeCount,
     required this.publisherId,
     this.maxAttendees,
+    required this.price,
   });
 
   factory EventModel.fromFirestore(DocumentSnapshot doc) {
@@ -34,10 +38,12 @@ class EventModel {
       description: data['description'] ?? '',
       date: (data['date'] as Timestamp).toDate(),
       location: data['location'] ?? '',
+      subLocation: data['subLocation'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
       attendeeCount: data['going'] ?? 0,
       publisherId: data['publisherId'] ?? '',
       maxAttendees: data['maxAttendees'],
+      price: data['price'] ?? 0,
     );
   }
 
@@ -48,10 +54,12 @@ class EventModel {
       'description': description,
       'date': Timestamp.fromDate(date),
       'location': location,
+      'subLocation': subLocation,
       'imageUrl': imageUrl,
       'going': attendeeCount,
       'publisherId': publisherId,
       'maxAttendees': maxAttendees,
+      'price': price,
     };
   }
 }
