@@ -1,31 +1,22 @@
+import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit(this.authRepo) : super(AuthInitial());
+  final AuthRepo authRepo;
 
   Future<void> login({required String email, required String password}) async {
     emit(LoadingLoginState());
-    try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      userCredential.user;
-      emit(SuccessLoginState());
-    } on FirebaseAuthException catch (firebaseException) {
-      if (firebaseException.code == "invalid-credential") {
-        emit(
-          FailureLoginState(
-            errMessage: "Invalid credentials, please try again or SignUp",
-          ),
-        );
-      } else if (firebaseException.code == "invalid-email") {
-        emit(FailureLoginState(errMessage: "This Email Is invalid"));
-      }
-    }
+    final login = await authRepo.login(email: email, password: password);
+    login.fold(
+      (failure) {
+        return emit(FailureLoginState(errMessage: failure.errMessage));
+      },
+      (login) {
+        return emit(SuccessLoginState());
+      },
+    );
   }
 
   Future<void> register({
@@ -33,37 +24,27 @@ class AuthCubit extends Cubit<AuthStates> {
     required String password,
   }) async {
     emit(LoadingRegisterState());
-    try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      await userCredential.user!.sendEmailVerification();
-      emit(SuccessRegisterState());
-    } on FirebaseAuthException catch (firebaseException) {
-      if (firebaseException.code == "email-already-in-use") {
-        emit(
-          FailureRegisterState(
-            errMessage: "This Email Already In use, \nplease Sign In",
-          ),
-        );
-      } else if (firebaseException.code == "weak-password") {
-        emit(FailureRegisterState(errMessage: "This Password Is Weak"));
-      } else if (firebaseException.code == "invalid-email") {
-        emit(FailureRegisterState(errMessage: "This Email Is invalid"));
-      }
-    }
+    final register = await authRepo.register(email: email, password: password);
+    register.fold(
+      (failure) {
+        emit(FailureRegisterState(errMessage: failure.errMessage));
+      },
+      (register) {
+        emit(SuccessRegisterState());
+      },
+    );
   }
 
   Future<void> reset({required String email}) async {
     emit(LoadingResetState());
-    try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      await auth.sendPasswordResetEmail(email: email);
-      emit(SuccessResetState());
-    } on FirebaseAuthException catch (firebaseException) {
-      emit(FailureResetState(errMessage: firebaseException.code));
-    }
+    final reset = await authRepo.resetPassword(email: email);
+    reset.fold(
+      (failure) {
+        emit(FailureRegisterState(errMessage: failure.errMessage));
+      },
+      (reset) {
+        emit(SuccessRegisterState());
+      },
+    );
   }
 }

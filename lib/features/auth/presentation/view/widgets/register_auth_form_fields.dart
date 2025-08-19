@@ -30,7 +30,7 @@ class _RegistrationAuthFormFieldsState
       listener: (context, state) {
         if (state is LoadingRegisterState) {
         } else if (state is SuccessRegisterState) {
-          showSnackBar(context, message: "SuccessLogin");
+          showSnackBar(context, message: "SuccessRegister");
           GoRouter.of(context).go(AppRouter.kVerification, extra: email);
         } else if (state is FailureRegisterState) {
           showSnackBar(context, message: state.errMessage);
