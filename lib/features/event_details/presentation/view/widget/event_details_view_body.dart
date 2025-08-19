@@ -5,25 +5,24 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:flutter/material.dart';
 
 class EventDetailsViewBody extends StatelessWidget {
-  final EventModel event;
   const EventDetailsViewBody({super.key, required this.event});
-
+  final EventModel event;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         CustomScrollView(
           slivers: [
-            CustomAppBar(),
+            CustomAppBar(eventModel: event),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
-                child: EventInfoBody(),
+                child: EventInfoBody(eventModel: event),
               ),
             ),
           ],
         ),
-        BuyTicketOverlayButton(),
+        BuyTicketOverlayButton(eventModel: event),
       ],
     );
   }

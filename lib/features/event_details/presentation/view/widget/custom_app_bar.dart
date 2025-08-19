@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/banner_widget.dart';
@@ -5,7 +6,8 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, required this.eventModel});
+  final EventModel eventModel;
 
   @override
   Widget build(BuildContext context) {

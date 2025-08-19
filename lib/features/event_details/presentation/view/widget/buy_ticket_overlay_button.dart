@@ -1,11 +1,11 @@
 import 'dart:ui';
-
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class BuyTicketOverlayButton extends StatelessWidget {
-  const BuyTicketOverlayButton({super.key});
-
+  const BuyTicketOverlayButton({super.key, required this.eventModel});
+  final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return Align(

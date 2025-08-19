@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class EventInfoBody extends StatelessWidget {
-  const EventInfoBody({super.key});
-
+  const EventInfoBody({super.key, required this.eventModel});
+  final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
     return Column(
