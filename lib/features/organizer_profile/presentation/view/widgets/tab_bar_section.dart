@@ -1,5 +1,7 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/core/widgets/news_list.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/about_tab.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/events_tab.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/reviews_tab.dart';
 import 'package:flutter/material.dart';
 
 class TabBarSection extends StatelessWidget {
@@ -20,7 +22,9 @@ class TabBarSection extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: TabBarView(children: [NewsList(), NewsList(), NewsList()]),
+            child: TabBarView(
+              children: [AboutTab(), EventsTap(), ReviewsTap()],
+            ),
           ),
         ],
       ),
