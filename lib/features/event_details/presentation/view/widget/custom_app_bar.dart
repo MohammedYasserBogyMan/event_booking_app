@@ -1,14 +1,12 @@
-import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/banner_widget.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_icon.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.eventModel});
-  final EventModel eventModel;
-
+  const CustomAppBar({super.key, required this.going, required this.imageUrl});
+  final int going;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -28,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
             Image.asset(
               width: double.infinity,
               height: double.infinity,
-              AssetsData.eventPhoto,
+              imageUrl,
               fit: BoxFit.cover,
             ),
             Positioned(
@@ -37,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               right: -50,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 70),
-                child: BannerWidget(),
+                child: BannerWidget(going: going),
               ),
             ),
           ],

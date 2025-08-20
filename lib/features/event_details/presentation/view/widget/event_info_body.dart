@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
@@ -17,18 +18,19 @@ class EventInfoBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 25),
-        Text("International Band \nMusic Concert", style: Styels.textStyle35),
+        Text(eventModel.title, style: Styels.textStyle35),
         const SizedBox(height: 20),
         EventInfoTile(
           imageIcon: AssetsData.dateIcon,
-          date: "14 December, 2021",
-          time: "Tuesday, 4:00PM - 9:00PM",
+          title: dateFormat(dateTime: eventModel.date),
+          subtitle:
+              "${dayFormat(dateTime: eventModel.date)} ${timeRange(dateTime: eventModel.date, dateTime2: eventModel.date)}",
         ),
         const SizedBox(height: 15),
         EventInfoTile(
           imageIcon: AssetsData.mapIcon,
-          date: "Gala Convention Center",
-          time: "36 Guild Street London, UK ",
+          title: eventModel.location,
+          subtitle: eventModel.subLocation,
         ),
         const SizedBox(height: 30),
         GestureDetector(
@@ -42,10 +44,7 @@ class EventInfoBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 40),
-        AboutSection(
-          aboutDescription:
-              """Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More""",
-        ),
+        AboutSection(aboutDescription: eventModel.description),
       ],
     );
   }

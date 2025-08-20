@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/models/event_model.dart';
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/buy_ticket_overlay_button.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_app_bar.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_info_body.dart';
@@ -13,7 +14,10 @@ class EventDetailsViewBody extends StatelessWidget {
       children: [
         CustomScrollView(
           slivers: [
-            CustomAppBar(eventModel: event),
+            CustomAppBar(
+              going: event.attendeeCount,
+              imageUrl: AssetsData.eventPhoto,
+            ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
@@ -22,7 +26,7 @@ class EventDetailsViewBody extends StatelessWidget {
             ),
           ],
         ),
-        BuyTicketOverlayButton(eventModel: event),
+        BuyTicketOverlayButton(price: event.price),
       ],
     );
   }

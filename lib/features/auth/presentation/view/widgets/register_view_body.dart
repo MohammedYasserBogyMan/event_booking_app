@@ -30,9 +30,7 @@ class RegisterViewBody extends StatelessWidget {
                   },
                   child: Text(
                     "Sign in",
-                    style: Styels.textStyle15.copyWith(
-                      color:AppColor.primary,
-                    ),
+                    style: Styels.textStyle15.copyWith(color: AppColor.primary),
                   ),
                 ),
               ],

@@ -5,7 +5,8 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:flutter/material.dart';
 
 class BannerWidget extends StatelessWidget {
-  const BannerWidget({super.key});
+  const BannerWidget({super.key, required this.going});
+  final int going;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +27,7 @@ class BannerWidget extends StatelessWidget {
               AttendesAvatar(),
               SizedBox(width: 5),
               Text(
-                "+20 Going",
+                "+$going Going",
                 style: Styels.textStyle15.copyWith(color: AppColor.primary),
               ),
             ],
@@ -37,4 +38,3 @@ class BannerWidget extends StatelessWidget {
     );
   }
 }
-

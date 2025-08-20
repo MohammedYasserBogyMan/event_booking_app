@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class EventInfoTile extends StatelessWidget {
   const EventInfoTile({
     super.key,
-    required this.date,
-    required this.time,
+    required this.title,
+    required this.subtitle,
     required this.imageIcon,
   });
-  final String date;
-  final String time;
+  final String title;
+  final String subtitle;
   final String imageIcon;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EventInfoTile extends StatelessWidget {
           padding: EdgeInsets.only(left: 13),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(date), Text(time)],
+            children: [Text(title), Text(subtitle)],
           ),
         ),
       ],

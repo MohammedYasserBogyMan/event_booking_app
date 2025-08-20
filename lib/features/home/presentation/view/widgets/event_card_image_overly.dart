@@ -22,7 +22,8 @@ class EventImageWithOverlay extends StatelessWidget {
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
               return Image.asset(
-                AssetsData.eventDetailLogo,
+                // هنا المفروض احط الصورة في home view (abdallah)
+                AssetsData.eventPhoto,
                 height: 120,
                 width: double.infinity,
                 fit: BoxFit.cover,

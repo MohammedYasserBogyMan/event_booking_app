@@ -2,7 +2,6 @@ abstract class AuthStates {}
 
 class AuthInitial extends AuthStates {}
 
-
 // Login States
 class SuccessLoginState extends AuthStates {}
 
@@ -13,7 +12,6 @@ class FailureLoginState extends AuthStates {
 
 class LoadingLoginState extends AuthStates {}
 
-
 // Register States
 class SuccessRegisterState extends AuthStates {}
 
@@ -23,7 +21,6 @@ class FailureRegisterState extends AuthStates {
 }
 
 class LoadingRegisterState extends AuthStates {}
-
 
 // Reset States
 class LoadingResetState extends AuthStates {}
