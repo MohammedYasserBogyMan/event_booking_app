@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/models/event_model.dart';
+import 'package:event_booking_app/core/repositories/event_repo_impl.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
@@ -14,7 +15,9 @@ import 'package:event_booking_app/features/notification/presentation/view/empty_
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
 import 'package:event_booking_app/features/organizer_profile/presentation/view/organizer_profile_view.dart';
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
+import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_cubit.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/view/see_all_events_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
@@ -68,7 +71,13 @@ abstract class AppRouter {
       GoRoute(path: kSearchView, builder: (context, state) => SearchView()),
       GoRoute(
         path: kSeeAllEvents,
-        builder: (context, state) => SeeAllEventsView(),
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) =>
+                      SeeAllEventsCubit(EventRepoImpl())..fetchEvents(),
+              child: SeeAllEventsView(),
+            ),
       ),
       GoRoute(path: kMyProfile, builder: (context, state) => MyProfileView()),
       GoRoute(path: kBookMarkView, builder: (context, state) => BookmarkView()),

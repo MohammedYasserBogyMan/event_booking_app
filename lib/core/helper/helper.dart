@@ -6,7 +6,7 @@ String dateFormat({required DateTime dateTime}) {
 }
 
 String dayFormat({required DateTime dateTime}) {
-  String day = DateFormat("EEEE").format(dateTime!);
+  String day = DateFormat("EEEE").format(dateTime);
   return day;
 }
 
