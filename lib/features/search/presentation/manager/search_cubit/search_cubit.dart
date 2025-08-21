@@ -8,7 +8,9 @@ class SearchCubit extends Cubit<SearchStates> {
 
   searchCategory({required String category}) async {
     emit(LoadingSearchState());
-    var result = await searchRepo.getSpecificEvents(targetSearch: category);
+    var result = await searchRepo.getSpecificEventsByTitel(
+      targetSearch: category,
+    );
     result.fold(
       (failure) {
         emit(FailureSearchState(errMessage: failure.message));

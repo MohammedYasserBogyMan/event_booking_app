@@ -9,12 +9,16 @@ class SearchRepoImple implements SearchRepo {
   final FirebaseFirestore _firestore;
   SearchRepoImple(this._firestore);
   @override
-  Future<Either<Failure, List<EventUiModel>>> getSpecificEvents({
+  Future<Either<Failure, List<EventUiModel>>> getSpecificEventsByTitel({
     required String targetSearch,
   }) async {
     try {
       QuerySnapshot<Map<String, dynamic>> snapshot =
-          await _firestore.collection(kCollectionReference).get();
+          await _firestore
+              .collection(kCollectionReference)
+              .where("title", isGreaterThanOrEqualTo: targetSearch)
+              .where("title", isLessThanOrEqualTo: "$targetSearch\uf8ff")
+              .get();
       List<EventUiModel> events = [];
       for (var event in snapshot.docs) {
         events.add(EventUiModel.fromFirestore(event));
