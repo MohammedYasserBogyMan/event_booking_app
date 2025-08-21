@@ -67,4 +67,17 @@ class AuthRepoImple implements AuthRepo {
       return Left(FirebaseAuthFailure(errMessage: error.code));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> getCurrentUserId() async {
+    try {
+      final user = auth.currentUser;
+      if (user == null) {
+        return Left(FirebaseAuthFailure(errMessage: "No authenticated user"));
+      }
+      return Right(user.uid);
+    } catch (e) {
+      return Left(FirebaseAuthFailure(errMessage: e.toString()));
+    }
+  }
 }

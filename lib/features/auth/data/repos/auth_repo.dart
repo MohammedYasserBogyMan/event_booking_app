@@ -6,9 +6,14 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
-  Future<Either<Failure, void>> resetPassword({required String email});
+
   Future<Either<Failure, void>> register({
     required String email,
     required String password,
   });
+
+  Future<Either<Failure, void>> resetPassword({required String email});
+
+  // جديد: يرجع uid أو Failure
+  Future<Either<Failure, String>> getCurrentUserId();
 }

@@ -1,11 +1,15 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/about_tab.dart';
-import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/events_tab.dart';
-import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/reviews_tab.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/organizer_about_tab.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/organizer_events_tab.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/organizer_reviews_tab.dart';
+
 class TabBarSection extends StatelessWidget {
-  const TabBarSection({super.key});
+  const TabBarSection({super.key, required this.organizerId});
+  final String organizerId;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

@@ -5,8 +5,8 @@ import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
-class Events extends StatelessWidget {
-  const Events({super.key, required this.events});
+class ProfileEventListViewItem extends StatelessWidget {
+  const ProfileEventListViewItem({super.key, required this.events});
   final EventModel events;
   @override
   Widget build(BuildContext context) {

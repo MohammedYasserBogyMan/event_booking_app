@@ -19,8 +19,12 @@ class ProfileHeader extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 40,
-          backgroundImage: AssetImage(imageUrl),
+          backgroundImage:
+              imageUrl.startsWith('http')
+                  ? NetworkImage(imageUrl)
+                  : AssetImage(imageUrl) as ImageProvider,
         ),
+
         SizedBox(height: 20),
         Text(name, style: Styels.textStyle24),
         SizedBox(height: 10),

@@ -1,5 +1,4 @@
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/buy_ticket_overlay_button.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_app_bar.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_info_body.dart';

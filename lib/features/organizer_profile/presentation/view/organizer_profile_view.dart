@@ -2,10 +2,14 @@ import 'package:event_booking_app/features/organizer_profile/presentation/view/w
 import 'package:flutter/material.dart';
 
 class OrganizerProfileView extends StatelessWidget {
-  const OrganizerProfileView({super.key});
+  const OrganizerProfileView({super.key, required this.organizerId});
+  final String organizerId;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: _buildAppBar(), body: OrganizerProfileViewBody());
+    return Scaffold(
+      appBar: _buildAppBar(),
+      body: OrganizerProfileViewBody(organizerId: organizerId),
+    );
   }
 
   AppBar _buildAppBar() {
