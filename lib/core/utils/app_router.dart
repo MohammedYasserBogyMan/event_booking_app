@@ -15,7 +15,7 @@ import 'package:event_booking_app/features/home/presentation/view/sign_out_view.
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
-import 'package:event_booking_app/features/organizer_profile/presentation/organizer_profile_providers.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/view/organizer_profile_view.dart';
 import 'package:event_booking_app/features/search/data/repos/search_repo_imple.dart';
 import 'package:event_booking_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
@@ -58,7 +58,10 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: kOrganizerProfile,
-        builder: (context, state) => OrganizerProfileProviders.organizerProfile,
+        builder: (context, state) {
+          final organizerId = state.extra as String;
+          return OrganizerProfileView(organizerId: organizerId);
+        },
       ),
       GoRoute(
         path: kEventDetailsView,

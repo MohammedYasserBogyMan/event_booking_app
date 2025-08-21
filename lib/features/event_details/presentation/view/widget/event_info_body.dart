@@ -35,7 +35,9 @@ class EventInfoBody extends StatelessWidget {
         const SizedBox(height: 30),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push(AppRouter.kOrganizerProfile);
+            GoRouter.of(
+              context,
+            ).push(AppRouter.kOrganizerProfile, extra: eventModel.publisherId);
           },
           child: OrganizerInfoCard(
             organizerEventPhoto: AssetsData.organizerEventPhoto,
