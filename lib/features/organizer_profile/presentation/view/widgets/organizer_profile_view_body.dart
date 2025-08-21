@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/widgets/profile_action_button.dart';
 import 'package:event_booking_app/core/widgets/profile_header.dart';
 import 'package:event_booking_app/features/organizer_profile/data/repo/organizer_repo_impl.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/manager/organizer_events/cubit/organizer_events_cubit.dart';
 import 'package:event_booking_app/features/organizer_profile/presentation/manager/organizer_view/cubit/organizer_view_cubit.dart';
 import 'package:event_booking_app/features/organizer_profile/presentation/view/widgets/tab_bar_section.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,21 @@ class OrganizerProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (_) => OrganizerProfileCubit(
-            OrganizerRepoImpl(FirebaseFirestore.instance),
-          )..fetchProfile(organizerId),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (_) => OrganizerProfileCubit(
+                OrganizerRepoImpl(FirebaseFirestore.instance),
+              )..fetchProfile(organizerId),
+        ),
+        BlocProvider(
+          create:
+              (context) => OrganizerEventsCubit(
+                OrganizerRepoImpl(FirebaseFirestore.instance),
+              )..fetchOrganizerEvents(organizerId),
+        ),
+      ],
       child: BlocBuilder<OrganizerProfileCubit, OrganizerProfileState>(
         builder: (context, state) {
           if (state is OrganizerProfileLoading) {
@@ -62,7 +73,7 @@ class OrganizerProfileViewBody extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  Expanded(child: TabBarSection(organizerId: organizerId)),
+                  Expanded(child: TabBarSection(aboutUser: user.about)),
                 ],
               ),
             );

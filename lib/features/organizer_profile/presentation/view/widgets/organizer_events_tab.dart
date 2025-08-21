@@ -3,31 +3,23 @@ import 'package:event_booking_app/features/organizer_profile/presentation/view/w
 import 'package:flutter/material.dart';
 
 class EventsTap extends StatelessWidget {
-  const EventsTap({super.key});
+  const EventsTap({super.key, required this.events});
+
+  final List<EventModel> events;
 
   @override
   Widget build(BuildContext context) {
+    if (events.isEmpty) {
+      return const Center(child: Text("No events found."));
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: ListView(
-        children: [
-          // Replace with your static or sample widgets
-          ProfileEventListViewItem(
-            events: EventModel(
-              attendeeCount: 2,
-              publisherId: "12345",
-              subLocation: "Sample Sub Location",
-              imageUrl: "https://example.com/event1.jpg",
-              description: "Sample event description",
-              location: "Sample Location",
-              price: 20,
-
-              category: "Music",
-              title: "Sample Event 1",
-              date: DateTime.now(),
-            ),
-          ),
-        ],
+      child: ListView.builder(
+        itemCount: events.length,
+        itemBuilder: (context, index) {
+          return ProfileEventListViewItem(events: events[index]);
+        },
       ),
     );
   }

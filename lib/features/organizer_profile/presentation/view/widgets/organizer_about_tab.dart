@@ -1,18 +1,11 @@
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
 class AboutTab extends StatelessWidget {
-  const AboutTab({super.key});
-
+  const AboutTab({super.key, required this.aboutText});
+  final String aboutText;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Center(child: Text("AboutTab"));
-        },
-      ),
-    );
+    return Center(child: Text(aboutText, style: Styels.textStyle22));
   }
 }
