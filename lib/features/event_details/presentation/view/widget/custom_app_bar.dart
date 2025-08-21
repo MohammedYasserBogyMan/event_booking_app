@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           children: [
-            Image.asset(
+            Image.network(
               width: double.infinity,
               height: double.infinity,
               imageUrl,

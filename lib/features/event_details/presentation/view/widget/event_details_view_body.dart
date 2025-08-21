@@ -14,10 +14,7 @@ class EventDetailsViewBody extends StatelessWidget {
       children: [
         CustomScrollView(
           slivers: [
-            CustomAppBar(
-              going: event.attendeeCount,
-              imageUrl: AssetsData.eventPhoto,
-            ),
+            CustomAppBar(going: event.attendeeCount, imageUrl: event.imageUrl),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
