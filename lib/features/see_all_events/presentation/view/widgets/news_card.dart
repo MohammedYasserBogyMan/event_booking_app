@@ -1,7 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,7 @@ class NewsCard extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: Image(image: AssetImage(AssetsData.eventLogo)),
+              child: Image.network(eventModel.imageUrl),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
