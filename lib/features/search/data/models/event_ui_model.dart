@@ -2,11 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EventUiModel {
   final String title;
+  final String imageUrl;
   final DateTime day;
-  EventUiModel({required this.day, required this.title});
+  EventUiModel({
+    required this.imageUrl,
+    required this.day,
+    required this.title,
+  });
 
   factory EventUiModel.fromFirestore(fromFireStore) {
     return EventUiModel(
+      imageUrl: fromFireStore['imageUrl'] ?? '',
       title: fromFireStore['title'] ?? '',
       day: (fromFireStore['date'] as Timestamp).toDate(),
 
