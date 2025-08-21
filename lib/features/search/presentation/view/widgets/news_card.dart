@@ -1,10 +1,13 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/features/search/data/models/event_ui_model.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({super.key});
+  const NewsCard({super.key, required this.eventUiModel});
+  final EventUiModel eventUiModel;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

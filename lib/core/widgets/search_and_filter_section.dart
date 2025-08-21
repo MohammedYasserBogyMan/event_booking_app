@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchAndFilterSection extends StatelessWidget {
-  const SearchAndFilterSection({super.key, required this.colors});
+  const SearchAndFilterSection({
+    super.key,
+    required this.colors,
+    required this.onSubmit,
+  });
   final SearchFilterColor colors;
+  final Function(String) onSubmit;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,10 +27,10 @@ class SearchAndFilterSection extends StatelessWidget {
           SizedBox(width: 10),
           Expanded(
             child: TextField(
+              onSubmitted: onSubmit,
               decoration: InputDecoration(
                 hintText: 'Search...',
                 hintStyle: TextStyle(color: colors.hintTextColor),
-                border: InputBorder.none,
               ),
               style: Styels.textStyle20,
             ),

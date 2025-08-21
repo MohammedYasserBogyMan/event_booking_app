@@ -18,7 +18,7 @@ class EventRepoImpl extends EventsRepo {
       }
       return Right(events);
     } catch (e) {
-      return Left(Failure(e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 
@@ -38,7 +38,7 @@ class EventRepoImpl extends EventsRepo {
       }
       return Right(events);
     } catch (e) {
-      return Left(Failure(e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 }
