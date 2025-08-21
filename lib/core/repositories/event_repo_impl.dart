@@ -42,4 +42,19 @@ class EventRepoImpl extends EventsRepo {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> createEvent({
+    required EventModel event,
+  }) async {
+    try {
+      await _firestore
+          .collection(kCollectionReference)
+          .doc()
+          .set(event.toFirestore());
+      return const Right("Event created successfully");
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

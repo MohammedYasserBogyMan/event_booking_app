@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo_impl.dart';
+import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
+import 'package:event_booking_app/features/home/presentation/manager/home_cubit/cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
@@ -125,7 +126,16 @@ abstract class AppRouter {
         path: kEmptyNotification,
         builder: (context, state) => EmptyNotificationView(),
       ),
-      GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: '/home',
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => HomeCubit(EventRepoImpl())..getAllEvents(),
+            child: const HomeView(),
+          );
+        },
+      ),
+
       GoRoute(
         path: kCreateEventView,
         builder: (context, state) => CreateEventView(),

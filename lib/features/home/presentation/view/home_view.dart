@@ -1,5 +1,4 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/core/repositories/event_repo_impl.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/cubit/home_cubit.dart';
@@ -22,32 +21,34 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(EventRepoImpl())..getAllEvents(),
-      child: Scaffold(
-        drawer: const HomeDrawer(),
-        body: HomePages.pages[currentIndex],
-        bottomNavigationBar: CustomBottomNavBar(
-          currentIndex: currentIndex,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: AppColor.primary,
-          shape: const CircleBorder(),
-          child: IconButton(
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.kCreateEventView);
-            },
-            icon: Image.asset(AssetsData.addIcon, width: 20, height: 20),
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    return Scaffold(
+      drawer: const HomeDrawer(),
+      body: HomePages.pages[currentIndex],
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColor.primary,
+        shape: const CircleBorder(),
+        child: IconButton(
+          onPressed: () async {
+            final result = await GoRouter.of(
+              context,
+            ).push(AppRouter.kCreateEventView);
+            if (result == true) {
+              context.read<HomeCubit>().getAllEvents();
+            }
+          },
+          icon: Image.asset(AssetsData.addIcon, width: 20, height: 20),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

@@ -7,4 +7,5 @@ abstract class EventsRepo {
   Future<Either<Failure, List<EventModel>>> fetchEventsByCategory({
     required String category,
   });
+  Future<Either<Failure, String>> createEvent({required EventModel event});
 }

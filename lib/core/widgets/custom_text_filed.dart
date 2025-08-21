@@ -7,6 +7,7 @@ class CustomTextFiled extends StatefulWidget {
   final String hintText;
   final bool? isPassword;
   final Function(String?)? onSaved;
+  final TextEditingController? controller; // ✅ أضفنا الكونترولر
 
   const CustomTextFiled({
     this.onSaved,
@@ -14,6 +15,7 @@ class CustomTextFiled extends StatefulWidget {
     required this.icon,
     required this.hintText,
     this.isPassword,
+    this.controller,
   });
 
   @override
@@ -26,6 +28,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       cursorColor: AppColor.primary,
       onSaved: widget.onSaved,
       validator: (value) {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EventModel {
-  final String id;
+  // final String id;
   final String title;
   final String category;
   final String description;
@@ -15,7 +15,7 @@ class EventModel {
   final int price;
 
   EventModel({
-    required this.id,
+    // required this.id,
     required this.category,
     required this.title,
     required this.description,
@@ -32,7 +32,7 @@ class EventModel {
   factory EventModel.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map;
     return EventModel(
-      id: doc.id,
+      // id: doc.id,
       title: data['title'] ?? '',
       category: data['category'] ?? '',
       description: data['description'] ?? '',
