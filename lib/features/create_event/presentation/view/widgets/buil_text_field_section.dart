@@ -6,7 +6,7 @@ class BuildTextFieldSection extends StatelessWidget {
   final TextEditingController descriptionController;
   final TextEditingController locationController;
   final TextEditingController subLocationController;
-  final TextEditingController imageUrlController;
+
   final TextEditingController maxAttendeesController;
   final TextEditingController priceController;
 
@@ -16,7 +16,7 @@ class BuildTextFieldSection extends StatelessWidget {
     required this.descriptionController,
     required this.locationController,
     required this.subLocationController,
-    required this.imageUrlController,
+
     required this.maxAttendeesController,
     required this.priceController,
   });
@@ -43,11 +43,6 @@ class BuildTextFieldSection extends StatelessWidget {
         "icon": Icons.map,
         "hint": "Sub Location",
         "controller": subLocationController,
-      },
-      {
-        "icon": Icons.image,
-        "hint": "Image URL",
-        "controller": imageUrlController,
       },
       {
         "icon": Icons.people,

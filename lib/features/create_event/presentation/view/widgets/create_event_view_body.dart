@@ -4,6 +4,7 @@ import 'package:event_booking_app/core/widgets/date_picker_field.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/widgets/buil_text_field_section.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/widgets/custom_category_drop_down.dart';
+import 'package:event_booking_app/features/create_event/presentation/view/widgets/image_picker_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,6 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
   final descriptionController = TextEditingController();
   final locationController = TextEditingController();
   final subLocationController = TextEditingController();
-  final imageUrlController = TextEditingController();
   final maxAttendeesController = TextEditingController();
   final priceController = TextEditingController();
 
@@ -36,7 +36,6 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
     descriptionController.dispose();
     locationController.dispose();
     subLocationController.dispose();
-    imageUrlController.dispose();
     maxAttendeesController.dispose();
     priceController.dispose();
     super.dispose();
@@ -65,18 +64,16 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                   descriptionController: descriptionController,
                   locationController: locationController,
                   subLocationController: subLocationController,
-                  imageUrlController: imageUrlController,
                   maxAttendeesController: maxAttendeesController,
                   priceController: priceController,
                 ),
+                ImagePickerField(),
                 const SizedBox(height: 16),
                 CustomCategoryDropDown(
                   value: category,
                   onChanged: (value) => setState(() => category = value),
                 ),
-
                 const SizedBox(height: 16),
-
                 DatePickerField(
                   date: date,
                   onDateSelected: (picked) => setState(() => date = picked),
@@ -100,7 +97,6 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                         category: category!,
                         price: priceController.text,
                         maxAttendees: maxAttendeesController.text,
-                        imageUrl: imageUrlController.text,
                         date: date!,
                       );
                     } else if (date == null) {

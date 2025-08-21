@@ -18,9 +18,12 @@ class NewsCard extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: Image(image: NetworkImage(eventUiModel.imageUrl)),
+              child: SizedBox(
+                width: 140,
+                child: Image(image: NetworkImage(eventUiModel.imageUrl)),
+              ),
             ),
-            const SizedBox(width: 18),
+            const SizedBox(width: 5),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

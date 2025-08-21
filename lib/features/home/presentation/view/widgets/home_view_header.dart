@@ -1,8 +1,10 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/theme/search_filter_color.dart';
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_home_appbar.dart';
 import 'package:event_booking_app/core/widgets/search_and_filter_section.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeViewHeader extends StatelessWidget {
   const HomeViewHeader({super.key});
@@ -27,9 +29,15 @@ class HomeViewHeader extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: SearchAndFilterSection(
-              onSubmit: (p0) {},
-              colors: SearchFilterColor.transparentTheme,
+            child: GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kSearchView);
+              },
+              child: SearchAndFilterSection(
+                
+                onSubmit: (p0) {},
+                colors: SearchFilterColor.transparentTheme,
+              ),
             ),
           ),
         ],

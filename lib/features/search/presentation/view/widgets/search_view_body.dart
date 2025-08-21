@@ -15,6 +15,7 @@ class SearchViewBody extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: SearchAndFilterSection(
+            enabled: true,
             colors: SearchFilterColor.primaryTheme,
             onSubmit: (category) {
               BlocProvider.of<SearchCubit>(
