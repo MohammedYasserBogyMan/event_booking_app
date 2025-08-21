@@ -28,6 +28,7 @@ class HomeViewHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: SearchAndFilterSection(
+              onSubmit: (p0) {},
               colors: SearchFilterColor.transparentTheme,
             ),
           ),

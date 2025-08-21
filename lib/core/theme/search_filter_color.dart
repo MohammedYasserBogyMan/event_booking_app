@@ -8,7 +8,10 @@ class SearchFilterColor {
   final Color filterBackgroundColor;
   final Color filterIconColor;
   final Color filterTextColor;
+  final Color cursorColor;
+
   const SearchFilterColor({
+    required this.cursorColor,
     required this.prefixIconColor,
     required this.verticalDivderColor,
     required this.hintTextColor,
@@ -18,6 +21,7 @@ class SearchFilterColor {
   });
 
   static const SearchFilterColor transparentTheme = SearchFilterColor(
+    cursorColor: Colors.white,
     prefixIconColor: Colors.white,
     verticalDivderColor: Color.fromARGB(71, 255, 255, 255),
     hintTextColor: Color.fromARGB(71, 255, 255, 255),
@@ -27,6 +31,7 @@ class SearchFilterColor {
   );
   static const SearchFilterColor primaryTheme = SearchFilterColor(
     prefixIconColor: AppColor.primary,
+    cursorColor: AppColor.primary,
     verticalDivderColor: AppColor.primary,
     hintTextColor: Colors.grey,
     filterBackgroundColor: AppColor.primary,

@@ -1,13 +1,13 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/helper/helper.dart';
+import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/features/search/data/models/event_ui_model.dart';
 import 'package:flutter/material.dart';
 
-class NewsCard extends StatelessWidget {
-  const NewsCard({super.key, required this.eventUiModel});
-  final EventUiModel eventUiModel;
-
+class Events extends StatelessWidget {
+  const Events({super.key, required this.events});
+  final EventModel events;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,11 +26,11 @@ class NewsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "1st  May- Sat -2:00 PM",
+                  dayFormat(dateTime: events.date),
                   style: Styels.textStyle12.copyWith(color: AppColor.primary),
                 ),
                 Text(
-                  "A virtual evening of \nsmooth jazz",
+                  events.title,
                   style: Styels.textStyle18.copyWith(color: Colors.black),
                 ),
               ],

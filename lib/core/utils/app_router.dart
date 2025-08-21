@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo_impl.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
@@ -13,7 +14,9 @@ import 'package:event_booking_app/features/home/presentation/view/sign_out_view.
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
-import 'package:event_booking_app/features/organizer_profile/presentation/view/organizer_profile_view.dart';
+import 'package:event_booking_app/features/organizer_profile/presentation/organizer_profile_providers.dart';
+import 'package:event_booking_app/features/search/data/repos/search_repo_imple.dart';
+import 'package:event_booking_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_cubit.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/view/see_all_events_view.dart';
@@ -54,7 +57,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: kOrganizerProfile,
-        builder: (context, state) => OrganizerProfileView(),
+        builder: (context, state) => OrganizerProfileProviders.organizerProfile,
       ),
       GoRoute(
         path: kEventDetailsView,
@@ -68,7 +71,16 @@ abstract class AppRouter {
         path: kNotificationView,
         builder: (context, state) => NotificationView(),
       ),
-      GoRoute(path: kSearchView, builder: (context, state) => SearchView()),
+      GoRoute(
+        path: kSearchView,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) =>
+                      SearchCubit(SearchRepoImple(FirebaseFirestore.instance)),
+              child: SearchView(),
+            ),
+      ),
       GoRoute(
         path: kSeeAllEvents,
         builder:

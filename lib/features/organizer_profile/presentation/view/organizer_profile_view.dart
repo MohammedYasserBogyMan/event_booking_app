@@ -10,9 +10,7 @@ class OrganizerProfileView extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.double_arrow_outlined)),
-      ],
+      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
     );
   }
 }
