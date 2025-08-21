@@ -51,7 +51,7 @@ class _RegistrationAuthFormFieldsState
                       name = p0;
                     },
                   ),
-                  const SizedBox(height: 19),
+                  const SizedBox(height: 10),
                   CustomTextFiled(
                     onSaved: (p0) {
                       email = p0;
@@ -59,7 +59,7 @@ class _RegistrationAuthFormFieldsState
                     icon: Icons.email_outlined,
                     hintText: "abc@email.com",
                   ),
-                  const SizedBox(height: 19),
+                  const SizedBox(height: 10),
                   CustomTextFiled(
                     icon: Icons.lock_outlined,
                     hintText: "Your password",
@@ -68,7 +68,7 @@ class _RegistrationAuthFormFieldsState
                     },
                     isPassword: true,
                   ),
-                  const SizedBox(height: 19),
+                  const SizedBox(height: 10),
                   CustomTextFiled(
                     icon: Icons.lock_outlined,
                     hintText: "Confirm password",
@@ -77,7 +77,7 @@ class _RegistrationAuthFormFieldsState
                     },
                     isPassword: true,
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 22),
                     child: CustomButton(

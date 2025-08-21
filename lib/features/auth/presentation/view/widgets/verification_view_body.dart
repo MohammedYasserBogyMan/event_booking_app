@@ -15,7 +15,7 @@ class VerificationViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Text("Verification", style: Styels.textStyle24),
             const SizedBox(height: 12),
             Text("We’ve send you the verification", style: Styels.textStyle15),

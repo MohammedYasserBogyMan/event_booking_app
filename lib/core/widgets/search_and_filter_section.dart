@@ -27,8 +27,10 @@ class SearchAndFilterSection extends StatelessWidget {
           SizedBox(width: 10),
           Expanded(
             child: TextField(
+              cursorColor:colors.cursorColor,
               onSubmitted: onSubmit,
               decoration: InputDecoration(
+                border: InputBorder.none,
                 hintText: 'Search...',
                 hintStyle: TextStyle(color: colors.hintTextColor),
               ),

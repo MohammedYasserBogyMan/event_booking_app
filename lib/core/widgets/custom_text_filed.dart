@@ -8,7 +8,6 @@ class CustomTextFiled extends StatefulWidget {
   final bool? isPassword;
   final Function(String?)? onSaved;
 
-
   const CustomTextFiled({
     this.onSaved,
     super.key,
@@ -31,7 +30,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
       onSaved: widget.onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Field is required";
+          return " ";
         } else {
           return null;
         }
@@ -42,7 +41,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
         hintText: widget.hintText,
         hintStyle: Styels.textStyle14,
         fillColor: Color(0xFFE4DFDF),
-        errorStyle: TextStyle(color: AppColor.errorColor),
+        errorStyle: TextStyle(color: AppColor.errorColor, fontSize: 0),
         border: _buildOutlineInputBorder(),
         errorBorder: _buildOutlineInputBorder(color: AppColor.errorColor),
         focusedErrorBorder: _buildOutlineInputBorder(
