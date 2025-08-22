@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:event_booking_app/core/failure/errors.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/repositories/event_repo.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 
 part 'create_event_state.dart';
 

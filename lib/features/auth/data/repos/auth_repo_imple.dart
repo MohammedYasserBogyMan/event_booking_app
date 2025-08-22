@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:event_booking_app/core/utils/errors.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
@@ -75,6 +77,7 @@ class AuthRepoImple implements AuthRepo {
       if (user == null) {
         return Left(FirebaseAuthFailure(errMessage: "No authenticated user"));
       }
+      log(user.uid);
       return Right(user.uid);
     } catch (e) {
       return Left(FirebaseAuthFailure(errMessage: e.toString()));

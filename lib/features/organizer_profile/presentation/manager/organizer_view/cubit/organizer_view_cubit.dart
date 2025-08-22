@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:event_booking_app/features/organizer_profile/data/model/user_model.dart';
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/features/organizer_profile/data/repo/organizer_repo.dart';
 import 'package:meta/meta.dart';
 

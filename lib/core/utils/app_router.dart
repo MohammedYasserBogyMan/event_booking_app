@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/repositories/event_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/cubit/home_cubit.dart';

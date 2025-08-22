@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:event_booking_app/core/repositories/event_repo.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_states.dart';
 
 class SeeAllEventsCubit extends Cubit<SeeAllEventsStates> {

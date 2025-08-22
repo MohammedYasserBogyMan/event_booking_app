@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/errors.dart';
-import 'package:event_booking_app/features/organizer_profile/data/model/user_model.dart';
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'organizer_repo.dart';
 
 class OrganizerRepoImpl implements OrganizerRepo {

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
@@ -22,7 +24,11 @@ class EventBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImple(FirebaseAuth.instance)),
+      create:
+          (context) => AuthCubit(
+            AuthRepoImple(FirebaseAuth.instance),
+            UserRepoImpl(FirebaseFirestore.instance),
+          ),
       child: MaterialApp.router(
         theme: AppTheme.lightTheme,
         routerConfig: AppRouter.router,

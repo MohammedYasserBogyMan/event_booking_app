@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:event_booking_app/core/constants/cons.dart';
 import 'package:event_booking_app/core/failure/errors.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/repositories/event_repo.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 
 class EventRepoImpl extends EventsRepo {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

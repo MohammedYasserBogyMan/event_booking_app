@@ -85,9 +85,15 @@ class _RegistrationAuthFormFieldsState
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          await BlocProvider.of<AuthCubit>(
-                            context,
-                          ).register(email: email!, password: password!);
+                          await BlocProvider.of<AuthCubit>(context).register(
+                            email: email!,
+                            password: password!,
+                            firstName: name!.split(" ")[0],
+                            lastName:
+                                name!.split(" ").length > 1
+                                    ? name!.split(" ")[1]
+                                    : "",
+                          );
                           formKey.currentState!.reset();
                         } else {
                           setState(() {
