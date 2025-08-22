@@ -41,11 +41,16 @@ class MyProfileViewBody extends StatelessWidget {
                       width: 220,
                       child: ProfileActionButton(
                         isFilled: false,
-                        onPressed: () {
-                          GoRouter.of(
+                        onPressed: () async {
+                          final result = await GoRouter.of(
                             context,
                           ).push(AppRouter.kEditProfileView, extra: user);
+
+                          if (result == true) {
+                            context.read<ProfileViewCubit>().fetchMyProfile();
+                          }
                         },
+
                         icon: Icons.edit_note_rounded,
                         text: "Edit Profile",
                       ),
