@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_details_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,10 @@ class EventDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: EventDetailsViewBody(event: event),
+      body: EventDetailsViewBody(
+        event: event,
+        userRepo: UserRepoImpl(FirebaseFirestore.instance),
+      ),
     );
   }
 }

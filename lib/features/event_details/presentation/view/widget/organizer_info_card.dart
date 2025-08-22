@@ -15,7 +15,11 @@ class OrganizerInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image(width: 44, height: 44, image: AssetImage(organizerEventPhoto)),
+        SizedBox(
+          height: 20,
+          width: 20,
+          child: Image.network((organizerEventPhoto)),
+        ),
         Padding(
           padding: EdgeInsets.only(left: 13),
           child: Column(
