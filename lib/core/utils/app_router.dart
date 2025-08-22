@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
+import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
@@ -74,7 +75,6 @@ abstract class AppRouter {
           return EventDetailsView(event: event);
         },
       ),
-
       GoRoute(
         path: kNotificationView,
         builder: (context, state) => NotificationView(),
@@ -113,7 +113,6 @@ abstract class AppRouter {
       GoRoute(path: kMassageView, builder: (context, state) => MassageView()),
       GoRoute(path: kSettingView, builder: (context, state) => SettingsView()),
       GoRoute(path: kSignOutView, builder: (context, state) => SignOutView()),
-
       GoRoute(path: splash, builder: (context, state) => SplashView()),
       GoRoute(path: kOnboarding, builder: (context, state) => OnboardingView()),
       GoRoute(path: kLogin, builder: (context, state) => LoginView()),
@@ -144,9 +143,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kCreateEventView,
-        builder: (context, state) => CreateEventView(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => CreateEventCubit(EventRepoImpl()),
+              child: CreateEventView(),
+            ),
       ),
-
       GoRoute(
         path: kEditProfileView,
         builder: (context, state) {
