@@ -11,24 +11,24 @@ class OrganizerInfoCard extends StatelessWidget {
   final String name;
   final String job;
   final String organizerEventPhoto;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          height: 20,
-          width: 20,
-          child: Image.network((organizerEventPhoto)),
+        CircleAvatar(
+          radius: 25,
+          backgroundImage: NetworkImage(organizerEventPhoto),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 13),
+          padding: const EdgeInsets.only(left: 13),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [Text(name), Text(job)],
           ),
         ),
-        Spacer(),
-        FollowButton(text: "Follow"),
+        const Spacer(),
+        const FollowButton(text: "Follow"),
       ],
     );
   }
