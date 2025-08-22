@@ -24,8 +24,9 @@ class UserRepoImpl implements UserRepo {
   Future<Either<Failure, UserModel>> getUserByUid(String uid) async {
     try {
       final doc = await firestore.collection('users').doc(uid).get();
-      if (!doc.exists)
+      if (!doc.exists) {
         return Left(FirebaseAuthFailure(errMessage: 'User not found'));
+      }
       return Right(UserModel.fromFirestore(doc));
     } catch (e) {
       return Left(FirebaseAuthFailure(errMessage: e.toString()));

@@ -3,10 +3,10 @@ import 'package:event_booking_app/features/my_profile/presentation/view/my_profi
 import 'package:flutter/material.dart';
 
 class HomePages {
-  static const List<Widget> pages = [
-    HomeViewBody(),
-    Center(child: Text("Events")),
-    Center(child: Text("Map")),
+  static List<Widget> pages = [
+    const HomeViewBody(),
+    const Center(child: Text("Events")),
+    const Center(child: Text("Map")),
     MyProfileView(),
   ];
 }
