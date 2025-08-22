@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +32,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     required String subLocation,
     required String category,
     required DateTime date,
-    String? imageUrl,
+    File? image,
     String? price,
     String? maxAttendees,
   }) async {
@@ -47,7 +48,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         date: date,
         location: location,
         subLocation: subLocation,
-        imageUrl: imageUrl ?? "",
+        imageUrl: image!.path,
         attendeeCount: 0,
         publisherId: userId,
         maxAttendees: int.tryParse(maxAttendees ?? "0"),
