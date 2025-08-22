@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/date_picker_field.dart';
@@ -28,10 +29,10 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
 
   String? category;
   DateTime? date;
+  File? selectedImage;
 
   @override
   void dispose() {
-    // لازم نعمل dispose للـ controllers
     titleController.dispose();
     descriptionController.dispose();
     locationController.dispose();
@@ -67,7 +68,15 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                   maxAttendeesController: maxAttendeesController,
                   priceController: priceController,
                 ),
-                ImagePickerField(),
+                ImagePickerField(
+                  validator: (file) {
+                    if (file == null) {
+                      return "Please upload an image";
+                    }
+                    return null;
+                  },
+                  onSaved: (file) => selectedImage = file,
+                ),
                 const SizedBox(height: 16),
                 CustomCategoryDropDown(
                   value: category,
@@ -89,6 +98,8 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                     if (_formKey.currentState!.validate() &&
                         date != null &&
                         category != null) {
+                      _formKey.currentState!.save();
+
                       context.read<CreateEventCubit>().submitEvent(
                         title: titleController.text,
                         description: descriptionController.text,
@@ -98,6 +109,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                         price: priceController.text,
                         maxAttendees: maxAttendeesController.text,
                         date: date!,
+                        image: selectedImage!,
                       );
                     } else if (date == null) {
                       showSnackBar(context, message: "Please select a date");
