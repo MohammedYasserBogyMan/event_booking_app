@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/banner_widget.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_icon.dart';
@@ -23,11 +24,11 @@ class CustomAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           children: [
-            Image.network(
+            CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: imageUrl,
               width: double.infinity,
               height: double.infinity,
-              imageUrl,
-              fit: BoxFit.cover,
             ),
             Positioned(
               top: 210,

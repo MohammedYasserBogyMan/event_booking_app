@@ -50,7 +50,6 @@ class MyProfileViewBody extends StatelessWidget {
                             context.read<ProfileViewCubit>().fetchMyProfile();
                           }
                         },
-
                         icon: Icons.edit_note_rounded,
                         text: "Edit Profile",
                       ),

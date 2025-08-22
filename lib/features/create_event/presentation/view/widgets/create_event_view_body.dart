@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
@@ -51,6 +52,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
           Navigator.pop(context, true);
         } else if (state is CreateEventFailure) {
           showSnackBar(context, message: state.error);
+          log(state.error);
         }
       },
       builder: (context, state) {
@@ -99,7 +101,6 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                         date != null &&
                         category != null) {
                       _formKey.currentState!.save();
-
                       context.read<CreateEventCubit>().submitEvent(
                         title: titleController.text,
                         description: descriptionController.text,

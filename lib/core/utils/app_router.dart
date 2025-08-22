@@ -4,7 +4,7 @@ import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.d
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
-import 'package:event_booking_app/features/home/presentation/manager/home_cubit/cubit/home_cubit.dart';
+import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
@@ -134,7 +134,7 @@ abstract class AppRouter {
         builder: (context, state) => EmptyNotificationView(),
       ),
       GoRoute(
-        path: '/home',
+        path: kHomeView,
         builder: (context, state) {
           return BlocProvider(
             create: (context) => HomeCubit(EventRepoImpl())..getAllEvents(),
@@ -142,7 +142,6 @@ abstract class AppRouter {
           );
         },
       ),
-
       GoRoute(
         path: kCreateEventView,
         builder: (context, state) => CreateEventView(),

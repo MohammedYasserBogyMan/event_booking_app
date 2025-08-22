@@ -2,12 +2,11 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:meta/meta.dart';
-
 import 'package:event_booking_app/core/failure/errors.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
-
 part 'create_event_state.dart';
 
 class CreateEventCubit extends Cubit<CreateEventState> {
@@ -40,6 +39,16 @@ class CreateEventCubit extends Cubit<CreateEventState> {
 
     try {
       final userId = FirebaseAuth.instance.currentUser?.uid ?? "unknown";
+      String? imageUrl;
+
+      if (image != null) {
+        final ref = FirebaseStorage.instance.ref().child(
+          "events/${DateTime.now().millisecondsSinceEpoch}.png",
+        );
+
+        await ref.putFile(image);
+        imageUrl = await ref.getDownloadURL();
+      }
 
       final event = EventModel(
         title: title,
@@ -48,7 +57,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         date: date,
         location: location,
         subLocation: subLocation,
-        imageUrl: image!.path,
+        imageUrl: imageUrl ?? "",
         attendeeCount: 0,
         publisherId: userId,
         maxAttendees: int.tryParse(maxAttendees ?? "0"),

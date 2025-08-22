@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/event_card_book_mark_icon.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/event_card_date_tag.dart';
 import 'package:flutter/material.dart';
@@ -13,22 +13,15 @@ class EventImageWithOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.network(
-            event.imageUrl,
-            height: 120,
-            width: double.infinity,
+        SizedBox(
+          height: 130,
+          width: double.infinity,
+          child: CachedNetworkImage(
+            imageUrl: event.imageUrl,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Image.asset(
-                // هنا المفروض احط الصورة في home view (abdallah)
-                AssetsData.eventPhoto,
-                height: 120,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              );
-            },
+            placeholder:
+                (context, url) => Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
         Positioned(

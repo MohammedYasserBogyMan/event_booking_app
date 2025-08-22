@@ -29,12 +29,14 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_introduction: ^1.0.4
+  cached_network_image: ^3.4.1
   cloud_firestore: ^6.0.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   firebase_auth: ^6.0.1
   firebase_core: ^4.0.0
 
+  firebase_storage: ^13.0.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -51,7 +53,6 @@ dependencies:
 
 dev_dependencies:
   bloc: ^9.0.0
-  firebase_storage: ^13.0.0
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
