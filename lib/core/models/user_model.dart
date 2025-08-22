@@ -21,6 +21,27 @@ class UserModel {
     required this.followersCount,
   });
 
+  UserModel copyWith({
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? photoUrl,
+    String? location,
+    String? about,
+    int? followersCount,
+  }) {
+    return UserModel(
+      uid: uid,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+      location: location ?? this.location,
+      about: about ?? this.about,
+      followersCount: followersCount ?? this.followersCount,
+    );
+  }
+
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return UserModel(

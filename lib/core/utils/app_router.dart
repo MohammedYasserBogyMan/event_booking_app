@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/cubit/home_cubit.dart';
@@ -12,6 +13,8 @@ import 'package:event_booking_app/features/home/presentation/view/home_view.dart
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/sign_out_view.dart';
+import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile/cubit/edit_profile_cubit.dart';
+import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
@@ -54,6 +57,7 @@ abstract class AppRouter {
   static const kOrganizerProfile = '/organizer_profile';
   static const kEventDetailsView = "/event_details";
   static const kCreateEventView = "/create_event";
+  static const kEditProfileView = "/edit_profile";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -142,6 +146,18 @@ abstract class AppRouter {
       GoRoute(
         path: kCreateEventView,
         builder: (context, state) => CreateEventView(),
+      ),
+
+      GoRoute(
+        path: kEditProfileView,
+        builder: (context, state) {
+          return BlocProvider(
+            create:
+                (context) =>
+                    EditProfileCubit(UserRepoImpl(FirebaseFirestore.instance)),
+            child: EditProfileView(user: state.extra as dynamic),
+          );
+        },
       ),
     ],
   );

@@ -32,4 +32,14 @@ class UserRepoImpl implements UserRepo {
       return Left(FirebaseAuthFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> updateUser(UserModel user) async {
+    try {
+      await firestore.collection("users").doc(user.uid).update(user.toMap());
+      return right(null);
+    } catch (e) {
+      return left(FirebaseAuthFailure(errMessage: e.toString()));
+    }
+  }
 }

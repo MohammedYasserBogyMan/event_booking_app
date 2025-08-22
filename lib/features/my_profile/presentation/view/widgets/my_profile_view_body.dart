@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/profile_action_button.dart';
 import 'package:event_booking_app/core/widgets/profile_header.dart';
@@ -5,6 +6,7 @@ import 'package:event_booking_app/features/my_profile/presentation/manager/profi
 import 'package:event_booking_app/features/my_profile/presentation/view/widgets/interests_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class MyProfileViewBody extends StatelessWidget {
   const MyProfileViewBody({super.key});
@@ -39,7 +41,11 @@ class MyProfileViewBody extends StatelessWidget {
                       width: 220,
                       child: ProfileActionButton(
                         isFilled: false,
-                        onPressed: () {},
+                        onPressed: () {
+                          GoRouter.of(
+                            context,
+                          ).push(AppRouter.kEditProfileView, extra: user);
+                        },
                         icon: Icons.edit_note_rounded,
                         text: "Edit Profile",
                       ),
@@ -50,7 +56,7 @@ class MyProfileViewBody extends StatelessWidget {
                   const SizedBox(height: 10),
                   Text(user.about, style: Styels.textStyle16),
                   const SizedBox(height: 40),
-                  InterestsSection(),
+                  const InterestsSection(),
                 ],
               ),
             ),
