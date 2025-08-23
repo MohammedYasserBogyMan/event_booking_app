@@ -4,6 +4,7 @@ import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:event_booking_app/features/my_profile/presentation/manager/profile_cubit/cubit/profile_view_cubit.dart';
 import 'package:event_booking_app/firebase_options.dart';
 import 'package:event_booking_app/simple_bloc_observer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,12 +24,23 @@ class EventBooking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) => AuthCubit(
-            AuthRepoImple(FirebaseAuth.instance),
-            UserRepoImpl(FirebaseFirestore.instance),
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) => AuthCubit(
+                AuthRepoImple(FirebaseAuth.instance),
+                UserRepoImpl(FirebaseFirestore.instance),
+              ),
+        ),
+        BlocProvider(
+          create:
+              (context) => ProfileViewCubit(
+                UserRepoImpl(FirebaseFirestore.instance),
+                AuthRepoImple(FirebaseAuth.instance),
+              )..fetchMyProfile(),
+        ),
+      ],
       child: MaterialApp.router(
         theme: AppTheme.lightTheme,
         routerConfig: AppRouter.router,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
@@ -20,7 +21,15 @@ class NewsCard extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: SizedBox(
                 width: 140,
-                child: Image.network(eventModel.imageUrl),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  errorWidget:
+                      (context, url, error) => CircularProgressIndicator(),
+                  imageUrl: eventModel.imageUrl,
+                  placeholder:
+                      (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                ),
               ),
             ),
             Column(
