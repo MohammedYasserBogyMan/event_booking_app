@@ -7,15 +7,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../auth/presentation/manager/auth_cubit/auth_cubit.dart';
-
 class SignOutView extends StatelessWidget {
   const SignOutView({super.key});
 
   Future<void> _signOut(BuildContext context) async {
     try {
       await SharedPrefsService.I.clearAll();
-      context.read<AuthCubit>().close();
+
       context.read<CurrentUserCubit>().close();
 
       await FirebaseAuth.instance.signOut();
