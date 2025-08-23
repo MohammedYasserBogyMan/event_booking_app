@@ -27,7 +27,7 @@ class EventInfoBody extends StatelessWidget {
           imageIcon: AssetsData.dateIcon,
           title: dateFormat(dateTime: eventModel.date),
           subtitle:
-              "${dayFormat(dateTime: eventModel.date)} ${timeRange(dateTime: eventModel.date, dateTime2: eventModel.date)}",
+              "${dayFormat(dateTime: eventModel.date)} ${timeRange(dateTime: eventModel.date)}",
         ),
         const SizedBox(height: 15),
         EventInfoTile(
