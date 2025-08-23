@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/date_picker_field.dart';
-import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/cubit/create_event_cubit.dart';
+import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/widgets/buil_text_field_section.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/widgets/custom_category_drop_down.dart';
 import 'package:event_booking_app/features/create_event/presentation/view/widgets/image_picker_field.dart';
