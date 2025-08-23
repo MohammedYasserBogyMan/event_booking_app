@@ -13,7 +13,7 @@ class EventUiModel {
   factory EventUiModel.fromFirestore(fromFireStore) {
     return EventUiModel(
       imageUrl: fromFireStore['imageUrl'] ?? '',
-      title: fromFireStore['title'] ?? '',
+      title: fromFireStore['title'].toLowerCase() ?? '',
       day: (fromFireStore['date'] as Timestamp).toDate(),
 
       /// here from TimeStamp to date

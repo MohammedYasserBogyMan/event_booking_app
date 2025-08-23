@@ -1,10 +1,9 @@
-import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:event_booking_app/core/utils/onboarding_list.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/custom_painted_background.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_footer.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
@@ -17,17 +16,10 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   final PageController _controller = PageController();
   int _currentPage = 0;
 
-  void _onNext() {
-    if (_currentPage < onboardingList.length - 1) {
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease,
-      );
-    }
-  }
-
-  void _onSkip() {
-    _controller.jumpToPage(onboardingList.length - 1);
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -60,7 +52,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
               pageCount: onboardingList.length,
               onNext:
                   _currentPage == 2
-                      ? () => GoRouter.of(context).go(AppRouter.kLogin)
+                      ? () {
+                        _onSkip();
+                      }
                       : _onNext,
               onSkip: _onSkip,
             ),
@@ -69,6 +63,17 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
       ],
     );
   }
+
+  void _onNext() {
+    if (_currentPage < onboardingList.length - 1) {
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
+    }
+  }
+
+  void _onSkip() async {
+    await SharedPrefsService.I.handleOnboardingCompletion(context);
+  }
 }
-
-

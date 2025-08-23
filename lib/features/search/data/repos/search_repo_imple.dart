@@ -13,11 +13,12 @@ class SearchRepoImple implements SearchRepo {
     required String targetSearch,
   }) async {
     try {
+      String targetSearchLower = targetSearch.toLowerCase();
       QuerySnapshot<Map<String, dynamic>> snapshot =
           await _firestore
               .collection(kCollectionReference)
-              .where("title", isGreaterThanOrEqualTo: targetSearch)
-              .where("title", isLessThanOrEqualTo: "$targetSearch\uf8ff")
+              .where("title", isGreaterThanOrEqualTo: targetSearchLower)
+              .where("title", isLessThanOrEqualTo: "$targetSearchLower\uf8ff")
               .get();
       List<EventUiModel> events = [];
       for (var event in snapshot.docs) {

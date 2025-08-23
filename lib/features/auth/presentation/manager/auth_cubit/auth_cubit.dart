@@ -1,5 +1,6 @@
 import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
+import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,13 +12,15 @@ class AuthCubit extends Cubit<AuthStates> {
 
   Future<void> login({required String email, required String password}) async {
     emit(LoadingLoginState());
-    final login = await authRepo.login(email: email, password: password);
-    login.fold(
-      (failure) {
-        return emit(FailureLoginState(errMessage: failure.errMessage));
-      },
-      (login) {
-        return emit(SuccessLoginState());
+    final res = await authRepo.login(email: email, password: password);
+    res.fold(
+      (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
+      (_) async {
+        final rememberMe = await SharedPrefsService.I.getRememberMe();
+        if (rememberMe) {
+          await SharedPrefsService.I.setRememberMe(true);
+        }
+        emit(SuccessLoginState());
       },
     );
   }

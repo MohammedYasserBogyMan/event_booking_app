@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:flutter/material.dart';
 
 class SwitchIcon extends StatefulWidget {
@@ -9,16 +10,17 @@ class SwitchIcon extends StatefulWidget {
 }
 
 class _SwitchIconState extends State<SwitchIcon> {
-  bool light = true;
+  bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
     return Switch(
-      value: light,
-      activeColor:AppColor.lightBackground,
-      activeTrackColor:AppColor.primary,
+      value: rememberMe,
+      activeColor: AppColor.lightBackground,
+      activeTrackColor: AppColor.primary,
       onChanged: (bool value) {
         setState(() {
-          light = value;
+          SharedPrefsService.I.setRememberMe(value);
+          rememberMe = value;
         });
       },
     );
