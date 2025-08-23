@@ -4,7 +4,7 @@ import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
-import 'package:event_booking_app/features/my_profile/presentation/manager/profile_cubit/cubit/profile_view_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/firebase_options.dart';
 import 'package:event_booking_app/simple_bloc_observer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,10 +35,10 @@ class EventBooking extends StatelessWidget {
         ),
         BlocProvider(
           create:
-              (context) => ProfileViewCubit(
+              (context) => CurrentUserCubit(
                 UserRepoImpl(FirebaseFirestore.instance),
                 AuthRepoImple(FirebaseAuth.instance),
-              )..fetchMyProfile(),
+              )..fetchCurrentUserInfo(),
         ),
       ],
       child: MaterialApp.router(

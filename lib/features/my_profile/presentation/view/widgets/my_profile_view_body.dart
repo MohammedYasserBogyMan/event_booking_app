@@ -2,7 +2,7 @@ import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/profile_action_button.dart';
 import 'package:event_booking_app/core/widgets/profile_header.dart';
-import 'package:event_booking_app/features/my_profile/presentation/manager/profile_cubit/cubit/profile_view_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/widgets/interests_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,13 +13,13 @@ class MyProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileViewCubit, ProfileViewState>(
+    return BlocBuilder<CurrentUserCubit, CurrentUserState>(
       builder: (context, state) {
-        if (state is ProfileViewLoading) {
+        if (state is CurrentUserLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state is ProfileViewFailure) {
+        } else if (state is CurrentUserFailure) {
           return Center(child: Text(state.message));
-        } else if (state is ProfileViewSuccess) {
+        } else if (state is CurrentUserSuccess) {
           final user = state.user;
 
           return Padding(
@@ -47,7 +47,9 @@ class MyProfileViewBody extends StatelessWidget {
                           ).push(AppRouter.kEditProfileView, extra: user);
 
                           if (result == true) {
-                            context.read<ProfileViewCubit>().fetchMyProfile();
+                            context
+                                .read<CurrentUserCubit>()
+                                .fetchCurrentUserInfo();
                           }
                         },
                         icon: Icons.edit_note_rounded,

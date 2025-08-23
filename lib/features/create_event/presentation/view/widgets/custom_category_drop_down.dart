@@ -5,10 +5,10 @@ class CustomCategoryDropDown extends StatelessWidget {
   final void Function(String?) onChanged;
 
   const CustomCategoryDropDown({
-    Key? key,
+    super.key,
     required this.value,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/drawer_menu_list.dart';
-import 'package:event_booking_app/features/my_profile/presentation/manager/profile_cubit/cubit/profile_view_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,14 +17,14 @@ class HomeDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              BlocBuilder<ProfileViewCubit, ProfileViewState>(
+              BlocBuilder<CurrentUserCubit, CurrentUserState>(
                 builder: (context, state) {
-                  if (state is ProfileViewLoading) {
+                  if (state is CurrentUserLoading) {
                     return const Center(child: CircularProgressIndicator());
-                  } else if (state is ProfileViewFailure) {
+                  } else if (state is CurrentUserFailure) {
                     return Center(child: Text(state.message));
                   }
-                  if (state is ProfileViewSuccess) {
+                  if (state is CurrentUserSuccess) {
                     var data = state.user;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
