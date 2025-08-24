@@ -19,7 +19,6 @@ class EventsTap extends StatelessWidget {
         itemCount: events.length,
         itemBuilder: (context, index) {
           return ProfileEventListViewItem(events: events[index]);
-          // عاوز ابعتهم بقا لصفحه التفاصيل
         },
       ),
     );
