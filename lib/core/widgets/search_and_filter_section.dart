@@ -17,7 +17,10 @@ class SearchAndFilterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.search, color: colors.prefixIconColor, size: 30),
+        Hero(
+          tag: "Search",
+          child: Icon(Icons.search, color: colors.prefixIconColor, size: 30),
+        ),
         SizedBox(width: 10),
         Container(height: 25, width: 1.5, color: colors.verticalDivderColor),
         SizedBox(width: 10),
