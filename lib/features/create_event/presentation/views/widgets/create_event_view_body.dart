@@ -23,7 +23,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   DateTime? date;
-  String? title, description, location, subLocation, price, maxAttendees;
+  String? title, description, location, subLocation, price, attendeesCount;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                       location = values["location"];
                       subLocation = values["subLocation"];
                       price = values["price"];
-                      maxAttendees = values["maxAttendees"];
+                      attendeesCount = values["attendeesCount"];
                     },
                   ),
                   ImagePickerField(
@@ -89,7 +89,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                           subLocation: subLocation!,
                           category: selectedValue!,
                           price: price!,
-                          maxAttendees: maxAttendees,
+                          attendeesCount: attendeesCount,
                           date: date!,
                           image: selectedImage,
                         );

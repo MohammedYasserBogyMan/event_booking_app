@@ -33,7 +33,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     required DateTime date,
     File? image,
     String? price,
-    String? maxAttendees,
+    String? attendeesCount,
   }) async {
     emit(CreateEventLoading());
 
@@ -58,9 +58,8 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         location: location,
         subLocation: subLocation,
         imageUrl: imageUrl ?? "",
-        attendeeCount: 0,
+        attendeeCount: int.tryParse(attendeesCount ?? "0") ?? 0,
         publisherId: userId,
-        maxAttendees: int.tryParse(maxAttendees ?? "0"),
         price: int.tryParse(price ?? "0") ?? 0,
       );
 

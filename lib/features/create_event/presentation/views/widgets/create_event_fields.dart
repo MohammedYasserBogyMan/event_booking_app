@@ -12,25 +12,26 @@ class CreateEventTextFields extends StatelessWidget {
       {"key": "description", "icon": Icons.description, "hint": "Description"},
       {"key": "location", "icon": Icons.location_on, "hint": "Location"},
       {"key": "subLocation", "icon": Icons.map, "hint": "Sub Location"},
-      {"key": "maxAttendees", "icon": Icons.people, "hint": "Max Attendees"},
+      {"key": "attendeesCount", "icon": Icons.people, "hint": "attendeesCount"},
       {"key": "price", "icon": Icons.attach_money, "hint": "Price"},
     ];
     return Column(
-      children: fields.map((val) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: CustomTextFiled(
-            icon: val["icon"],
-            hintText: val["hint"],
-            onSaved: (input) {
-              values[val["key"]] = input;
-              if (val == fields.last) {
-                onSaved(values);
-              }
-            },
-          ),
-        );
-      }).toList(),
+      children:
+          fields.map((val) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: CustomTextFiled(
+                icon: val["icon"],
+                hintText: val["hint"],
+                onSaved: (input) {
+                  values[val["key"]] = input;
+                  if (val == fields.last) {
+                    onSaved(values);
+                  }
+                },
+              ),
+            );
+          }).toList(),
     );
   }
 }
