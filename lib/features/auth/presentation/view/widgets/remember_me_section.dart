@@ -23,7 +23,10 @@ class RememberMeSection extends StatelessWidget {
           onTap: () {
             GoRouter.of(context).go(AppRouter.kforgetpassword);
           },
-          child: Text("Forgot Password?", style: Styels.textStyle14),
+          child: Hero(
+            tag: "Forgot Password",
+            child: Text("Forgot Password?", style: Styels.textStyle14),
+          ),
         ),
       ],
     );

@@ -14,7 +14,10 @@ class ResetViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            Text("Resset Password", style: Styels.textStyle24),
+            Hero(
+              tag: "Forgot Password",
+              child: Text("Resset Password", style: Styels.textStyle24),
+            ),
             const SizedBox(height: 10),
             Text(
               "Please enter your email address to request a password reset",
