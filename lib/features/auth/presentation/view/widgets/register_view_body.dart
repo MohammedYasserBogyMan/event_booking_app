@@ -15,7 +15,10 @@ class RegisterViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            Text("Sign up", style: Styels.textStyle24),
+            Hero(
+              tag: "Sign up",
+              child: Text("Sign up", style: Styels.textStyle24),
+            ),
             const SizedBox(height: 20),
             RegistrationAuthFormFields(),
             SizedBox(height: 36),

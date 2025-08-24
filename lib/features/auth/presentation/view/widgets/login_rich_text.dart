@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +16,15 @@ class LoginRichText extends StatelessWidget {
           onTap: () {
             GoRouter.of(context).push(AppRouter.kRegister);
           },
-          child: Text(
-            "Sign up",
-            style: Styels.textStyle15.copyWith(color: AppColor.primary),
+          child: Hero(
+            tag: "Sign up",
+            child: Text(
+              "Sign up",
+              style: Styels.textStyle15.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ],
