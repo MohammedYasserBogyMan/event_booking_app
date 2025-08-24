@@ -2,7 +2,7 @@ import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
-import 'package:event_booking_app/features/create_event/presentation/view/widgets/image_picker_field.dart';
+import 'package:event_booking_app/features/create_event/presentation/views/widgets/image_picker_field.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

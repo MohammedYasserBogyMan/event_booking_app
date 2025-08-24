@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
 
-class CustomCategoryDropDown extends StatelessWidget {
-  final String? value;
-  final void Function(String?) onChanged;
-
-  const CustomCategoryDropDown({
+class DropDownButtonFormField extends StatelessWidget {
+  const DropDownButtonFormField({
     super.key,
     required this.value,
     required this.onChanged,
   });
+  final String? value;
+  final Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     final List<String> categories = [
       "Technology",
       "Sports",
-      "Music",
       "Education",
       "Health",
+      "Music",
     ];
-
     return DropdownButtonFormField<String>(
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         prefixIcon: Icon(Icons.category),
         border: OutlineInputBorder(),
+        helperText: " ",
         hintText: "Select Category",
       ),
-      value: value,
+      validator: (value) {
+        if (value == null) {
+          return " ";
+        }
+        return null;
+      },
       items:
-          categories
-              .map((cat) => DropdownMenuItem(value: cat, child: Text(cat)))
-              .toList(),
+          categories.map((category) {
+            return DropdownMenuItem(value: category, child: Text(category));
+          }).toList(),
+      value: value,
       onChanged: onChanged,
-      validator: (value) => value == null ? "Please select a category" : null,
     );
   }
 }

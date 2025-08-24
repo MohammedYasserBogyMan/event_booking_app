@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
-import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
-import 'package:event_booking_app/features/create_event/presentation/view/create_event_view.dart';
+import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
@@ -57,7 +56,7 @@ abstract class AppRouter {
   static const kSearchView = '/search';
   static const kOrganizerProfile = '/organizer_profile';
   static const kEventDetailsView = "/event_details";
-  static const kCreateEventView = "/create_event";
+  static const kCreateEventView = "/create_eventt";
   static const kEditProfileView = "/edit_profile";
   static final router = GoRouter(
     routes: [
@@ -142,14 +141,6 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: kCreateEventView,
-        builder:
-            (context, state) => BlocProvider(
-              create: (context) => CreateEventCubit(EventRepoImpl()),
-              child: CreateEventView(),
-            ),
-      ),
-      GoRoute(
         path: kEditProfileView,
         builder: (context, state) {
           return BlocProvider(
@@ -158,6 +149,12 @@ abstract class AppRouter {
                     EditProfileCubit(UserRepoImpl(FirebaseFirestore.instance)),
             child: EditProfileView(user: state.extra as dynamic),
           );
+        },
+      ),
+      GoRoute(
+        path: kCreateEventView,
+        builder: (context, state) {
+          return CreateEventView();
         },
       ),
     ],
