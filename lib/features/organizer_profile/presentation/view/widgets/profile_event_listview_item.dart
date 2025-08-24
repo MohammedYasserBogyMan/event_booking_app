@@ -24,19 +24,21 @@ class ProfileEventListViewItem extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 18),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  dayFormat(dateTime: events.date),
-                  style: Styels.textStyle12.copyWith(color: AppColor.primary),
-                ),
-                Text(
-                  events.title,
-                  style: Styels.textStyle18.copyWith(color: Colors.black),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    dayFormat(dateTime: events.date),
+                    style: Styels.textStyle12.copyWith(color: AppColor.primary),
+                  ),
+                  Text(
+                    events.title,
+                    style: Styels.textStyle18.copyWith(color: Colors.black),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

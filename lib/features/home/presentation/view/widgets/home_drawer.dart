@@ -10,6 +10,7 @@ class HomeDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 30),
@@ -29,10 +30,17 @@ class HomeDrawer extends StatelessWidget {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image(
-                          width: 60,
-                          height: 60,
-                          image: NetworkImage(data.photoUrl),
+                        CircleAvatar(
+                          radius: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(data.photoUrl),
+                              ),
+                            ),
+                          ),
                         ),
                         const SizedBox(height: 15),
                         Text(

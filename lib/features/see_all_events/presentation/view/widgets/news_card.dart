@@ -32,28 +32,30 @@ class NewsCard extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  dayFormat(dateTime: eventModel.date),
-                  style: Styels.textStyle14.copyWith(color: AppColor.primary),
-                ),
-                Text(eventModel.title, style: Styels.textStyle15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.location_on, color: AppColor.orTextColor),
-                    Text(
-                      eventModel.location,
-                      style: Styels.textStyle14.copyWith(
-                        color: AppColor.orTextColor,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    dayFormat(dateTime: eventModel.date),
+                    style: Styels.textStyle14.copyWith(color: AppColor.primary),
+                  ),
+                  Text(eventModel.title, style: Styels.textStyle15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.location_on, color: AppColor.orTextColor),
+                      Text(
+                        eventModel.location,
+                        style: Styels.textStyle14.copyWith(
+                          color: AppColor.orTextColor,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
