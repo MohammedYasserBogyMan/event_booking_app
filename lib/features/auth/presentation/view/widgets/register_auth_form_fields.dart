@@ -1,7 +1,7 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
-import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
+import 'package:event_booking_app/core/widgets/register_form_fields.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +19,19 @@ class RegistrationAuthFormFields extends StatefulWidget {
 
 class _RegistrationAuthFormFieldsState
     extends State<RegistrationAuthFormFields> {
-  String? email, name, password;
+  String? email, name, password, confirmPassword;
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isLoading = false;
+  final confirmPasswordController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +53,13 @@ class _RegistrationAuthFormFieldsState
               autovalidateMode: autovalidateMode,
               child: Column(
                 children: [
-                  CustomTextFiled(
+                  RegisterFormFields(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return " ";
+                      }
+                      return null;
+                    },
                     icon: Icons.person_outline,
                     hintText: "Full name",
                     onSaved: (p0) {
@@ -52,7 +67,13 @@ class _RegistrationAuthFormFieldsState
                     },
                   ),
                   const SizedBox(height: 10),
-                  CustomTextFiled(
+                  RegisterFormFields(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return " ";
+                      }
+                      return null;
+                    },
                     onSaved: (p0) {
                       email = p0;
                     },
@@ -60,23 +81,40 @@ class _RegistrationAuthFormFieldsState
                     hintText: "abc@email.com",
                   ),
                   const SizedBox(height: 10),
-                  CustomTextFiled(
+                  RegisterFormFields(
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return " ";
+                      }
+                      return null;
+                    },
                     icon: Icons.lock_outlined,
                     hintText: "Your password",
                     onSaved: (p0) {
                       password = p0;
+                      passwordController.clear();
                     },
                     isPassword: true,
                   ),
                   const SizedBox(height: 10),
-                  CustomTextFiled(
+                  RegisterFormFields(
+                    controller: confirmPasswordController,
+                    onSaved: (p0) {
+                      confirmPassword = p0;
+                      confirmPasswordController.clear();
+                    },
+                    validator: (value) {
+                      if (value != passwordController.text) {
+                        return "password does not match";
+                      }
+                      return null;
+                    },
                     icon: Icons.lock_outlined,
                     hintText: "Confirm password",
-                    onSaved: (p0) {
-                      password = p0;
-                    },
                     isPassword: true,
                   ),
+                  const SizedBox(height: 10),
                   const SizedBox(height: 30),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 22),
@@ -94,6 +132,8 @@ class _RegistrationAuthFormFieldsState
                                     ? name!.split(" ")[1]
                                     : "",
                           );
+                          passwordController.clear();
+                          confirmPasswordController.clear();
                           formKey.currentState!.reset();
                         } else {
                           setState(() {

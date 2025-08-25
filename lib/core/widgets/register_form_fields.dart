@@ -2,42 +2,35 @@ import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFiled extends StatefulWidget {
+class RegisterFormFields extends StatefulWidget {
+  const RegisterFormFields({
+    super.key,
+    required this.icon,
+    required this.hintText,
+    this.isPassword,
+    this.onSaved,
+    this.controller,
+    this.validator,
+  });
   final IconData icon;
   final String hintText;
   final bool? isPassword;
   final Function(String?)? onSaved;
   final TextEditingController? controller;
-
-  const CustomTextFiled({
-    this.onSaved,
-    super.key,
-    required this.icon,
-    required this.hintText,
-    this.isPassword,
-    this.controller,
-  });
-
+  final FormFieldValidator<String>? validator;
   @override
-  State<CustomTextFiled> createState() => _CustomTextFiledState();
+  State<RegisterFormFields> createState() => _RegisterFormFieldsState();
 }
 
-class _CustomTextFiledState extends State<CustomTextFiled> {
+class _RegisterFormFieldsState extends State<RegisterFormFields> {
   bool obscureText = true;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
       cursorColor: AppColor.primary,
       onSaved: widget.onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return " ";
-        } else {
-          return null;
-        }
-      },
+      validator: widget.validator,
       obscureText: (widget.isPassword ?? false) ? obscureText : false,
       decoration: InputDecoration(
         prefixIcon: Icon(widget.icon, color: Color(0xFFE4DFDF)),
