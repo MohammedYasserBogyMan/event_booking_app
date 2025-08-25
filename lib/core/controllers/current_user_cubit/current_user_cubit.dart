@@ -14,9 +14,7 @@ class CurrentUserCubit extends Cubit<CurrentUserState> {
 
   Future<void> fetchCurrentUserInfo() async {
     emit(CurrentUserLoading());
-
     final idRes = await authRepo.getCurrentUserId();
-
     await idRes.fold(
       (failure) async {
         emit(CurrentUserFailure(failure.errMessage));

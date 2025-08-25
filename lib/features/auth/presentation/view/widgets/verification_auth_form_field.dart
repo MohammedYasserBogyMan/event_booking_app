@@ -4,10 +4,19 @@ import 'package:event_booking_app/features/auth/presentation/view/widgets/otp_te
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class VerificarionAuthFormFields extends StatelessWidget {
-  VerificarionAuthFormFields({super.key});
-  final GlobalKey<FormState> formKey = GlobalKey();
-  final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+class VerificarionAuthFormFields extends StatefulWidget {
+  const VerificarionAuthFormFields({super.key});
+
+  @override
+  State<VerificarionAuthFormFields> createState() =>
+      _VerificarionAuthFormFieldsState();
+}
+
+class _VerificarionAuthFormFieldsState
+    extends State<VerificarionAuthFormFields> {
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -20,10 +29,10 @@ class VerificarionAuthFormFields extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                OtpTextField(),
-                OtpTextField(),
-                OtpTextField(),
-                OtpTextField(),
+                OtpTextField(onSaved: (p0) {}),
+                OtpTextField(onSaved: (p0) {}),
+                OtpTextField(onSaved: (p0) {}),
+                OtpTextField(onSaved: (p0) {}),
               ],
             ),
           ),
@@ -33,7 +42,14 @@ class VerificarionAuthFormFields extends StatelessWidget {
             child: CustomButton(
               text: "Continue",
               onPressed: () {
-                GoRouter.of(context).push(AppRouter.kHomeView);
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  GoRouter.of(context).push(AppRouter.kHomeView);
+                } else {
+                  setState(() {
+                    autovalidateMode = AutovalidateMode.always;
+                  });
+                }
               },
             ),
           ),

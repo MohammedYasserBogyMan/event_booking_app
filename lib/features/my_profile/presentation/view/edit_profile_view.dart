@@ -100,7 +100,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                           about: aboutController.text,
                           location: locationController.text,
                         );
-
                         context.read<EditProfileCubit>().updateUser(
                           updatedUser,
                         );

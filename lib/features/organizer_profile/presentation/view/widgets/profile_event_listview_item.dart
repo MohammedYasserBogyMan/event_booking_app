@@ -18,9 +18,12 @@ class ProfileEventListViewItem extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10),
               child: SizedBox(
-                width: 70,
-                height: 100,
-                child: Image(image: NetworkImage(events.imageUrl)),
+                width: 100,
+                height: 120,
+                child: Image(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(events.imageUrl),
+                ),
               ),
             ),
             const SizedBox(width: 18),
