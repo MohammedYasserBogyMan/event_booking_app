@@ -31,3 +31,12 @@ class FailureResetState extends AuthStates {
   final String errMessage;
   FailureResetState({required this.errMessage});
 }
+
+class SuccessSignOutState extends AuthStates {}
+
+class FailureSignOutState extends AuthStates {
+  final String errMessage;
+  FailureSignOutState({required this.errMessage});
+}
+
+class LoadingSignOutState extends AuthStates {}

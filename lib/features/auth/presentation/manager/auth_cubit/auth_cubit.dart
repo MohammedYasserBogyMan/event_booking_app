@@ -15,8 +15,8 @@ class AuthCubit extends Cubit<AuthStates> {
     final res = await authRepo.login(email: email, password: password);
     res.fold(
       (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
-      (_) async {
-        final rememberMe = await SharedPrefsService.I.getRememberMe();
+      (success) async {
+        final rememberMe = SharedPrefsService.I.getRememberMe();
         if (rememberMe) {
           await SharedPrefsService.I.setRememberMe(true);
         }
@@ -42,8 +42,7 @@ class AuthCubit extends Cubit<AuthStates> {
     );
     registerRes.fold(
       (failure) => emit(FailureRegisterState(errMessage: failure.errMessage)),
-      (r) async {
-        // الآن نحصل على uid من auth (الموجود بالفعل في AuthRepo)
+      (success) async {
         final idRes = await authRepo.getCurrentUserId();
         idRes.fold(
           (failure) =>
@@ -86,6 +85,19 @@ class AuthCubit extends Cubit<AuthStates> {
       },
       (reset) {
         emit(SuccessRegisterState());
+      },
+    );
+  }
+
+  Future<void> signOut() async {
+    emit(LoadingSignOutState());
+    final signOut = await authRepo.signOut();
+    signOut.fold(
+      (failure) {
+        emit(FailureSignOutState(errMessage: failure.errMessage));
+      },
+      (reset) {
+        emit(SuccessSignOutState());
       },
     );
   }

@@ -28,4 +28,16 @@ class CurrentUserCubit extends Cubit<CurrentUserState> {
       },
     );
   }
+
+  Future<void> logout() async {
+    final result = await authRepo.signOut();
+    result.fold(
+      (failure) {
+        emit(CurrentUserFailure(failure.errMessage));
+      },
+      (success) {
+        emit(CurrentUserInitial());
+      },
+    );
+  }
 }

@@ -18,7 +18,7 @@ class HomeViewBody extends StatelessWidget {
         if (state is HomeLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is HomeSuccess) {
-          final events = state.events; // 👈 دي الليستة الجاية من Firestore
+          final events = state.events;
 
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),

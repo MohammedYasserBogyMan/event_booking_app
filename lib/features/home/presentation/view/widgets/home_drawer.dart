@@ -24,8 +24,7 @@ class HomeDrawer extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is CurrentUserFailure) {
                     return Center(child: Text(state.message));
-                  }
-                  if (state is CurrentUserSuccess) {
+                  } else if (state is CurrentUserSuccess) {
                     var data = state.user;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
