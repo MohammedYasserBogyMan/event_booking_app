@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:event_booking_app/core/theme/search_filter_color.dart';
 import 'package:event_booking_app/core/widgets/search_and_filter_section.dart';
 import 'package:event_booking_app/core/widgets/news_list.dart';
@@ -18,6 +20,7 @@ class SearchViewBody extends StatelessWidget {
             enabled: true,
             colors: SearchFilterColor.primaryTheme,
             onSubmit: (category) {
+              log(category);
               BlocProvider.of<SearchCubit>(
                 context,
               ).searchCategory(category: category);
