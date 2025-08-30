@@ -45,7 +45,6 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         final ref = FirebaseStorage.instance.ref().child(
           "events/${DateTime.now().millisecondsSinceEpoch}.png",
         );
-
         await ref.putFile(image);
         imageUrl = await ref.getDownloadURL();
       }
@@ -61,6 +60,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         attendeeCount: int.tryParse(attendeesCount ?? "0") ?? 0,
         publisherId: userId,
         price: int.tryParse(price ?? "0") ?? 0,
+        searchTermsArray: _generateSearchTerms(title),
       );
 
       final result = await repo.createEvent(event: event);
@@ -72,5 +72,23 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     } catch (e) {
       emit(CreateEventFailure(e.toString()));
     }
+  }
+
+  List<String> _generateSearchTerms(String title) {
+    final words = title.toLowerCase().split(" ");
+    List<String> keywords = [];
+
+    for (var word in words) {
+      // إضافة كل أجزاء الكلمة
+      for (int i = 1; i <= word.length; i++) {
+        keywords.add(word.substring(0, i));
+      }
+    }
+
+    // إضافة العنوان كله (للبحث بالكلمة كاملة)
+    keywords.add(title.toLowerCase());
+
+    // إزالة التكرارات
+    return keywords.toSet().toList();
   }
 }

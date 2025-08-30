@@ -11,6 +11,7 @@ class EventModel {
   final int attendeeCount;
   final String publisherId;
   final int price;
+  final List<String> searchTermsArray; // <-- جديد
 
   EventModel({
     required this.category,
@@ -23,6 +24,7 @@ class EventModel {
     required this.attendeeCount,
     required this.publisherId,
     required this.price,
+    required this.searchTermsArray, // <-- جديد
   });
 
   factory EventModel.fromFirestore(DocumentSnapshot doc) {
@@ -38,6 +40,9 @@ class EventModel {
       attendeeCount: data['attendeeCount'] ?? 0,
       publisherId: data['publisherId'] ?? '',
       price: data['price'] ?? 0,
+      searchTermsArray: List<String>.from(
+        data['searchTermsArray'] ?? [],
+      ), // <-- جديد
     );
   }
 
@@ -53,6 +58,7 @@ class EventModel {
       'attendeeCount': attendeeCount,
       'publisherId': publisherId,
       'price': price,
+      'searchTermsArray': searchTermsArray, // <-- جديد
     };
   }
 }
