@@ -8,7 +8,6 @@ import 'package:event_booking_app/features/auth/presentation/view/widgets/rememb
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignInAuthFormFields extends StatefulWidget {
   const SignInAuthFormFields({super.key});
@@ -26,64 +25,59 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {
-        if (state is LoadingLoginState) {
-        } else if (state is SuccessLoginState) {
+        if (state is SuccessLoginState) {
           showSnackBar(context, message: "Success Login");
           GoRouter.of(context).go(AppRouter.kHomeView);
         } else if (state is FailureLoginState) {
           showSnackBar(context, message: state.errMessage);
         }
       },
-      // logic of Modal Progress HUD does Not Applied
       builder:
-          (context, state) => ModalProgressHUD(
-            inAsyncCall: isLoading,
-            child: Form(
-              key: formkey,
-              autovalidateMode: autovalidateMode,
-              child: Column(
-                children: [
-                  CustomTextFiled(
-                    onSaved: (p0) {
-                      email = p0;
+          (context, state) => Form(
+            key: formkey,
+            autovalidateMode: autovalidateMode,
+            child: Column(
+              children: [
+                CustomTextFiled(
+                  onSaved: (p0) {
+                    email = p0;
+                  },
+                  hintText: 'abc@email.com',
+                  icon: Icons.email_outlined,
+                ),
+                const SizedBox(height: 19),
+                CustomTextFiled(
+                  onSaved: (p0) {
+                    password = p0;
+                  },
+                  hintText: 'Your password',
+                  icon: Icons.lock_outline,
+                  isPassword: true,
+                ),
+                const SizedBox(height: 20),
+                RememberMeSection(),
+                const SizedBox(height: 36),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: CustomButton(
+                    text: 'SIGN IN',
+                    onPressed: () async {
+                      if (formkey.currentState!.validate()) {
+                        formkey.currentState!.save();
+                        await BlocProvider.of<AuthCubit>(
+                          context,
+                        ).login(email: email!, password: password!);
+                        formkey.currentState!.reset();
+                      } else {
+                        setState(() {
+                          autovalidateMode = AutovalidateMode.always;
+                        });
+                      }
                     },
-                    hintText: 'abc@email.com',
-                    icon: Icons.email_outlined,
                   ),
-                  const SizedBox(height: 19),
-                  CustomTextFiled(
-                    onSaved: (p0) {
-                      password = p0;
-                    },
-                    hintText: 'Your password',
-                    icon: Icons.lock_outline,
-                    isPassword: true,
-                  ),
-                  const SizedBox(height: 20),
-                  RememberMeSection(),
-                  const SizedBox(height: 36),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
-                    child: CustomButton(
-                      text: 'SIGN IN',
-                      onPressed: () async {
-                        if (formkey.currentState!.validate()) {
-                          formkey.currentState!.save();
-                          await BlocProvider.of<AuthCubit>(
-                            context,
-                          ).login(email: email!, password: password!);
-                          formkey.currentState!.reset();
-                        } else {
-                          setState(() {
-                            autovalidateMode = AutovalidateMode.always;
-                          });
-                        }
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                ],
-              ),
+                ),
+                const SizedBox(height: 24),
+              ],
             ),
           ),
     );
