@@ -15,7 +15,7 @@ class SocialLoginOptions extends StatelessWidget {
           "OR",
           style: Styels.textStyle16.copyWith(color: AppColor.orTextColor),
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 10),
         SocialLoginButton(
           text: "Login with Google",
           image: AssetsData.loginGoogleIcon,
@@ -25,7 +25,6 @@ class SocialLoginOptions extends StatelessWidget {
           text: "Login with Facebook",
           image: AssetsData.loginFacebookIcon,
         ),
-        const SizedBox(height: 20),
       ],
     );
   }

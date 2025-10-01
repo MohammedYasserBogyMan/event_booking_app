@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
           blur: 10,
           progressIndicator: CircularProgressIndicator(color: AppColor.primary),
           inAsyncCall: isLoading,
-          child: const Scaffold(body: LoginViewBody()),
+          child: const Scaffold(body: SafeArea(child: LoginViewBody())),
         );
       },
     );

@@ -14,6 +14,7 @@ class _SwitchIconState extends State<SwitchIcon> {
   @override
   Widget build(BuildContext context) {
     return Switch(
+      inactiveTrackColor: AppColor.lightBackground,
       value: rememberMe,
       activeColor: AppColor.lightBackground,
       activeTrackColor: AppColor.primary,

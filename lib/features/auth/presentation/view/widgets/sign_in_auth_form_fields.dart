@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
@@ -76,7 +78,6 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                     },
                   ),
                 ),
-                const SizedBox(height: 24),
               ],
             ),
           ),
