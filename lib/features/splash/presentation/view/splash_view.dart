@@ -10,7 +10,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (_) => SplashCubit(),
+        create: (context) => SplashCubit(),
         child: const SplashViewBody(),
       ),
     );
