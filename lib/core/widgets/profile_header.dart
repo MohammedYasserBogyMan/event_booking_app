@@ -18,13 +18,13 @@ class ProfileHeader extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          radius: 40,
+          backgroundColor: Colors.white,
+          radius: 35,
           backgroundImage:
               imageUrl.startsWith('http')
                   ? NetworkImage(imageUrl)
                   : AssetImage(imageUrl) as ImageProvider,
         ),
-
         SizedBox(height: 20),
         Text(name, style: Styels.textStyle24),
         SizedBox(height: 10),

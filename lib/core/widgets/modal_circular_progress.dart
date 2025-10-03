@@ -13,7 +13,7 @@ class ModalCircularProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
-      blur: 10,
+      blur: 100,
       progressIndicator: CircularProgressIndicator(color: AppColor.primary),
       inAsyncCall: inAsyncCall,
       child: child,

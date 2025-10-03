@@ -1,9 +1,12 @@
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/register_form_fields.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +22,8 @@ class RegistrationAuthFormFields extends StatefulWidget {
 
 class _RegistrationAuthFormFieldsState
     extends State<RegistrationAuthFormFields> {
-  String? email, name, password, confirmPassword;
+  String? email, password, name;
+
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isLoading = false;
@@ -40,7 +44,17 @@ class _RegistrationAuthFormFieldsState
         if (state is LoadingRegisterState) {
         } else if (state is SuccessRegisterState) {
           showSnackBar(context, message: "SuccessRegister");
-          GoRouter.of(context).go(AppRouter.kVerification, extra: email);
+          final newUser = UserModel(
+            uid: FirebaseAuth.instance.currentUser!.uid,
+            firstName: name!,
+            lastName: "",
+            email: email!,
+            photoUrl: AssetsData.defaultPhotoForNewUser,
+            location: "",
+            about: "",
+            followersCount: 0,
+          );
+          GoRouter.of(context).push(AppRouter.kVerification, extra: newUser);
         } else if (state is FailureRegisterState) {
           showSnackBar(context, message: state.errMessage);
         }
@@ -101,7 +115,7 @@ class _RegistrationAuthFormFieldsState
                   RegisterFormFields(
                     controller: confirmPasswordController,
                     onSaved: (p0) {
-                      confirmPassword = p0;
+                      password = p0;
                       confirmPasswordController.clear();
                     },
                     validator: (value) {

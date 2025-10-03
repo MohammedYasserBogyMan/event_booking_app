@@ -32,6 +32,7 @@ class FailureResetState extends AuthStates {
   FailureResetState({required this.errMessage});
 }
 
+// sign out
 class SuccessSignOutState extends AuthStates {}
 
 class FailureSignOutState extends AuthStates {
@@ -40,3 +41,13 @@ class FailureSignOutState extends AuthStates {
 }
 
 class LoadingSignOutState extends AuthStates {}
+
+// verification (not implemented!!!)
+class SuccessVerificationState extends AuthStates {}
+
+class LoadingVerificationState extends AuthStates {}
+
+class FailureVerificationState extends AuthStates {
+  final String errMessage;
+  FailureVerificationState({required this.errMessage});
+}

@@ -30,13 +30,17 @@ class HomeDrawer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CircleAvatar(
-                          radius: 30,
+                           backgroundImage:   data.photoUrl.startsWith('http')
+                  ? NetworkImage(data.photoUrl)
+                  : AssetImage(data.photoUrl) as ImageProvider,
+                          backgroundColor: Colors.white,
+                          radius: 20,
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(data.photoUrl),
+                                image: AssetImage(data.photoUrl),
                               ),
                             ),
                           ),

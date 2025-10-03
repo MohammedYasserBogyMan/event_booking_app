@@ -13,7 +13,7 @@ class ResetViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Hero(
               tag: "Forgot Password",
               child: Text("Resset Password", style: Styels.textStyle24),

@@ -1,11 +1,12 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/verification_auth_form_field.dart';
 import 'package:flutter/material.dart';
 
 class VerificationViewBody extends StatelessWidget {
-  const VerificationViewBody({super.key, this.email});
-  final String? email;
+  const VerificationViewBody({super.key, required this.userModel});
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +28,14 @@ class VerificationViewBody extends StatelessWidget {
                     style: Styels.textStyle15.copyWith(color: Colors.black),
                   ),
                   TextSpan(
-                    text: "$email",
+                    text: userModel.email,
                     style: Styels.textStyle15.copyWith(color: AppColor.primary),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 27),
-            VerificarionAuthFormFields(),
+            VerificarionAuthFormFields(userModel: userModel),
             const SizedBox(height: 24),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 70),

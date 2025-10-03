@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
@@ -124,8 +125,8 @@ abstract class AppRouter {
       GoRoute(
         path: kVerification,
         builder: (context, state) {
-          final String email = state.extra as String;
-          return VerificationView(email: email);
+          final userModel = state.extra as UserModel;
+          return VerificationView(userModel: userModel);
         },
       ),
       GoRoute(
@@ -148,7 +149,7 @@ abstract class AppRouter {
             create:
                 (context) =>
                     EditProfileCubit(UserRepoImpl(FirebaseFirestore.instance)),
-            child: EditProfileView(user: state.extra as dynamic),
+            child: EditProfileView(user: state.extra as UserModel),
           );
         },
       ),

@@ -21,7 +21,7 @@ class RememberMeSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).go(AppRouter.kforgetpassword);
+            GoRouter.of(context).push(AppRouter.kforgetpassword);
           },
           child: Hero(
             tag: "Forgot Password",

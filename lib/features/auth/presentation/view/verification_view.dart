@@ -1,13 +1,15 @@
+import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/verification_view_body.dart';
 import 'package:flutter/material.dart';
 
 class VerificationView extends StatelessWidget {
-  const VerificationView({super.key, this.email});
-  static String id = "VerificationView";
-  final String? email;
+  const VerificationView({super.key, required this.userModel});
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: VerificationViewBody(email: email)));
+    return Scaffold(
+      body: SafeArea(child: VerificationViewBody(userModel: userModel)),
+    );
   }
 }

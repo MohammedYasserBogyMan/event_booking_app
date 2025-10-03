@@ -1,6 +1,7 @@
 import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/services/shared_prefs_service.dart';
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required String password,
     required String firstName,
     required String lastName,
-    String photoUrl = '',
+    String photoUrl = AssetsData.defaultPhotoForNewUser,
     String location = '',
     String about = '',
   }) async {
