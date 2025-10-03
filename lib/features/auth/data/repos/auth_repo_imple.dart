@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthRepoImple implements AuthRepo {
   final FirebaseAuth auth;
   AuthRepoImple(this.auth);
+  // login implementaion
   @override
   Future<Either<Failure, void>> login({
     required String email,
@@ -29,6 +30,7 @@ class AuthRepoImple implements AuthRepo {
     }
   }
 
+  // register implementation
   @override
   Future<Either<Failure, void>> register({
     required String email,
@@ -58,6 +60,7 @@ class AuthRepoImple implements AuthRepo {
     }
   }
 
+  // resetPassword implementation
   @override
   Future<Either<Failure, void>> resetPassword({required String email}) async {
     try {
@@ -81,6 +84,7 @@ class AuthRepoImple implements AuthRepo {
     }
   }
 
+  // signOut implementaion
   @override
   Future<Either<Failure, void>> signOut() async {
     try {

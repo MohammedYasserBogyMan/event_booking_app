@@ -14,7 +14,7 @@ import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/sign_out_view.dart';
+import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile/edit_profile_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';

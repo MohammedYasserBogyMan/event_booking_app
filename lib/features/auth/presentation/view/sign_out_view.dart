@@ -1,6 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/features/home/presentation/view/widgets/sign_out_view_body.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_out_view_body.dart';
 import 'package:flutter/material.dart';
 
 class SignOutView extends StatelessWidget {
@@ -18,4 +18,3 @@ class SignOutView extends StatelessWidget {
     );
   }
 }
-
