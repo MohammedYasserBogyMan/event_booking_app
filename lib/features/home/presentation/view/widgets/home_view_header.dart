@@ -26,7 +26,6 @@ class HomeViewHeader extends StatelessWidget {
             child: CustomHomeAppbar(),
           ),
           SizedBox(height: 20),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: GestureDetector(

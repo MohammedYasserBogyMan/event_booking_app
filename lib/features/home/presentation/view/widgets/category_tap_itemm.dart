@@ -11,25 +11,27 @@ class CategoryTapItem extends StatelessWidget {
 
   final bool isSelected;
   final CategoryModel cat;
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: cat.color,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        children: [
-          Icon(cat.icon, color: Colors.white, size: 20),
-          const SizedBox(width: 8),
-          Text(
-            cat.name,
-            style: Styels.textStyle15.copyWith(color: Colors.white),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: const EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: cat.color,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          children: [
+            Icon(cat.icon, color: Colors.white, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              cat.name,
+              style: Styels.textStyle15.copyWith(color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

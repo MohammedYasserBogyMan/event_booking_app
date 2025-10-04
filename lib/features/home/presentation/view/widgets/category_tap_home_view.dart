@@ -13,11 +13,11 @@ class HomeViewCategorysTaps extends StatelessWidget {
   });
 
   final List<CategoryModel> categories = [
-    CategoryModel("Sports", Icons.sports, Colors.red),
-    CategoryModel("Music", Icons.music_note, Colors.orange),
-    CategoryModel("Food", Icons.restaurant, Colors.green),
-    CategoryModel("Tech", Icons.computer, Colors.blue),
-    CategoryModel("Art", Icons.brush, Colors.purple),
+    CategoryModel(name:"Sports",icon: Icons.sports,color: Colors.red ),
+    CategoryModel(name:"Music",icon: Icons.music_note,color: Colors.orange ),
+    CategoryModel(name: "Food",icon: Icons.restaurant,color: Colors.green ),
+    CategoryModel(name: "Tech",icon:  Icons.computer,color:  Colors.blue ),
+    CategoryModel(name: "Art",icon:  Icons.brush,color:  Colors.purple ),
   ];
 
   @override
