@@ -1,6 +1,7 @@
 import 'package:event_booking_app/core/utils/assets.dart';
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/features/event_invitation/presentation/view/invite_friend_view.dart';
+import 'package:event_booking_app/features/event_invitation/presentation/views/invite_friend_view.dart';
 import 'package:flutter/material.dart';
 
 class InviteCard extends StatelessWidget {
@@ -48,16 +49,7 @@ class InviteCard extends StatelessWidget {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(16),
-                          ),
-                        ),
-                        builder: (_) => const InviteFriendSheet(),
-                      );
+                      showSheet(context, child: InviteFriendSheet());
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,

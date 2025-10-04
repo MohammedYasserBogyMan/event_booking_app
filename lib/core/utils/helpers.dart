@@ -21,3 +21,18 @@ void showSnackBar(BuildContext context, {required String message}) {
     ),
   );
 }
+
+Future<dynamic> showSheet(BuildContext context, {required Widget child}) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
+      ),
+    ),
+    context: context,
+    backgroundColor: Colors.white,
+    builder: (context) => child,
+  );
+}

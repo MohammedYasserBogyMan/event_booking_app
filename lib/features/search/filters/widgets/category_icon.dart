@@ -23,14 +23,14 @@ class CategoryIcon extends StatelessWidget {
         border:
             isSelected
                 ? null
-                : Border.all(color: AppColor.lightgray, width: 0.8),
+                : Border.all(color: Color(0xffE5E5E5), width: 0.8),
       ),
       padding: const EdgeInsets.all(12),
       child: SvgPicture.asset(
         iconPath,
         fit: BoxFit.contain,
         colorFilter: ColorFilter.mode(
-          isSelected ? Colors.white : AppColor.lightgray,
+          isSelected ? Colors.white : Color(0xffB6B6B6),
           BlendMode.srcIn,
         ),
       ),

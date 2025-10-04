@@ -19,6 +19,7 @@ class DropDownButtonFormField extends StatelessWidget {
       "Music",
     ];
     return DropdownButtonFormField<String>(
+      dropdownColor: Colors.white,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.category),
         border: OutlineInputBorder(),

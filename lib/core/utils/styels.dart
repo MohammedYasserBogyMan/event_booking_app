@@ -36,6 +36,11 @@ abstract class Styels {
     fontWeight: FontWeight.w600,
     fontFamily: kFont,
   );
+  static const textStyle17 = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    fontFamily: kFont,
+  );
   static const textStyle15 = TextStyle(fontSize: 15, fontFamily: kFont);
   static const textStyle14 = TextStyle(fontSize: 14, fontFamily: kFont);
   static const textStyle12 = TextStyle(fontSize: 12, fontFamily: kFont);

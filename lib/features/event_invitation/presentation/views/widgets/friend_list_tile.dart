@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -27,8 +28,8 @@ class FriendListTile extends StatelessWidget {
         style: Styels.textStyle12.copyWith(color: Colors.grey),
       ),
       trailing: Icon(
-        isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
-        color: isSelected ? Colors.blue : Colors.grey,
+        isSelected ? Icons.check_circle : Icons.check_circle,
+        color: isSelected ? AppColor.primary : Color(0xffE2E2E2),
       ),
       onTap: onTap,
     );

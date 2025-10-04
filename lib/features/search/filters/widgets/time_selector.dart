@@ -28,6 +28,7 @@ class _TimeSelectorState extends State<TimeSelector> {
             return Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: ChoiceChip(
+                backgroundColor: Colors.white,
                 showCheckmark: false,
                 label: Text(times[index], style: Styels.textStyle15),
                 selected: isSelected,
@@ -35,9 +36,8 @@ class _TimeSelectorState extends State<TimeSelector> {
                   setState(() => selectedIndex = index);
                 },
                 selectedColor: AppColor.primary,
-
                 labelStyle: TextStyle(
-                  color: isSelected ? Colors.white : AppColor.orTextColor,
+                  color: isSelected ? Colors.white : Color(0xff807A7A),
                 ),
               ),
             );
@@ -51,13 +51,16 @@ class _TimeSelectorState extends State<TimeSelector> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey[300]!),
+              border: Border.all(color: Color(0xffE5E5E5)),
             ),
             child: Row(
               children: [
                 Image.asset(AssetsData.dateIcon, height: 30),
                 SizedBox(width: 13),
-                Text("Choose from calendar", style: Styels.textStyle15),
+                Text(
+                  "Choose from calendar",
+                  style: Styels.textStyle15.copyWith(color: Color(0xff807A7A)),
+                ),
                 Spacer(),
                 Icon(
                   Icons.arrow_forward_ios,
