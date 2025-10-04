@@ -47,7 +47,7 @@ class _RegistrationAuthFormFieldsState
           final newUser = UserModel(
             uid: FirebaseAuth.instance.currentUser!.uid,
             firstName: name!,
-            lastName: "",
+            lastName:  "",
             email: email!,
             photoUrl: AssetsData.defaultPhotoForNewUser,
             location: "",

@@ -3,7 +3,7 @@ import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:meta/meta.dart';
 
-part 'edit_profile_state.dart';
+part 'edit_profile_states.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
   EditProfileCubit(this.userRepo) : super(EditProfileInitial());

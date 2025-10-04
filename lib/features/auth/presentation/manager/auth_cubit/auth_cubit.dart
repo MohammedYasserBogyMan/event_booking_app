@@ -1,27 +1,40 @@
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   final UserRepo userRepo;
-  AuthCubit(this.authRepo, this.userRepo) : super(AuthInitial());
   final AuthRepo authRepo;
+  AuthCubit(this.authRepo, this.userRepo) : super(AuthInitial());
 
-  Future<void> login({required String email, required String password}) async {
+  Future<void> login({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
     emit(LoadingLoginState());
-    final res = await authRepo.login(email: email, password: password);
-    res.fold(
+    final result = await authRepo.login(email: email, password: password);
+    result.fold(
       (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
       (success) async {
         final rememberMe = SharedPrefsService.I.getRememberMe();
         if (rememberMe) {
           await SharedPrefsService.I.setRememberMe(true);
         }
-        emit(SuccessLoginState());
+        final idRes = await authRepo.getCurrentUserId();
+        idRes.fold(
+          (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
+          (uid) {
+            context.read<CurrentUserCubit>().fetchCurrentUserInfo();
+            emit(SuccessLoginState());
+          },
+        );
       },
     );
   }
@@ -36,12 +49,12 @@ class AuthCubit extends Cubit<AuthStates> {
     String about = '',
   }) async {
     emit(LoadingRegisterState());
-
-    final registerRes = await authRepo.register(
+    // register
+    final registerResult = await authRepo.register(
       email: email,
       password: password,
     );
-    registerRes.fold(
+    registerResult.fold(
       (failure) => emit(FailureRegisterState(errMessage: failure.errMessage)),
       (success) async {
         final idRes = await authRepo.getCurrentUserId();
@@ -50,7 +63,7 @@ class AuthCubit extends Cubit<AuthStates> {
               emit(FailureRegisterState(errMessage: failure.errMessage)),
           (uid) async {
             // نبني الـ user model
-            final user = UserModel(
+            final newUser = UserModel(
               uid: uid,
               firstName: firstName,
               lastName: lastName,
@@ -62,7 +75,7 @@ class AuthCubit extends Cubit<AuthStates> {
             );
 
             // نحفظه في Firestore
-            final createRes = await userRepo.createUserProfile(user);
+            final createRes = await userRepo.createUserProfile(newUser);
             createRes.fold(
               (failure) =>
                   emit(FailureRegisterState(errMessage: failure.errMessage)),
@@ -77,7 +90,7 @@ class AuthCubit extends Cubit<AuthStates> {
     );
   }
 
-  Future<void> reset({required String email}) async {
+  Future<void> resetPassword({required String email}) async {
     emit(LoadingResetState());
     final reset = await authRepo.resetPassword(email: email);
     reset.fold(

@@ -64,9 +64,11 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                     onPressed: () async {
                       if (formkey.currentState!.validate()) {
                         formkey.currentState!.save();
-                        await BlocProvider.of<AuthCubit>(
-                          context,
-                        ).login(email: email!, password: password!);
+                        await BlocProvider.of<AuthCubit>(context).login(
+                          email: email!,
+                          password: password!,
+                          context: context,
+                        );
                         formkey.currentState!.reset();
                       } else {
                         setState(() {

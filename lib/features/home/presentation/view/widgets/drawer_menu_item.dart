@@ -11,6 +11,7 @@ class DrawerMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        GoRouter.of(context).pop();
         GoRouter.of(context).push(drawerMenuItemModel.route);
       },
       child: Row(

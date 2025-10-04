@@ -63,7 +63,7 @@ class _ResetPasswordAuthFormFieldState
                           formKey.currentState!.save();
                           BlocProvider.of<AuthCubit>(
                             context,
-                          ).reset(email: email!);
+                          ).resetPassword(email: email!);
                           formKey.currentState!.reset();
                         } else {
                           setState(() {

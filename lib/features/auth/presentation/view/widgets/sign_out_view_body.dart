@@ -4,6 +4,7 @@ import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:flutter/material.dart';
@@ -22,46 +23,40 @@ class SignOutViewBody extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.logout, size: 80, color: AppColor.primary),
+              const Icon(Icons.logout, size: 100, color: AppColor.primary),
               const SizedBox(height: 20),
               Text(
                 "Are you sure you want to sign out?",
-                style: Styels.textStyle35,
+                style: Styels.textStyle22.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30),
               BlocConsumer<AuthCubit, AuthStates>(
                 listener: (context, state) async {
                   if (state is SuccessSignOutState) {
+                    await context.read<CurrentUserCubit>().reset();
                     await SharedPrefsService.I.clearAll();
-                    await context.read<CurrentUserCubit>().logout();
+                    GoRouter.of(context).go(AppRouter.kLogin);
+                    showSnackBar(context, message: "successSignOut");
                   } else if (state is FailureSignOutState) {
-                    showSnackBar(context, message: state.errMessage);
+                    showSnackBar(
+                      context,
+                      message: "Error signing out: ${state.errMessage}",
+                    );
                   }
                 },
-
                 builder: (context, state) {
-                  return ElevatedButton.icon(
-                    onPressed: () => _signOut(context),
-                    icon: const Icon(Icons.logout),
-                    label: const Text(
-                      "Sign Out",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.primary,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  );
+                  return state is LoadingSignOutState
+                      ? Center(
+                        child: CircularProgressIndicator(
+                          color: AppColor.primary,
+                        ),
+                      )
+                      : CustomButton(
+                        text: "SignOut",
+                        onPressed: () {
+                          signOutFunc(context);
+                        },
+                      );
                 },
               ),
             ],
@@ -71,13 +66,6 @@ class SignOutViewBody extends StatelessWidget {
     );
   }
 
-  Future<void> _signOut(BuildContext context) async {
-    try {
-      await SharedPrefsService.I.clearAll();
-      context.read<AuthCubit>().signOut();
-      GoRouter.of(context).go(AppRouter.kLogin);
-    } catch (e) {
-      showSnackBar(context, message: "Error signing out: $e");
-    }
-  }
+  Future<void> signOutFunc(BuildContext context) =>
+      BlocProvider.of<AuthCubit>(context).signOut();
 }

@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:event_booking_app/core/models/user_model.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
-import 'package:meta/meta.dart';
-
-part 'current_user_state.dart';
 
 class CurrentUserCubit extends Cubit<CurrentUserState> {
   final UserRepo userRepo;
@@ -29,15 +26,7 @@ class CurrentUserCubit extends Cubit<CurrentUserState> {
     );
   }
 
-  Future<void> logout() async {
-    final result = await authRepo.signOut();
-    result.fold(
-      (failure) {
-        emit(CurrentUserFailure(failure.errMessage));
-      },
-      (success) {
-        emit(CurrentUserInitial());
-      },
-    );
+  Future<void> reset() async {
+    emit(CurrentUserInitial());
   }
 }

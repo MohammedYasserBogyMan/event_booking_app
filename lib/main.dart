@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
-import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/firebase_options.dart';
 import 'package:event_booking_app/simple_bloc_observer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
