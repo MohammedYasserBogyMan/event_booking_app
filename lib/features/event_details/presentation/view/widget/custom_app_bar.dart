@@ -11,6 +11,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      iconTheme: IconThemeData(color: Colors.white),
       floating: false,
       expandedHeight: 244,
       pinned: true,
