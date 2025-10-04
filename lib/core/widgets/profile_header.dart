@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,8 @@ class ProfileHeader extends StatelessWidget {
           backgroundImage:
               imageUrl.startsWith('http')
                   ? CachedNetworkImageProvider(imageUrl)
-                  : AssetImage(imageUrl) as ImageProvider,
+                  : AssetImage(AssetsData.defaultPhotoForNewUser)
+                      as ImageProvider,
         ),
         SizedBox(height: 20),
         Text(name, style: Styels.textStyle24),

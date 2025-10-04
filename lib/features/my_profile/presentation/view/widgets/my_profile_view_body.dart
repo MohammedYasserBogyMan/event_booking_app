@@ -34,7 +34,7 @@ class MyProfileViewBody extends StatelessWidget {
                     name: user.fullName,
                     imageUrl: user.photoUrl,
                     followers: user.followersCount,
-                    following: 0,
+                    following:  user.followersCount,
                   ),
                   const SizedBox(height: 30),
                   Center(

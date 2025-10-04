@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/follow_button.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +19,13 @@ class OrganizerInfoCard extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
+          backgroundColor: Colors.white,
           radius: 25,
-          backgroundImage: NetworkImage(organizerEventPhoto),
+          backgroundImage:
+              organizerEventPhoto.isNotEmpty &&
+                      organizerEventPhoto.startsWith('http')
+                  ? CachedNetworkImageProvider(organizerEventPhoto)
+                  : AssetImage(AssetsData.defaultPhotoForNewUser),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 13),
