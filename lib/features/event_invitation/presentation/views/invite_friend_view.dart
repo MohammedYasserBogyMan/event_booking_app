@@ -1,5 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/event_invitation/presentation/views/share_bottom_sheet.dart';
@@ -35,7 +36,7 @@ class InviteFriendSheet extends StatelessWidget {
           CustomButton(
             text: 'INVITE',
             onPressed: () {
-              Navigator.pop(context);
+              goToBackScreen(context);
               showSheet(context, child: ShareBottomSheet());
             },
           ),

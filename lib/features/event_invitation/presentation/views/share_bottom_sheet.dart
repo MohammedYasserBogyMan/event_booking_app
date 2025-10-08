@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/utils/assets.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,10 @@ class ShareBottomSheet extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: const Text("Share with friends", style: Styels.textStyleRegular24),
+            child: const Text(
+              "Share with friends",
+              style: Styels.textStyleRegular24,
+            ),
           ),
           const SizedBox(height: 23),
           Wrap(
@@ -48,7 +52,10 @@ class ShareBottomSheet extends StatelessWidget {
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 3),
-                        child: Text(option['label'], style: Styels.textStyleRegular17),
+                        child: Text(
+                          option['label'],
+                          style: Styels.textStyleRegular17,
+                        ),
                       ),
                     ],
                   );
@@ -56,7 +63,7 @@ class ShareBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: 34),
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => goToBackScreen(context),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 40),
               height: 50,
