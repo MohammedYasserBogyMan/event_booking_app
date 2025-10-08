@@ -1,5 +1,6 @@
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/core/widgets/profile_action_button.dart';
 import 'package:event_booking_app/core/widgets/profile_header.dart';
@@ -7,7 +8,6 @@ import 'package:event_booking_app/core/controllers/current_user_cubit/current_us
 import 'package:event_booking_app/features/my_profile/presentation/view/widgets/interests_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class MyProfileViewBody extends StatelessWidget {
   const MyProfileViewBody({super.key});
@@ -43,9 +43,11 @@ class MyProfileViewBody extends StatelessWidget {
                       child: ProfileActionButton(
                         isFilled: false,
                         onPressed: () async {
-                          final result = await GoRouter.of(
+                          final result = pushToNewScreen(
                             context,
-                          ).push(AppRouter.kEditProfileView, extra: user);
+                            locationOfNewScreen: AppRouter.kEditProfileView,
+                            extra: user,
+                          );
 
                           if (result == true) {
                             context

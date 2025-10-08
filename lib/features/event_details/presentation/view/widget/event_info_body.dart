@@ -2,6 +2,7 @@ import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/formatters.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/manager/publisher/cubit/publisher_cubit.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/about_section.dart';
@@ -9,7 +10,6 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:event_booking_app/features/event_details/presentation/view/widget/organizer_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class EventInfoBody extends StatelessWidget {
   const EventInfoBody({super.key, required this.eventModel});
@@ -45,10 +45,12 @@ class EventInfoBody extends StatelessWidget {
               final user = state.user;
               return GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).pop();
-                  GoRouter.of(
+                  goToBackScreen(context);
+                  pushToNewScreen(
                     context,
-                  ).push(AppRouter.kOrganizerProfile, extra: user.uid);
+                    locationOfNewScreen: AppRouter.kOrganizerProfile,
+                    extra: user.uid,
+                  );
                 },
                 child: OrganizerInfoCard(
                   organizerEventPhoto: user.photoUrl,

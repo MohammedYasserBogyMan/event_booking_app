@@ -1,7 +1,7 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefKeys {
@@ -45,12 +45,12 @@ class SharedPrefsService {
     final user = FirebaseAuth.instance.currentUser;
 
     if (remember && user != null) {
-      GoRouter.of(context).go(AppRouter.kHomeView);
+      goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
     } else {
       if (user != null && !remember) {
         await FirebaseAuth.instance.signOut();
       }
-      GoRouter.of(context).go(AppRouter.kLogin);
+      goToNewScreen(context, locationOfNewScreen: AppRouter.kLogin);
     }
   }
 }

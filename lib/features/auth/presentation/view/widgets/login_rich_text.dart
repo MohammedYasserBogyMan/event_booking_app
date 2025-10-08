@@ -1,8 +1,8 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginRichText extends StatelessWidget {
   const LoginRichText({super.key});
@@ -20,7 +20,10 @@ class LoginRichText extends StatelessWidget {
             WidgetSpan(
               child: GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.kRegister);
+                  pushToNewScreen(
+                    context,
+                    locationOfNewScreen: AppRouter.kRegister,
+                  );
                 },
                 child: Hero(
                   tag: "Sign up",

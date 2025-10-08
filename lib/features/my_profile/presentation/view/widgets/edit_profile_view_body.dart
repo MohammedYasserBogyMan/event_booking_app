@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/widgets/image_picker_field.dart';
@@ -10,7 +11,6 @@ import 'package:event_booking_app/features/my_profile/presentation/manager/edit_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:event_booking_app/core/models/user_model.dart';
-import 'package:go_router/go_router.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   final UserModel user;
@@ -31,7 +31,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
     return BlocConsumer<EditProfileCubit, EditProfileState>(
       listener: (context, state) {
         if (state is EditProfileSuccess) {
-          GoRouter.of(context).push(AppRouter.kHomeView);
+          pushToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
           context.read<CurrentUserCubit>().fetchCurrentUserInfo();
           showSnackBar(context, message: 'Profile updated successfully!');
         } else if (state is EditProfileFailure) {

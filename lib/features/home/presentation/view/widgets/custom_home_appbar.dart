@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class CustomHomeAppbar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: () => Scaffold.of(context).openDrawer(),
+          onTap: () => openDrawer(context),
           child: Icon(Icons.menu, color: Colors.white, size: 30),
         ),
         Column(
@@ -48,4 +49,5 @@ class CustomHomeAppbar extends StatelessWidget {
       ],
     );
   }
+
 }

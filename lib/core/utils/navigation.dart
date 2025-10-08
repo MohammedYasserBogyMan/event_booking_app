@@ -7,8 +7,10 @@ void goToNewScreen(
   Object? extra,
 }) => GoRouter.of(context).go(locationOfNewScreen, extra: extra);
 
-void pushToNewScreen(
+Future<void> pushToNewScreen(
   BuildContext context, {
   required String locationOfNewScreen,
   Object? extra,
 }) => GoRouter.of(context).push(locationOfNewScreen, extra: extra);
+
+void goToBackScreen(BuildContext context) => GoRouter.of(context).pop();

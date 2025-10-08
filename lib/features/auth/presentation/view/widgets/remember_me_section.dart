@@ -1,8 +1,8 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 
 class RememberMeSection extends StatelessWidget {
   const RememberMeSection({super.key});
@@ -21,7 +21,10 @@ class RememberMeSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push(AppRouter.kforgetpassword);
+            pushToNewScreen(
+              context,
+              locationOfNewScreen: AppRouter.kforgetpassword,
+            );
           },
           child: Hero(
             tag: "Forgot Password",
