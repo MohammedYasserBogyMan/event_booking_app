@@ -26,7 +26,7 @@ class NotificationActionButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: Styels.textStyle14.copyWith(
+            style: Styels.textStyleRegular14.copyWith(
               color: isFilled ? Colors.white : Color(0xff706D6D),
             ),
           ),

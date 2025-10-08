@@ -20,7 +20,7 @@ class _TimeSelectorState extends State<TimeSelector> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Time & Date", style: Styels.textStyle16),
+        const Text("Time & Date", style: Styels.textStyleMedium16),
         const SizedBox(height: 12),
         Row(
           children: List.generate(times.length, (index) {
@@ -30,7 +30,7 @@ class _TimeSelectorState extends State<TimeSelector> {
               child: ChoiceChip(
                 backgroundColor: Colors.white,
                 showCheckmark: false,
-                label: Text(times[index], style: Styels.textStyle15),
+                label: Text(times[index], style: Styels.textStyleMedium15),
                 selected: isSelected,
                 onSelected: (_) {
                   setState(() => selectedIndex = index);
@@ -59,7 +59,7 @@ class _TimeSelectorState extends State<TimeSelector> {
                 SizedBox(width: 13),
                 Text(
                   "Choose from calendar",
-                  style: Styels.textStyle15.copyWith(color: Color(0xff807A7A)),
+                  style: Styels.textStyleMedium15.copyWith(color: Color(0xff807A7A)),
                 ),
                 Spacer(),
                 Icon(

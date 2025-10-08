@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
 class EventInfoTile extends StatelessWidget {
@@ -19,7 +20,20 @@ class EventInfoTile extends StatelessWidget {
           padding: EdgeInsets.only(left: 13),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [Text(title), Text(subtitle)],
+            children: [
+              Text(
+                title,
+                style: Styels.textStyleRegular16.copyWith(
+                  color: Color(0xff120D26),
+                ),
+              ),
+              Text(
+                subtitle,
+                style: Styels.textStyleRegular12.copyWith(
+                  color: Color(0xff747688),
+                ),
+              ),
+            ],
           ),
         ),
       ],

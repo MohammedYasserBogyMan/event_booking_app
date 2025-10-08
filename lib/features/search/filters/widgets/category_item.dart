@@ -20,7 +20,7 @@ class CategoryItem extends StatelessWidget {
       children: [
         CategoryIcon(iconPath: iconPath, isSelected: isSelected),
         const SizedBox(height: 6),
-        Text(label, style: Styels.textStyle14),
+        Text(label, style: Styels.textStyleRegular14),
       ],
     );
   }

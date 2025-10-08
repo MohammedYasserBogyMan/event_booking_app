@@ -9,14 +9,7 @@ void showSnackBar(BuildContext context, {required String message}) {
       duration: Duration(minutes: 1),
       backgroundColor: AppColor.primary,
       content: Center(
-        child: Text(
-          message,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: kFont,
-          ),
-        ),
+        child: Text(message, style: TextStyle(fontSize: 20, fontFamily: kFont)),
       ),
     ),
   );

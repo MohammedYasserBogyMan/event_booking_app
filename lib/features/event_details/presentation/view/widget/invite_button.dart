@@ -18,7 +18,7 @@ class InviteButton extends StatelessWidget {
       onPressed: () {
         showSheet(context, child: InviteFriendSheet());
       },
-      child: Text("Invite", style: Styels.textStyle14),
+      child: Text("Invite", style: Styels.textStyleRegular14),
     );
   }
 }

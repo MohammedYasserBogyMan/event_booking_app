@@ -40,9 +40,9 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
       },
       obscureText: (widget.isPassword ?? false) ? obscureText : false,
       decoration: InputDecoration(
-        prefixIcon: Icon(widget.icon, color: Color(0xFFE4DFDF)),
+        prefixIcon: Icon(widget.icon, color: Color(0xFF807A7A)),
         hintText: widget.hintText,
-        hintStyle: Styels.textStyle14,
+        hintStyle: Styels.textStyleRegular14.copyWith(color: Color(0xff747688)),
         fillColor: Color(0xFFE4DFDF),
         errorStyle: TextStyle(color: AppColor.errorColor, fontSize: 0),
         border: _buildOutlineInputBorder(),
@@ -57,7 +57,7 @@ class _CustomTextFiledState extends State<CustomTextFiled> {
                 ? IconButton(
                   icon: Icon(
                     obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.grey,
+                    color: Color(0xff979797),
                   ),
                   onPressed: () {
                     setState(() {

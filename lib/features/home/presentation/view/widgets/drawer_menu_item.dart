@@ -18,7 +18,7 @@ class DrawerMenuItem extends StatelessWidget {
         children: [
           Icon(drawerMenuItemModel.icon, color: AppColor.menuWhiteIconColor),
           const SizedBox(width: 10),
-          Text(drawerMenuItemModel.text, style: Styels.textStyle16),
+          Text(drawerMenuItemModel.text, style: Styels.textStyleRegular16),
         ],
       ),
     );

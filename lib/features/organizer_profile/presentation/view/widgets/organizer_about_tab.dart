@@ -6,6 +6,6 @@ class AboutTab extends StatelessWidget {
   final String aboutText;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(aboutText, style: Styels.textStyle22));
+    return Center(child: Text(aboutText, style: Styels.textStyleMedium22));
   }
 }

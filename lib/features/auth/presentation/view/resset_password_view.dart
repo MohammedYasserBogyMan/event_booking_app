@@ -15,7 +15,10 @@ class RessetPasswordView extends StatelessWidget {
         bool isLoading = state is LoadingResetState;
         return ModalCircularProgress(
           inAsyncCall: isLoading,
-          child: Scaffold(appBar: _buildAppBar(), body: ResetViewBody()),
+          child: Scaffold(
+            appBar: _buildAppBar(),
+            body: SafeArea(child: ResetViewBody()),
+          ),
         );
       },
     );

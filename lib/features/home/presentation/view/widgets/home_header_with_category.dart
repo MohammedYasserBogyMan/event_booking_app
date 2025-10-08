@@ -20,21 +20,22 @@ class _HomeHeaderWithCategoryState extends State<HomeHeaderWithCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
+    return Column(
       children: [
-        const HomeViewHeader(),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: MediaQuery.of(context).size.height * 0.21,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 24),
-            child: HomeViewCategorysTaps(
-              selectedIndex: selectedCategoryIndex,
-              onTap: _onCategoryChanged,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            const HomeViewHeader(),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: MediaQuery.of(context).size.height * 0.22,
+              child: HomeViewCategorysTaps(
+                selectedIndex: selectedCategoryIndex,
+                onTap: _onCategoryChanged,
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );

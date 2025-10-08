@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,6 @@ class SocialLoginButton extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: AppColor.primary),
             borderRadius: BorderRadius.circular(20),
           ),
         ),
@@ -29,7 +27,7 @@ class SocialLoginButton extends StatelessWidget {
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 text,
-                style: Styels.textStyle16.copyWith(color: Colors.black),
+                style: Styels.textStyleRegular16.copyWith(color: Colors.black),
               ),
             ),
           ],

@@ -27,7 +27,7 @@ class OnboardingFooter extends StatelessWidget {
             onPressed: onSkip,
             child: Text(
               currentPage == pageCount - 1 ? '' : 'Skip',
-              style: Styels.textStyle18.copyWith(
+              style: Styels.textStyleMedium18.copyWith(
                 color: Colors.white.withAlpha(150),
               ),
             ),
@@ -37,7 +37,7 @@ class OnboardingFooter extends StatelessWidget {
             onPressed: onNext,
             child: Text(
               currentPage == pageCount - 1 ? 'Start' : 'Next',
-              style: Styels.textStyle18,
+              style: Styels.textStyleMedium18,
             ),
           ),
         ],

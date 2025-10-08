@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/theme/search_filter_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_home_appbar.dart';
@@ -12,11 +11,12 @@ class HomeViewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.24,
+      margin: EdgeInsets.only(bottom: 20),
+      height: MediaQuery.of(context).size.height * 0.25,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColor.primary,
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(50)),
+        color: Color(0xff4A43EC),
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(33)),
       ),
       child: Column(
         children: [
@@ -25,7 +25,7 @@ class HomeViewHeader extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: CustomHomeAppbar(),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: GestureDetector(
@@ -33,7 +33,6 @@ class HomeViewHeader extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.kSearchView);
               },
               child: SearchAndFilterSection(
-                
                 onSubmit: (p0) {},
                 colors: SearchFilterColor.transparentTheme,
               ),

@@ -21,7 +21,7 @@ class InterestsPadge extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: Styels.textStyle14.copyWith(color: Colors.white),
+        style: Styels.textStyleRegular14.copyWith(color: Colors.white),
       ),
     );
   }

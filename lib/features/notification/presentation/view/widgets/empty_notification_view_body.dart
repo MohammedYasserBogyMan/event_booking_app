@@ -20,18 +20,18 @@ class EmptyNotificationViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          Text("No Notifications!", style: Styels.textStyle16),
+          Text("No Notifications!", style: Styels.textStyleMedium16),
           const SizedBox(height: 8),
 
           Text(
             "Lorem ipsum dolor sit amet, consectetur ",
-            style: Styels.textStyle16.copyWith(
+            style: Styels.textStyleMedium16.copyWith(
               color: Color.fromARGB(158, 52, 75, 103),
             ),
           ),
           Text(
             "adipiscing elit sed do eiusmod tempor",
-            style: Styels.textStyle16.copyWith(
+            style: Styels.textStyleMedium16.copyWith(
               color: Color.fromARGB(158, 52, 75, 103),
             ),
           ),

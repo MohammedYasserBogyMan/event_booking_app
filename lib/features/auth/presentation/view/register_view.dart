@@ -15,7 +15,10 @@ class RegisterView extends StatelessWidget {
         bool isLoading = state is LoadingRegisterState;
         return ModalCircularProgress(
           inAsyncCall: isLoading,
-          child: Scaffold(appBar: _buildAppBar(), body: RegisterViewBody()),
+          child: Scaffold(
+            appBar: _buildAppBar(),
+            body: SafeArea(child: RegisterViewBody()),
+          ),
         );
       },
     );

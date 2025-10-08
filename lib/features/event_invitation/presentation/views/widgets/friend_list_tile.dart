@@ -22,10 +22,10 @@ class FriendListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
-      title: Text(name, style: Styels.textStyle14),
+      title: Text(name, style: Styels.textStyleRegular14),
       subtitle: Text(
         followers,
-        style: Styels.textStyle12.copyWith(color: Colors.grey),
+        style: Styels.textStyleRegular12.copyWith(color: Colors.grey),
       ),
       trailing: Icon(
         isSelected ? Icons.check_circle : Icons.check_circle,

@@ -34,7 +34,7 @@ class MyProfileViewBody extends StatelessWidget {
                     name: user.fullName,
                     imageUrl: user.photoUrl,
                     followers: user.followersCount,
-                    following:  user.followersCount,
+                    following: user.followersCount,
                   ),
                   const SizedBox(height: 30),
                   Center(
@@ -59,9 +59,14 @@ class MyProfileViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 35),
-                  Text("About Me", style: Styels.textStyle19),
+                  Text(
+                    "About Me",
+                    style: Styels.textStyleMedium18.copyWith(
+                      color: Color(0xff120D26),
+                    ),
+                  ),
                   const SizedBox(height: 10),
-                  Text(user.about, style: Styels.textStyle16),
+                  Text(user.about, style: Styels.textStyleRegular19),
                   const SizedBox(height: 40),
                   const InterestsSection(),
                 ],

@@ -4,24 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 
 class EventSection extends StatelessWidget {
+  const EventSection({super.key, required this.title, required this.events});
+
   final String title;
   final List<EventModel> events;
 
-  const EventSection({super.key, required this.title, required this.events});
-
-  static const double kEventCardHeight = 260.0;
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HomeEventSectionHeader(title: title),
-        SizedBox(
-          height: kEventCardHeight,
-          child: EventsListView(events: events),
-        ),
-      ],
+    double kEventCardHeight = MediaQuery.sizeOf(context).height * .31;
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          HomeEventSectionHeader(title: title),
+          const SizedBox(height: 15),
+          SizedBox(
+            height: kEventCardHeight,
+            child: EventsListView(events: events),
+          ),
+        ],
+      ),
     );
   }
 }

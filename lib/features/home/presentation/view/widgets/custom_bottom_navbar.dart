@@ -14,7 +14,7 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: const Color.fromARGB(32, 202, 202, 202),
+      color: Color(0xffFFFFFF),
       shape: const CircularNotchedRectangle(),
       notchMargin: 8,
       child: Row(
@@ -23,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
           _buildNavItem(Icons.explore, 'Explore', 0),
           _buildNavItem(Icons.event, 'Events', 1),
           const SizedBox(width: 48),
-          _buildNavItem(Icons.map, 'Map', 2),
+          _buildNavItem(Icons.location_on, 'Map', 2),
           _buildNavItem(Icons.person, 'Profile', 3),
         ],
       ),

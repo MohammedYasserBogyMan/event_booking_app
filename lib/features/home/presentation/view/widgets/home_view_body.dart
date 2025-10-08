@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
-  static const double kSectionSpacing = 16.0;
-  static const double kHeaderCategorySpacing = 60.0;
+  static const double kSectionSpacing = 16;
+  static const double kHeaderCategorySpacing = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class HomeViewBody extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
+              // home header
               const SliverToBoxAdapter(child: HomeHeaderWithCategory()),
               const SliverToBoxAdapter(
                 child: SizedBox(height: kHeaderCategorySpacing),
@@ -36,7 +37,9 @@ class HomeViewBody extends StatelessWidget {
               ),
 
               // Invite Card
-              const SliverToBoxAdapter(child: InviteCard()),
+              const SliverToBoxAdapter(
+                child: AspectRatio(aspectRatio: 2.5, child: InviteCard()),
+              ),
               const SliverToBoxAdapter(
                 child: SizedBox(height: kSectionSpacing),
               ),

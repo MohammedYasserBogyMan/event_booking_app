@@ -20,7 +20,7 @@ class EditInterestsIcon extends StatelessWidget {
             Icon(Icons.search, size: 20, color: AppColor.primary),
             Text(
               "CHANGE",
-              style: Styels.textStyle12.copyWith(color: AppColor.primary),
+              style: Styels.textStyleRegular12.copyWith(color: AppColor.primary),
             ),
           ],
         ),

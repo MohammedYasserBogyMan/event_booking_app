@@ -21,7 +21,7 @@ class EventInfoBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 25),
-        Text(eventModel.title, style: Styels.textStyle35),
+        Text(eventModel.title, style: Styels.textStyleRegular35),
         const SizedBox(height: 20),
         EventInfoTile(
           imageIcon: AssetsData.dateIcon,
@@ -45,6 +45,7 @@ class EventInfoBody extends StatelessWidget {
               final user = state.user;
               return GestureDetector(
                 onTap: () {
+                  GoRouter.of(context).pop();
                   GoRouter.of(
                     context,
                   ).push(AppRouter.kOrganizerProfile, extra: user.uid);

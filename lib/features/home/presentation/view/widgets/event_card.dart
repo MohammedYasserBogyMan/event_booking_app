@@ -19,29 +19,31 @@ class EventCard extends StatelessWidget {
         GoRouter.of(context).push(AppRouter.kEventDetailsView, extra: event);
       },
       child: Container(
-        width: 250,
+        width: 260,
         margin: const EdgeInsets.only(right: 16),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(18),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            EventImageWithOverlay(event: event),
-            const SizedBox(height: 10),
-            Text(
-              event.title,
-              style: Styels.textStyle18.copyWith(color: Colors.black),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 5),
-            GoingUsersSection(going: event.attendeeCount),
-            const SizedBox(height: 6),
-            LocationSection(location: event.location),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              EventImageWithOverlay(event: event),
+              const SizedBox(height: 14),
+              Text(
+                event.title,
+                style: Styels.textStyleMedium18.copyWith(color: Colors.black),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 10),
+              GoingUsersSection(going: event.attendeeCount),
+              const SizedBox(height: 10),
+              LocationSection(location: event.location),
+            ],
+          ),
         ),
       ),
     );

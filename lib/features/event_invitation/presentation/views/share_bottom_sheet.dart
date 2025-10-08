@@ -25,7 +25,7 @@ class ShareBottomSheet extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: const Text("Share with friends", style: Styels.textStyle24),
+            child: const Text("Share with friends", style: Styels.textStyleRegular24),
           ),
           const SizedBox(height: 23),
           Wrap(
@@ -48,7 +48,7 @@ class ShareBottomSheet extends StatelessWidget {
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 3),
-                        child: Text(option['label'], style: Styels.textStyle17),
+                        child: Text(option['label'], style: Styels.textStyleRegular17),
                       ),
                     ],
                   );
@@ -65,7 +65,7 @@ class ShareBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               alignment: Alignment.center,
-              child: const Text("CANCEL", style: Styels.textStyle16),
+              child: const Text("CANCEL", style: Styels.textStyleRegular16),
             ),
           ),
           const SizedBox(height: 23),

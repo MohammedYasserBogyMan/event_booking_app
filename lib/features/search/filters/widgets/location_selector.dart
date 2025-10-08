@@ -10,7 +10,7 @@ class LocationSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Location", style: Styels.textStyle16),
+        const Text("Location", style: Styels.textStyleMedium16),
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -24,7 +24,7 @@ class LocationSelector extends StatelessWidget {
               Image.asset('assets/images/LocationIcon.png', height: 40),
 
               SizedBox(width: 18),
-              Text("New York, USA", style: Styels.textStyle16),
+              Text("New York, USA", style: Styels.textStyleMedium16),
               Spacer(),
               Icon(
                 Icons.arrow_forward_ios,

@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/search/data/models/event_ui_model.dart';
+import 'package:event_booking_app/features/search/presentation/view/widgets/custom_search_event_image.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
@@ -11,40 +11,34 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
+    return AspectRatio(
+      aspectRatio: 2.91,
       child: Card(
+        elevation: 6,
         color: AppColor.lightBackground,
         child: Row(
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: SizedBox(
-                width: 140,
-                child: CachedNetworkImage(
-                  errorWidget:
-                      (context, url, error) =>
-                          Center(child: CircularProgressIndicator()),
-                  placeholder:
-                      (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                  imageUrl: eventUiModel.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+              child: AspectRatio(
+                aspectRatio: 0.86,
+                child: CustomSearchEventImage(eventModel: eventUiModel),
               ),
             ),
-            const SizedBox(width: 5),
+            const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   dateFormat(dateTime: eventUiModel.day),
-                  style: Styels.textStyle12.copyWith(color: AppColor.primary),
+                  style: Styels.textStyleMedium12.copyWith(
+                    color: Color(0xff5669FF),
+                  ),
                 ),
                 Text(
                   eventUiModel.title,
-                  style: Styels.textStyle18.copyWith(color: Colors.black),
+                  style: Styels.textStyleMedium18.copyWith(color: Colors.black),
                 ),
               ],
             ),

@@ -2,31 +2,29 @@ import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/custom_event_image.dart';
 import 'package:flutter/material.dart';
 
-class ProfileEventListViewItem extends StatelessWidget {
-  const ProfileEventListViewItem({super.key, required this.events});
+class ProfileEventItem extends StatelessWidget {
+  const ProfileEventItem({super.key, required this.events});
   final EventModel events;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
+    return AspectRatio(
+      aspectRatio: 2.9,
       child: Card(
+        elevation: 6,
         color: AppColor.lightBackground,
         child: Row(
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: SizedBox(
-                width: 100,
-                height: 120,
-                child: Image(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(events.imageUrl),
-                ),
+              child: AspectRatio(
+                aspectRatio: .85,
+                child: CustomEventImage(eventModel: events),
               ),
             ),
-            const SizedBox(width: 18),
+            const SizedBox(width: 8),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,11 +32,16 @@ class ProfileEventListViewItem extends StatelessWidget {
                 children: [
                   Text(
                     dayFormat(dateTime: events.date),
-                    style: Styels.textStyle12.copyWith(color: AppColor.primary),
+                    style: Styels.textStyleMedium12.copyWith(
+                      color: AppColor.primary,
+                    ),
                   ),
+                  const SizedBox(height: 5),
                   Text(
                     events.title,
-                    style: Styels.textStyle18.copyWith(color: Colors.black),
+                    style: Styels.textStyleMedium18.copyWith(
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),

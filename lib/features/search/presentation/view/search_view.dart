@@ -10,6 +10,6 @@ class SearchView extends StatelessWidget {
   }
 
   AppBar _buildAppBar() {
-    return AppBar(title: Text("Search", style: Styels.textStyle24));
+    return AppBar(title: Text("Search", style: Styels.textStyleMedium24));
   }
 }

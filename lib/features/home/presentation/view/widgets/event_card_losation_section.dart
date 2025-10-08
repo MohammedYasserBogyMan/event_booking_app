@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
 class LocationSection extends StatelessWidget {
@@ -9,12 +10,12 @@ class LocationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.location_on_outlined, size: 16, color: Colors.grey),
+        const Icon(Icons.location_on, size: 20, color: Colors.grey),
         const SizedBox(width: 4),
         Expanded(
           child: Text(
             location,
-            style: const TextStyle(color: Colors.grey),
+            style: Styels.textStyleRegular13.copyWith(color: Colors.grey),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

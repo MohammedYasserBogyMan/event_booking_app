@@ -15,7 +15,7 @@ class NotificationWidget extends StatelessWidget {
         children: [
           Text(
             notificationModel.name,
-            style: Styels.textStyle14.copyWith(fontWeight: FontWeight.bold),
+            style: Styels.textStyleRegular14.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -24,7 +24,7 @@ class NotificationWidget extends StatelessWidget {
         children: [
           Text(
             notificationModel.userMessageNotification,
-            style: Styels.textStyle14,
+            style: Styels.textStyleRegular14,
           ),
           SizedBox(height: 20),
           if (notificationModel.type == NotificationType.followRequest)
@@ -47,7 +47,7 @@ class NotificationWidget extends StatelessWidget {
             ),
         ],
       ),
-      trailing: Text(notificationModel.date, style: Styels.textStyle12),
+      trailing: Text(notificationModel.date, style: Styels.textStyleRegular12),
     );
   }
 }

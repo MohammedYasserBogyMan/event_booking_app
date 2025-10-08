@@ -14,27 +14,30 @@ class HomeEventSectionHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: Styels.textStyle18.copyWith(color: Colors.black)),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.kSeeAllEvents);
-                },
-                child: Text(
+          Text(
+            title,
+            style: Styels.textStyleMedium18.copyWith(color: Color(0xff120D26)),
+          ),
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSeeAllEvents);
+            },
+            child: Row(
+              children: [
+                Text(
                   'See All',
-                  style: Styels.textStyle14.copyWith(
+                  style: Styels.textStyleRegular14.copyWith(
                     color: AppColor.menuWhiteIconColor,
                   ),
                 ),
-              ),
-              const SizedBox(width: 5),
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 10,
-                color: AppColor.menuWhiteIconColor,
-              ),
-            ],
+                const SizedBox(width: 2),
+                const Icon(
+                  Icons.arrow_right,
+                  size: 25,
+                  color: AppColor.menuWhiteIconColor,
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -29,22 +29,32 @@ class ProfileHeader extends StatelessWidget {
                       as ImageProvider,
         ),
         SizedBox(height: 20),
-        Text(name, style: Styels.textStyle24),
+        Text(name, style: Styels.textStyleMedium24),
         SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
               children: [
-                Text("$following", style: Styels.textStyle16),
-                Text("Following", style: Styels.textStyle14),
+                Text("$following", style: Styels.textStyleMedium16),
+                Text(
+                  "Following",
+                  style: Styels.textStyleRegular14.copyWith(
+                    color: Color(0xff747688),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 35, child: VerticalDivider()),
             Column(
               children: [
-                Text("$followers", style: Styels.textStyle16),
-                Text("Followers", style: Styels.textStyle14),
+                Text("$followers", style: Styels.textStyleMedium16),
+                Text(
+                  "Followers",
+                  style: Styels.textStyleRegular14.copyWith(
+                    color: Color(0xff747688),
+                  ),
+                ),
               ],
             ),
           ],

@@ -10,17 +10,30 @@ class DateTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('dd MMM').format(date);
+    final formattedDay = DateFormat('dd').format(date);
+    final formattedMonth = DateFormat('MMM').format(date);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(170, 255, 255, 255),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Text(
-        formattedDate,
-        style: Styels.textStyle16.copyWith(color: const Color(0xffEB5757)),
+      child: Column(
+        children: [
+          Text(
+            formattedDay,
+            style: Styels.textStyleBold18.copyWith(
+              color: const Color(0xffEB5757),
+            ),
+          ),
+          Text(
+            formattedMonth,
+            style: Styels.textStyleMedium18.copyWith(
+              color: const Color(0xffEB5757),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -9,7 +9,7 @@ class PastEmptyContent extends StatelessWidget {
     return const Column(
       children: [
         SizedBox(height: 60),
-        Text('No Past Events', style: Styels.textStyle24),
+        Text('No Past Events', style: Styels.textStyleRegular24),
       ],
     );
   }

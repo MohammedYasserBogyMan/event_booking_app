@@ -13,7 +13,12 @@ class InterestsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Interest", style: Styels.textStyle19),
+            Text(
+              "Interest",
+              style: Styels.textStyleMedium18.copyWith(
+                color: Color(0xff172B4D),
+              ),
+            ),
             EditInterestsIcon(),
           ],
         ),

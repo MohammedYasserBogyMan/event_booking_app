@@ -35,7 +35,7 @@ class ProfileActionButton extends StatelessWidget {
           children: [
             Icon(icon, size: 30),
             const Spacer(),
-            Text(text, style: Styels.textStyle24),
+            Text(text, style: Styels.textStyleRegular24),
           ],
         ),
       ),

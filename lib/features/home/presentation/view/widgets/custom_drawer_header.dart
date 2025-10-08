@@ -39,7 +39,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
               const SizedBox(height: 15),
               Text(
                 "${currentUser.firstName} ${currentUser.lastName}",
-                style: Styels.textStyle19,
+                style: Styels.textStyleMedium19,
               ),
             ],
           );

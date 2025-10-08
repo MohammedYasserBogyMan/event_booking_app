@@ -15,20 +15,20 @@ class CustomHomeAppbar extends StatelessWidget {
         ),
         Column(
           children: [
-            Text(
-              'Current Location',
-              style: Styels.textStyle12.copyWith(
-                color: Colors.white.withAlpha(150),
-              ),
-            ),
             Row(
               children: [
                 Text(
-                  'New York, USA',
-                  style: Styels.textStyle14.copyWith(color: Colors.white),
+                  'Current Location',
+                  style: Styels.textStyleRegular12.copyWith(
+                    color: const Color.fromARGB(162, 255, 255, 255),
+                  ),
                 ),
                 Icon(Icons.arrow_drop_down, color: Colors.white),
               ],
+            ),
+            Text(
+              'New York, USA',
+              style: Styels.textStyleRegular13.copyWith(color: Colors.white),
             ),
           ],
         ),

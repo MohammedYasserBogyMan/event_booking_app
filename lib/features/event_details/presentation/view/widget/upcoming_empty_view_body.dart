@@ -19,7 +19,7 @@ class UpcomingEmptyContent extends StatelessWidget {
               width: 200,
             ),
             const SizedBox(height: 30),
-            Text('No Upcoming Events', style: Styels.textStyle24),
+            Text('No Upcoming Events', style: Styels.textStyleRegular24),
           ],
         ),
         Padding(

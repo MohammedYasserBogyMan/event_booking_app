@@ -13,7 +13,7 @@ class NotificationView extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
-      title: const Text("Notification", style: Styels.textStyle24),
+      title: const Text("Notification", style: Styels.textStyleRegular24),
     );
   }
 }

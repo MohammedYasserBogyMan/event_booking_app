@@ -10,7 +10,7 @@ class RegisterViewHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: "Sign up",
-      child: Text("Sign up", style: Styels.textStyle24),
+      child: Text("Sign up", style: Styels.textStyleRegular24),
     );
   }
 }

@@ -16,7 +16,7 @@ class RememberMeSection extends StatelessWidget {
           children: [
             SwitchIcon(),
             const SizedBox(width: 5),
-            Text("Remember Me", style: Styels.textStyle14),
+            Text("Remember Me", style: Styels.textStyleRegular14),
           ],
         ),
         GestureDetector(
@@ -25,7 +25,7 @@ class RememberMeSection extends StatelessWidget {
           },
           child: Hero(
             tag: "Forgot Password",
-            child: Text("Forgot Password?", style: Styels.textStyle14),
+            child: Text("Forgot Password?", style: Styels.textStyleRegular14),
           ),
         ),
       ],

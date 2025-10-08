@@ -14,6 +14,6 @@ class MyProfileView extends StatelessWidget {
   }
 
   AppBar _buildAppBar(context) {
-    return AppBar(title: Text("Profile", style: Styels.textStyle24));
+    return AppBar(title: Text("Profile", style: Styels.textStyleMedium24));
   }
 }

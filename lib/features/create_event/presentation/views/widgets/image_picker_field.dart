@@ -43,7 +43,7 @@ class ImagePickerField extends FormField<File> {
                  },
                  child: Text(
                    "Choose Photo",
-                   style: Styels.textStyle14.copyWith(
+                   style: Styels.textStyleRegular14.copyWith(
                      fontWeight: FontWeight.bold,
                    ),
                  ),
@@ -52,7 +52,7 @@ class ImagePickerField extends FormField<File> {
                    null) // لو في قيمه اعرض اسم الصوره الي اختارتها
                  Text(
                    "File Name: ${path.basename(state.value!.path)}",
-                   style: Styels.textStyle14,
+                   style: Styels.textStyleRegular14,
                  ),
                if (state.hasError)
                  Padding(

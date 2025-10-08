@@ -15,9 +15,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFF5669FF),
-
           disabledBackgroundColor: Color(0xFF5669FF),
-
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -27,7 +25,10 @@ class CustomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Spacer(),
-            Text(text, style: Styels.textStyle16.copyWith(color: Colors.white)),
+            Text(
+              text,
+              style: Styels.textStyleMedium16.copyWith(color: Colors.white),
+            ),
             Spacer(),
             Container(
               width: 30,

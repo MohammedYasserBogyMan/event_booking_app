@@ -26,7 +26,7 @@ class OnboardingPage extends StatelessWidget {
               const SizedBox(height: 45),
               Text(
                 title,
-                style: Styels.textStyle22.copyWith(color: Colors.white),
+                style: Styels.textStyleMedium22,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -34,9 +34,7 @@ class OnboardingPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
                   description,
-                  style: Styels.textStyle15.copyWith(
-                    color: Colors.white.withAlpha(150),
-                  ),
+                  style: Styels.textStyleRegular15,
                   textAlign: TextAlign.center,
                 ),
               ),

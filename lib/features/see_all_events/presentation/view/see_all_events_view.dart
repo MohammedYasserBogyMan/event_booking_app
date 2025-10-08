@@ -13,10 +13,16 @@ class SeeAllEventsView extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       actions: [
-        IconButton(icon: Icon(Icons.search, size: 30), onPressed: () {}),
-        IconButton(icon: Icon(Icons.more_vert, size: 30), onPressed: () {}),
+        IconButton(
+          icon: Icon(Icons.search, size: 30, color: Colors.black),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(Icons.more_vert, size: 30, color: Colors.black),
+          onPressed: () {},
+        ),
       ],
-      title: Text("Events", style: Styels.textStyle24),
+      title: Text("Events", style: Styels.textStyleMedium24),
     );
   }
 }

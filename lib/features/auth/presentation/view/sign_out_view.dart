@@ -18,15 +18,19 @@ class SignOutView extends StatelessWidget {
         return ModalCircularProgress(
           inAsyncCall: isLoading,
           child: Scaffold(
-            appBar: AppBar(
-              title: Text("Sign Out", style: Styels.textStyle24),
-              centerTitle: true,
-              backgroundColor: AppColor.primary,
-            ),
-            body: SignOutViewBody(),
+            appBar: _buildAppBar(),
+            body: SafeArea(child: SignOutViewBody()),
           ),
         );
       },
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: Text("Sign Out", style: Styels.textStyleRegular24),
+      centerTitle: true,
+      backgroundColor: AppColor.primary,
     );
   }
 }

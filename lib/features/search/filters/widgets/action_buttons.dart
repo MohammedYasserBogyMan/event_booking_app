@@ -23,7 +23,7 @@ class ActionButtons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(color: Colors.grey),
               ),
-              child: const Text("RESET", style: Styels.textStyle16),
+              child: const Text("RESET", style: Styels.textStyleMedium16),
             ),
           ),
         ),
@@ -54,7 +54,7 @@ class ActionButtons extends StatelessWidget {
               ),
               child: Text(
                 "APPLY",
-                style: Styels.textStyle16.copyWith(color: Colors.white),
+                style: Styels.textStyleMedium16.copyWith(color: Colors.white),
               ),
             ),
           ),

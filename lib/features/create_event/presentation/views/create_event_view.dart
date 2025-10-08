@@ -17,7 +17,7 @@ class CreateEventView extends StatelessWidget {
           inAsyncCall: isLoading,
           child: Scaffold(
             appBar: AppBar(
-              title: Text('Create Event', style: Styels.textStyle16),
+              title: Text('Create Event', style: Styels.textStyleRegular16),
             ),
             body: CreateEventViewBody(),
           ),

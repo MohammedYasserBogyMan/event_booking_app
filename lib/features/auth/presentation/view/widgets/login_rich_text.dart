@@ -15,7 +15,7 @@ class LoginRichText extends StatelessWidget {
           children: [
             TextSpan(
               text: "Don’t have an account? ",
-              style: Styels.textStyle15.copyWith(color: Colors.black),
+              style: Styels.textStyleRegular15.copyWith(color: Colors.black),
             ),
             WidgetSpan(
               child: GestureDetector(
@@ -26,9 +26,8 @@ class LoginRichText extends StatelessWidget {
                   tag: "Sign up",
                   child: Text(
                     "Sign up",
-                    style: Styels.textStyle15.copyWith(
+                    style: Styels.textStyleRegular15.copyWith(
                       color: AppColor.primary,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

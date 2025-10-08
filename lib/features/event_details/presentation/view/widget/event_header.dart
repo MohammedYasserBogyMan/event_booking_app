@@ -12,7 +12,7 @@ class EventHeader extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(Icons.arrow_back, size: 24, color: Colors.black),
         ),
-        Text("Events", style: Styels.textStyle24),
+        Text("Events", style: Styels.textStyleRegular24),
         const Spacer(),
         IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
       ],

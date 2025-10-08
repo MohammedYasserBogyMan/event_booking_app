@@ -10,7 +10,6 @@ class InviteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: const Color(0xFFE0F7FA),
@@ -42,10 +41,15 @@ class InviteCard extends StatelessWidget {
                   SizedBox(height: 14),
                   Text(
                     'Invite your friends',
-                    style: Styels.textStyle18.copyWith(color: Colors.black),
+                    style: Styels.textStyleMedium18.copyWith(
+                      color: Colors.black,
+                    ),
                   ),
                   const SizedBox(height: 4),
-                  const Text('Get \$20 for ticket', style: Styels.textStyle14),
+                  const Text(
+                    'Get \$20 for ticket',
+                    style: Styels.textStyleRegular14,
+                  ),
                   const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {
@@ -64,7 +68,9 @@ class InviteCard extends StatelessWidget {
                     ),
                     child: Text(
                       'INVITE',
-                      style: Styels.textStyle12.copyWith(color: Colors.white),
+                      style: Styels.textStyleMedium12.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

@@ -19,7 +19,7 @@ void showFilterBottomSheet(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               SizedBox(height: 20),
-              Text("Filter", style: Styels.textStyle24),
+              Text("Filter", style: Styels.textStyleRegular24),
               SizedBox(height: 20),
               CategorySelector(),
               SizedBox(height: 26),

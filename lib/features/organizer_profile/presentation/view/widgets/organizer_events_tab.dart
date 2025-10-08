@@ -18,7 +18,7 @@ class EventsTap extends StatelessWidget {
       child: ListView.builder(
         itemCount: events.length,
         itemBuilder: (context, index) {
-          return ProfileEventListViewItem(events: events[index]);
+          return ProfileEventItem(events: events[index]);
         },
       ),
     );

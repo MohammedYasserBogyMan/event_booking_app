@@ -11,7 +11,10 @@ class LoginViewHeader extends StatelessWidget {
       children: [
         Center(child: Image.asset(AssetsData.logoMark)),
         const SizedBox(height: 8),
-        Text("EventHub", style: Styels.textStyle35),
+        Text(
+          "EventHub",
+          style: Styels.textStyleRegular35.copyWith(color: Color(0xff37364A)),
+        ),
       ],
     );
   }

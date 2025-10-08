@@ -25,10 +25,12 @@ class GoingUsersSection extends StatelessWidget {
           radius: 10,
           backgroundImage: AssetImage(AssetsData.eventDetailLogo),
         ),
-        const SizedBox(width: 6),
+        const SizedBox(width: 10),
         Text(
           '+$going Going',
-          style: Styels.textStyle14.copyWith(color: const Color(0xFF3F38DD)),
+          style: Styels.textStyleMedium12.copyWith(
+            color: const Color(0xFF3F38DD),
+          ),
         ),
       ],
     );

@@ -13,7 +13,7 @@ class SocialLoginOptions extends StatelessWidget {
       children: [
         Text(
           "OR",
-          style: Styels.textStyle16.copyWith(color: AppColor.orTextColor),
+          style: Styels.textStyleMedium16.copyWith(color: AppColor.orTextColor),
         ),
         const SizedBox(height: 10),
         SocialLoginButton(

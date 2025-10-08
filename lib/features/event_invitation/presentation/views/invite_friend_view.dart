@@ -17,13 +17,13 @@ class InviteFriendSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text("Invite Friend", style: Styels.textStyle24),
+          const Text("Invite Friend", style: Styels.textStyleRegular24),
           const SizedBox(height: 7),
           TextField(
             decoration: InputDecoration(
               suffixIcon: const Icon(Icons.search, color: AppColor.primary),
               hintText: "Search",
-              hintStyle: Styels.textStyle16.copyWith(color: Colors.grey),
+              hintStyle: Styels.textStyleRegular16.copyWith(color: Colors.grey),
               border: _buildOutlineInputBorder(),
               enabledBorder: _buildOutlineInputBorder(),
               focusedBorder: _buildOutlineInputBorder(),

@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/custom_event_image.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {
@@ -10,26 +10,18 @@ class NewsCard extends StatelessWidget {
   final EventModel eventModel;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
+    return AspectRatio(
+      aspectRatio: 3,
       child: Card(
-        elevation: 1,
+        elevation: 4,
         color: AppColor.lightBackground,
         child: Row(
           children: [
             Padding(
               padding: EdgeInsets.all(10),
-              child: SizedBox(
-                width: 140,
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  errorWidget:
-                      (context, url, error) => CircularProgressIndicator(),
-                  imageUrl: eventModel.imageUrl,
-                  placeholder:
-                      (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                ),
+              child: AspectRatio(
+                aspectRatio: .89,
+                child: CustomEventImage(eventModel: eventModel),
               ),
             ),
             Expanded(
@@ -39,16 +31,20 @@ class NewsCard extends StatelessWidget {
                 children: [
                   Text(
                     dayFormat(dateTime: eventModel.date),
-                    style: Styels.textStyle14.copyWith(color: AppColor.primary),
+                    style: Styels.textStyleRegular14.copyWith(
+                      color: AppColor.primary,
+                    ),
                   ),
-                  Text(eventModel.title, style: Styels.textStyle15),
+                  const SizedBox(height: 5),
+                  Text(eventModel.title, style: Styels.textStyleRegular15),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(Icons.location_on, color: AppColor.orTextColor),
                       Text(
                         eventModel.location,
-                        style: Styels.textStyle14.copyWith(
+                        style: Styels.textStyleRegular15.copyWith(
                           color: AppColor.orTextColor,
                         ),
                       ),

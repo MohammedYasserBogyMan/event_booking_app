@@ -10,6 +10,7 @@ class FollowButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         foregroundColor: AppColor.primary,
+        backgroundColor: Color(0xffEAEDFF),
       ),
       onPressed: () {},
       child: Text(text),

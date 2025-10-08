@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/organizer_profile/presentation/manager/organizer_events/cubit/organizer_events_cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,8 @@ class TabBarSection extends StatelessWidget {
             child: Column(
               children: [
                 TabBar(
+                  labelStyle: Styels.textStyleMedium16,
+                  dividerHeight: 0,
                   labelColor: AppColor.primary,
                   indicatorColor: AppColor.primary,
                   tabs: [

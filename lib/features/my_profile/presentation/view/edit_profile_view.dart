@@ -21,7 +21,7 @@ class EditProfileView extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 "Complete Your Profile",
-                style: Styels.textStyle20.copyWith(fontWeight: FontWeight.bold),
+                style: Styels.textStyleMedium20,
               ),
             ),
             body: EditProfileViewBody(user: user),

@@ -22,6 +22,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF9f9fb),
       drawer: const HomeDrawer(),
       body: HomePages.pages[currentIndex],
       bottomNavigationBar: CustomBottomNavBar(
@@ -33,6 +34,7 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 4,
         onPressed: () {},
         backgroundColor: AppColor.primary,
         shape: const CircleBorder(),

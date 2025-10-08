@@ -9,9 +9,15 @@ class AboutSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("About Event", style: Styels.textStyle19),
+        Text(
+          "About Event",
+          style: Styels.textStyleMedium18.copyWith(color: Color(0xff120D26)),
+        ),
         SizedBox(height: 10),
-        Text(aboutDescription, style: Styels.textStyle16),
+        Text(
+          aboutDescription,
+          style: Styels.textStyleRegular16.copyWith(color: Color(0xff3C3E56)),
+        ),
       ],
     );
   }

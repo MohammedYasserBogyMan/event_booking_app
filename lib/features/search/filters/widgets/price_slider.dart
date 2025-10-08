@@ -22,11 +22,11 @@ class _PriceSliderState extends State<PriceSlider> {
       children: [
         Row(
           children: [
-            const Text("Select price range", style: Styels.textStyle16),
+            const Text("Select price range", style: Styels.textStyleMedium16),
             const Spacer(),
             Text(
               "\$${(rangeValues.start as double).toInt()} - \$${(rangeValues.end as double).toInt()}",
-              style: Styels.textStyle18.copyWith(color: AppColor.primary),
+              style: Styels.textStyleMedium16.copyWith(color: AppColor.primary),
             ),
           ],
         ),

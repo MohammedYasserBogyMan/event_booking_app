@@ -20,7 +20,7 @@ class LoginViewBody extends StatelessWidget {
             children: [
               LoginViewHeader(),
               const SizedBox(height: 30),
-              const Text('Sign in', style: Styels.textStyle24),
+              const Text('Sign in', style: Styels.textStyleMedium24),
               const SizedBox(height: 21),
               SignInAuthFormFields(),
               const SizedBox(height: 24),

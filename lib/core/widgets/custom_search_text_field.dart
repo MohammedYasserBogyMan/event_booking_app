@@ -25,7 +25,7 @@ class CustomSearchTextField extends StatelessWidget {
         hintText: 'Search...',
         hintStyle: TextStyle(color: colors.hintTextColor),
       ),
-      style: Styels.textStyle20,
+      style: Styels.textStyleMedium20,
     );
   }
 }

@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget {
       pinned: true,
       title: Text(
         'Event Details',
-        style: Styels.textStyle24.copyWith(color: Colors.white),
+        style: Styels.textStyleMedium24.copyWith(color: Colors.white),
       ),
       actions: [
         Padding(padding: EdgeInsets.only(right: 20), child: CustomIcon()),

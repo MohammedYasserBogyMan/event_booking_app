@@ -13,11 +13,19 @@ class HomeViewCategorysTaps extends StatelessWidget {
   });
 
   final List<CategoryModel> categories = [
-    CategoryModel(name:"Sports",icon: Icons.sports,color: Colors.red ),
-    CategoryModel(name:"Music",icon: Icons.music_note,color: Colors.orange ),
-    CategoryModel(name: "Food",icon: Icons.restaurant,color: Colors.green ),
-    CategoryModel(name: "Tech",icon:  Icons.computer,color:  Colors.blue ),
-    CategoryModel(name: "Art",icon:  Icons.brush,color:  Colors.purple ),
+    CategoryModel(name: "Sports", icon: Icons.sports, color: Color(0xffF0635A)),
+    CategoryModel(
+      name: "Music",
+      icon: Icons.music_note,
+      color: Color(0xffF59762),
+    ),
+    CategoryModel(
+      name: "Food",
+      icon: Icons.restaurant,
+      color: Color(0xff29D697),
+    ),
+    CategoryModel(name: "Tech", icon: Icons.computer, color: Color(0xff46CDFB)),
+    CategoryModel(name: "Art", icon: Icons.brush, color: Color(0xffF0635A)),
   ];
 
   @override
@@ -25,12 +33,12 @@ class HomeViewCategorysTaps extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: ListView.builder(
+        padding: EdgeInsets.only(left: 25),
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final cat = categories[index];
           final isSelected = selectedIndex == index;
-
           return GestureDetector(
             onTap: () => onTap(index),
             child: CategoryTapItem(isSelected: isSelected, cat: cat),

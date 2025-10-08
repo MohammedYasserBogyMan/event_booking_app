@@ -6,9 +6,9 @@ class BookmarkIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color.fromARGB(170, 255, 255, 255),
         borderRadius: BorderRadius.circular(10),
       ),
       child: const Icon(Icons.bookmark, color: Color(0xffEB5757)),

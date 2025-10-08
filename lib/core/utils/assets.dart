@@ -37,4 +37,8 @@ class AssetsData {
   static const notificationImage = 'assets/images/notificationImage.png';
   static const inviteImage = "assets/images/invite_image.png";
   static const defaultPhotoForNewUser = "assets/images/defaultPhoto.png";
+  static const arrowRight = "assets/images/arrowRight.svg";
+  static const filterListIcon = "assets/images/filterListIcon.svg";
+  static const notes = "assets/images/notes.svg";
+  static const notification = "assets/images/notification.svg";
 }

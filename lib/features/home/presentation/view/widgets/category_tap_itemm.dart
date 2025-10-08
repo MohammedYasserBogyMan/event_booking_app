@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/home/data/model/category_tap_model.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +16,12 @@ class CategoryTapItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        log("pressed");
+      },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: cat.color,
           borderRadius: BorderRadius.circular(30),
@@ -28,7 +32,7 @@ class CategoryTapItem extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               cat.name,
-              style: Styels.textStyle15.copyWith(color: Colors.white),
+              style: Styels.textStyleRegular15.copyWith(color: Colors.white),
             ),
           ],
         ),

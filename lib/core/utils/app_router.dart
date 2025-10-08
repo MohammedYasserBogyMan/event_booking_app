@@ -3,6 +3,7 @@ import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
+import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
@@ -14,7 +15,6 @@ import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
-import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
