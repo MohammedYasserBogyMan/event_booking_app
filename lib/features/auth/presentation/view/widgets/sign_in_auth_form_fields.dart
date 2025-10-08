@@ -3,6 +3,7 @@ import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
+import 'package:event_booking_app/features/auth/logic/auth_functions.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/remember_me_section.dart';

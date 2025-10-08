@@ -1,9 +1,9 @@
 import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/otp_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class VerificarionAuthFormFields extends StatefulWidget {
   const VerificarionAuthFormFields({super.key, required this.userModel});
@@ -45,9 +45,11 @@ class _VerificarionAuthFormFieldsState
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  GoRouter.of(
+                  goToNewScreen(
                     context,
-                  ).go(AppRouter.kEditProfileView, extra: widget.userModel);
+                    locationOfNewScreen: AppRouter.kEditProfileView,
+                    extra: widget.userModel,
+                  );
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
