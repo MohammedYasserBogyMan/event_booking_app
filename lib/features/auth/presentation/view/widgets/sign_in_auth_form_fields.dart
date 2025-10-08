@@ -1,5 +1,6 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -7,7 +8,6 @@ import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/
 import 'package:event_booking_app/features/auth/presentation/view/widgets/remember_me_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class SignInAuthFormFields extends StatefulWidget {
   const SignInAuthFormFields({super.key});
@@ -27,7 +27,7 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
       listener: (context, state) {
         if (state is SuccessLoginState) {
           showSnackBar(context, message: "Success Login");
-          GoRouter.of(context).go(AppRouter.kHomeView);
+          goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
         } else if (state is FailureLoginState) {
           showSnackBar(context, message: state.errMessage);
         }
@@ -64,10 +64,10 @@ class _SignInAuthFormFieldsState extends State<SignInAuthFormFields> {
                     onPressed: () async {
                       if (formkey.currentState!.validate()) {
                         formkey.currentState!.save();
-                        await BlocProvider.of<AuthCubit>(context).login(
+                        await loginInOurApplication(
+                          context,
                           email: email!,
                           password: password!,
-                          context: context,
                         );
                         formkey.currentState!.reset();
                       } else {

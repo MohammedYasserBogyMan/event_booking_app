@@ -2,6 +2,7 @@ import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/register_form_fields.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -9,7 +10,6 @@ import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationAuthFormFields extends StatefulWidget {
@@ -47,14 +47,18 @@ class _RegistrationAuthFormFieldsState
           final newUser = UserModel(
             uid: FirebaseAuth.instance.currentUser!.uid,
             firstName: name!,
-            lastName:  "",
+            lastName: "",
             email: email!,
             photoUrl: AssetsData.defaultPhotoForNewUser,
             location: "",
             about: "",
             followersCount: 0,
           );
-          GoRouter.of(context).push(AppRouter.kVerification, extra: newUser);
+          pushToNewScreen(
+            context,
+            locationOfNewScreen: AppRouter.kVerification,
+            extra: newUser,
+          );
         } else if (state is FailureRegisterState) {
           showSnackBar(context, message: state.errMessage);
         }
@@ -137,14 +141,11 @@ class _RegistrationAuthFormFieldsState
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          await BlocProvider.of<AuthCubit>(context).register(
+                          await registerToOurApplication(
+                            context,
                             email: email!,
                             password: password!,
-                            firstName: name!.split(" ")[0],
-                            lastName:
-                                name!.split(" ").length > 1
-                                    ? name!.split(" ")[1]
-                                    : "",
+                            name: name!,
                           );
                           passwordController.clear();
                           confirmPasswordController.clear();
@@ -164,3 +165,5 @@ class _RegistrationAuthFormFieldsState
     );
   }
 }
+
+

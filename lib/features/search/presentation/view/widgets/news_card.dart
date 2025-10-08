@@ -1,5 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/core/helper/helper.dart';
+import 'package:event_booking_app/core/utils/formatters.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/search/data/models/event_ui_model.dart';
 import 'package:event_booking_app/features/search/presentation/view/widgets/custom_search_event_image.dart';

@@ -1,7 +1,7 @@
-import 'package:event_booking_app/core/helper/helper.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
+import 'package:event_booking_app/core/utils/formatters.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/manager/publisher/cubit/publisher_cubit.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/about_section.dart';
