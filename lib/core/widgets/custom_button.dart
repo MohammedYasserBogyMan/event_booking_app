@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:event_booking_app/core/utils/styels.dart';
@@ -14,8 +15,8 @@ class CustomButton extends StatelessWidget {
       height: 60,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF5669FF),
-          disabledBackgroundColor: Color(0xFF5669FF),
+          backgroundColor: AppColor.primary,
+          disabledBackgroundColor: AppColor.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -35,7 +36,7 @@ class CustomButton extends StatelessWidget {
               height: 30,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: Color(0xff3D56F0),
+                color: AppColor.primaryIconBackground,
               ),
               child: Icon(Icons.arrow_forward, color: Colors.white),
             ),

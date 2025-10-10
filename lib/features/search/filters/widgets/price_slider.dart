@@ -26,7 +26,7 @@ class _PriceSliderState extends State<PriceSlider> {
             const Spacer(),
             Text(
               "\$${(rangeValues.start as double).toInt()} - \$${(rangeValues.end as double).toInt()}",
-              style: Styels.textStyleMedium16.copyWith(color: AppColor.primary),
+              style: Styels.textStyleMedium16.copyWith(color: AppColor.actionTextColor),
             ),
           ],
         ),

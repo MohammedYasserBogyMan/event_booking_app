@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class ToggleItem extends StatelessWidget {
@@ -27,7 +28,7 @@ class ToggleItem extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           text,
-          style: TextStyle(color: isSelected ? Colors.blue : Colors.grey),
+          style: TextStyle(color: isSelected ? AppColor.primary : Colors.grey),
         ),
       ),
     );

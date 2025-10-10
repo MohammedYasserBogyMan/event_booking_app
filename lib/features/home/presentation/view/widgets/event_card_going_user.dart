@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class GoingUsersSection extends StatelessWidget {
         Text(
           '+$going Going',
           style: Styels.textStyleMedium12.copyWith(
-            color: const Color(0xFF3F38DD),
+            color:AppColor.actionTextColor,
           ),
         ),
       ],

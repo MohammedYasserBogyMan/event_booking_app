@@ -33,7 +33,7 @@ class NewsCard extends StatelessWidget {
                 Text(
                   dateFormat(dateTime: eventUiModel.day),
                   style: Styels.textStyleMedium12.copyWith(
-                    color: Color(0xff5669FF),
+                    color: AppColor.primary,
                   ),
                 ),
                 Text(

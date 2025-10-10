@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/attendes_avatar.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/invite_button.dart';
@@ -28,7 +29,7 @@ class BannerWidget extends StatelessWidget {
               Text(
                 "+$going Going",
                 style: Styels.textStyleRegular15.copyWith(
-                  color: Color(0xff3F38DD),
+                  color:AppColor.actionTextColor,
                 ),
               ),
             ],

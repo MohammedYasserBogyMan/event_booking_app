@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/theme/search_filter_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
@@ -15,7 +16,7 @@ class HomeViewHeader extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.25,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xff4A43EC),
+        color: AppColor.homeAppBarColor,
         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(33)),
       ),
       child: Column(
