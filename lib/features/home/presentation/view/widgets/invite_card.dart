@@ -41,9 +41,7 @@ class InviteCard extends StatelessWidget {
                   SizedBox(height: 14),
                   Text(
                     'Invite your friends',
-                    style: Styels.textStyleMedium18.copyWith(
-                      color: Colors.black,
-                    ),
+                    style: Styels.textStyleMedium18,
                   ),
                   const SizedBox(height: 4),
                    Text(

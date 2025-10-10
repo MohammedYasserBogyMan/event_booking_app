@@ -42,6 +42,7 @@ abstract class Styels {
     fontSize: 16,
     fontFamily: kFont,
     fontWeight: FontWeight.w500,
+    color: Colors.black,
   );
   static const textStyleRegular16 = TextStyle(
     fontSize: 16,
@@ -55,7 +56,6 @@ abstract class Styels {
   );
   static const textStyleMedium18 = TextStyle(
     fontSize: 18,
-    color: Colors.white,
     fontWeight: FontWeight.w500,
     fontFamily: kFont,
   );

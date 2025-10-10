@@ -37,9 +37,7 @@ class ProfileEventItem extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     events.title,
-                    style: Styels.textStyleMedium18.copyWith(
-                      color: Colors.black,
-                    ),
+                    style: Styels.textStyleMedium18,
                   ),
                 ],
               ),

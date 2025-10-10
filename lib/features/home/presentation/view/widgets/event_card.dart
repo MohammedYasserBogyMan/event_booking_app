@@ -38,7 +38,7 @@ class EventCard extends StatelessWidget {
               const SizedBox(height: 14),
               Text(
                 event.title,
-                style: Styels.textStyleMedium18.copyWith(color: Colors.black),
+                style: Styels.textStyleMedium18,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
