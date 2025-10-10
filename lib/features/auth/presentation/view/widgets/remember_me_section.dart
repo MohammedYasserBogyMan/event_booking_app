@@ -2,6 +2,7 @@ import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class RememberMeSection extends StatelessWidget {
@@ -16,7 +17,10 @@ class RememberMeSection extends StatelessWidget {
           children: [
             SwitchIcon(),
             const SizedBox(width: 5),
-            Text("Remember Me", style: Styels.textStyleRegular14),
+            Text(
+              "Remember Me",
+              style: Styels.textStyleRegular14.copyWith(color: Colors.black),
+            ),
           ],
         ),
         GestureDetector(
@@ -28,7 +32,10 @@ class RememberMeSection extends StatelessWidget {
           },
           child: Hero(
             tag: "Forgot Password",
-            child: Text("Forgot Password?", style: Styels.textStyleRegular14),
+            child: Text(
+              "Forgot Password?",
+              style: Styels.textStyleRegular14.copyWith(color: Colors.black),
+            ),
           ),
         ),
       ],

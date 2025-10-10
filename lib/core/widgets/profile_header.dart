@@ -39,9 +39,7 @@ class ProfileHeader extends StatelessWidget {
                 Text("$following", style: Styels.textStyleMedium16),
                 Text(
                   "Following",
-                  style: Styels.textStyleRegular14.copyWith(
-                    color: Color(0xff747688),
-                  ),
+                  style: Styels.textStyleRegular14,
                 ),
               ],
             ),
@@ -51,9 +49,7 @@ class ProfileHeader extends StatelessWidget {
                 Text("$followers", style: Styels.textStyleMedium16),
                 Text(
                   "Followers",
-                  style: Styels.textStyleRegular14.copyWith(
-                    color: Color(0xff747688),
-                  ),
+                  style: Styels.textStyleRegular14,
                 ),
               ],
             ),

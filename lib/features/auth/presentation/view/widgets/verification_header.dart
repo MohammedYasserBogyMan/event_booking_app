@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,7 @@ class VerificationHeader extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           "We’ve send you the verification",
-          style: Styels.textStyleRegular15,
+          style: Styels.textStyleRegular15.copyWith(color: Colors.black),
         ),
         RichText(
           text: TextSpan(
@@ -25,9 +24,7 @@ class VerificationHeader extends StatelessWidget {
               ),
               TextSpan(
                 text: email,
-                style: Styels.textStyleRegular15.copyWith(
-                  color: AppColor.primary,
-                ),
+                style: Styels.textStyleRegular15,
               ),
             ],
           ),

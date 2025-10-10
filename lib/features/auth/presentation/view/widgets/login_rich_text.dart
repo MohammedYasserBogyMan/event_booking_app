@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
@@ -29,9 +28,7 @@ class LoginRichText extends StatelessWidget {
                   tag: "Sign up",
                   child: Text(
                     "Sign up",
-                    style: Styels.textStyleRegular15.copyWith(
-                      color: AppColor.primary,
-                    ),
+                    style: Styels.textStyleRegular15,
                   ),
                 ),
               ),

@@ -29,9 +29,7 @@ class HomeEventSectionHeader extends StatelessWidget {
               children: [
                 Text(
                   'See All',
-                  style: Styels.textStyleRegular14.copyWith(
-                    color: AppColor.menuWhiteIconColor,
-                  ),
+                  style: Styels.textStyleRegular14.copyWith(color: Colors.black),
                 ),
                 const SizedBox(width: 2),
                 const Icon(

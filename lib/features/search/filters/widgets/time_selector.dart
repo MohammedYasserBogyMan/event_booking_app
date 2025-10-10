@@ -30,7 +30,10 @@ class _TimeSelectorState extends State<TimeSelector> {
               child: ChoiceChip(
                 backgroundColor: Colors.white,
                 showCheckmark: false,
-                label: Text(times[index], style: Styels.textStyleMedium15),
+                label: Text(
+                  times[index],
+                  style: Styels.textStyleMedium15.copyWith(color: Colors.white),
+                ),
                 selected: isSelected,
                 onSelected: (_) {
                   setState(() => selectedIndex = index);
@@ -59,7 +62,9 @@ class _TimeSelectorState extends State<TimeSelector> {
                 SizedBox(width: 13),
                 Text(
                   "Choose from calendar",
-                  style: Styels.textStyleMedium15.copyWith(color: Color(0xff807A7A)),
+                  style: Styels.textStyleMedium15.copyWith(
+                    color: Color(0xff807A7A),
+                  ),
                 ),
                 Spacer(),
                 Icon(

@@ -22,7 +22,7 @@ class FriendListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
-      title: Text(name, style: Styels.textStyleRegular14),
+      title: Text(name, style: Styels.textStyleRegular14.copyWith(color: Colors.black)),
       subtitle: Text(
         followers,
         style: Styels.textStyleRegular12,

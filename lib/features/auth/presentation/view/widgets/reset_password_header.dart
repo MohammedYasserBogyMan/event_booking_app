@@ -16,7 +16,7 @@ class ResetPasswordHeader extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           "Please enter your email address to request a password reset",
-          style: Styels.textStyleRegular15,
+          style: Styels.textStyleRegular15.copyWith(color: Colors.black),
         ),
       ],
     );

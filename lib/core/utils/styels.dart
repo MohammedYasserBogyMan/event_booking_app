@@ -17,23 +17,25 @@ abstract class Styels {
   );
   static const textStyleRegular13 = TextStyle(
     fontSize: 12,
+    color: Colors.white,
     fontFamily: kFont,
     fontWeight: FontWeight.w400,
   );
   static const textStyleRegular14 = TextStyle(
     fontSize: 14,
+    color: Color(0xff747688),
     fontFamily: kFont,
     fontWeight: FontWeight.w400,
   );
   static const textStyleRegular15 = TextStyle(
     fontSize: 15,
     fontFamily: kFont,
+    color: AppColor.primary,
     fontWeight: FontWeight.w400,
   );
   static const textStyleMedium15 = TextStyle(
     fontSize: 15,
     fontFamily: kFont,
-    color: Colors.white,
     fontWeight: FontWeight.w600,
   );
   static const textStyleMedium16 = TextStyle(

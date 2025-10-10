@@ -34,7 +34,7 @@ class OnboardingPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
                   description,
-                  style: Styels.textStyleRegular15,
+                  style: Styels.textStyleRegular15.copyWith(color: Colors.black),
                   textAlign: TextAlign.center,
                 ),
               ),

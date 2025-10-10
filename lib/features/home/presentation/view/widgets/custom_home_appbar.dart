@@ -29,7 +29,7 @@ class CustomHomeAppbar extends StatelessWidget {
             ),
             Text(
               'New York, USA',
-              style: Styels.textStyleRegular13.copyWith(color: Colors.white),
+              style: Styels.textStyleRegular13,
             ),
           ],
         ),

@@ -46,9 +46,9 @@ class InviteCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
+                   Text(
                     'Get \$20 for ticket',
-                    style: Styels.textStyleRegular14,
+                    style: Styels.textStyleRegular14.copyWith(color: Colors.black),
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(

@@ -17,6 +17,7 @@ class NotificationWidget extends StatelessWidget {
             notificationModel.name,
             style: Styels.textStyleRegular14.copyWith(
               fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
         ],
@@ -26,7 +27,7 @@ class NotificationWidget extends StatelessWidget {
         children: [
           Text(
             notificationModel.userMessageNotification,
-            style: Styels.textStyleRegular14,
+            style: Styels.textStyleRegular14.copyWith(color: Colors.black),
           ),
           SizedBox(height: 20),
           if (notificationModel.type == NotificationType.followRequest)

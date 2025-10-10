@@ -36,7 +36,7 @@ class NewsCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Text(eventModel.title, style: Styels.textStyleRegular15),
+                  Text(eventModel.title, style: Styels.textStyleRegular15.copyWith(color: Colors.black)),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
