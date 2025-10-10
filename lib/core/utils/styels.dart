@@ -1,8 +1,10 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/constants/cons.dart';
 import 'package:flutter/material.dart';
 
 abstract class Styels {
   static const textStyleRegular12 = TextStyle(
+    color: Color(0xff747688),
     fontSize: 12,
     fontFamily: kFont,
     fontWeight: FontWeight.w400,
@@ -10,6 +12,7 @@ abstract class Styels {
   static const textStyleMedium12 = TextStyle(
     fontSize: 12,
     fontFamily: kFont,
+    color: AppColor.primary,
     fontWeight: FontWeight.w500,
   );
   static const textStyleRegular13 = TextStyle(

@@ -29,9 +29,7 @@ class EventInfoTile extends StatelessWidget {
               ),
               Text(
                 subtitle,
-                style: Styels.textStyleRegular12.copyWith(
-                  color: Color(0xff747688),
-                ),
+                style: Styels.textStyleRegular12,
               ),
             ],
           ),

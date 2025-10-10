@@ -41,9 +41,7 @@ class OrganizerInfoCard extends StatelessWidget {
               ),
               Text(
                 job,
-                style: Styels.textStyleRegular12.copyWith(
-                  color: Color(0xff706E8F),
-                ),
+                style: Styels.textStyleRegular12,
               ),
             ],
           ),

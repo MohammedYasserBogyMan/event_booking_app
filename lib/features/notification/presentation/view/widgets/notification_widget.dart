@@ -15,7 +15,9 @@ class NotificationWidget extends StatelessWidget {
         children: [
           Text(
             notificationModel.name,
-            style: Styels.textStyleRegular14.copyWith(fontWeight: FontWeight.bold),
+            style: Styels.textStyleRegular14.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -47,7 +49,10 @@ class NotificationWidget extends StatelessWidget {
             ),
         ],
       ),
-      trailing: Text(notificationModel.date, style: Styels.textStyleRegular12),
+      trailing: Text(
+        notificationModel.date,
+        style: Styels.textStyleRegular12.copyWith(color: Colors.black),
+      ),
     );
   }
 }

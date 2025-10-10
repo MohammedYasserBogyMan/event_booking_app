@@ -32,9 +32,7 @@ class ProfileEventItem extends StatelessWidget {
                 children: [
                   Text(
                     dayFormat(dateTime: events.date),
-                    style: Styels.textStyleMedium12.copyWith(
-                      color: AppColor.primary,
-                    ),
+                    style: Styels.textStyleMedium12,
                   ),
                   const SizedBox(height: 5),
                   Text(

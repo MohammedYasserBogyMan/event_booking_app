@@ -25,7 +25,7 @@ class FriendListTile extends StatelessWidget {
       title: Text(name, style: Styels.textStyleRegular14),
       subtitle: Text(
         followers,
-        style: Styels.textStyleRegular12.copyWith(color: Colors.grey),
+        style: Styels.textStyleRegular12,
       ),
       trailing: Icon(
         isSelected ? Icons.check_circle : Icons.check_circle,
