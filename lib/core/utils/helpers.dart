@@ -31,3 +31,6 @@ Future<dynamic> showSheet(BuildContext context, {required Widget child}) {
 }
 
 void openDrawer(BuildContext context) => Scaffold.of(context).openDrawer();
+
+
+bool goToNextFocus(BuildContext context) => FocusScope.of(context).nextFocus();

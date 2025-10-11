@@ -20,7 +20,9 @@ class EventDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => PublisherCubit(userRepo)..getPublisher(event.publisherId),
+      create:
+          (context) =>
+              PublisherCubit(userRepo)..getPublisher(event.publisherId),
       child: Stack(
         children: [
           CustomScrollView(

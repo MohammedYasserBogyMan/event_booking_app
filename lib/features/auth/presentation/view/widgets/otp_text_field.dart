@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 
 class OtpTextField extends StatelessWidget {
@@ -20,7 +21,7 @@ class OtpTextField extends StatelessWidget {
         cursorColor: AppColor.primary,
         onChanged: (value) {
           if (value.length == 1) {
-            FocusScope.of(context).nextFocus();
+            goToNextFocus(context);
           }
         },
         textAlign: TextAlign.center,
