@@ -8,13 +8,18 @@ import 'package:event_booking_app/features/create_event/presentation/manager/cre
 import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
+import 'package:event_booking_app/features/home/presentation/view/art_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/food_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/music_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/sports_category_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/tech_category_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
@@ -28,7 +33,6 @@ import 'package:event_booking_app/features/see_all_events/presentation/manager/s
 import 'package:event_booking_app/features/see_all_events/presentation/view/see_all_events_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/register_view.dart';
 import 'package:event_booking_app/features/auth/presentation/view/resset_password_view.dart';
@@ -60,8 +64,34 @@ abstract class AppRouter {
   static const kEventDetailsView = "/event_details";
   static const kCreateEventView = "/create_eventt";
   static const kEditProfileView = "/edit_profile";
+  static const kSportsCategory = "/sports_category";
+  static const kTechCategory = "/tech_category";
+  static const kMusicCategory = "/music_category";
+  static const kFoodCategory = "/food_category";
+  static const kArtCategory = '/art_category';
+
   static final router = GoRouter(
     routes: [
+      GoRoute(
+        path: kSportsCategory,
+        builder: (context, state) => SportsCategoryView(),
+      ),
+      GoRoute(
+        path: kTechCategory,
+        builder: (context, state) => TechCategoryView(),
+      ),
+      GoRoute(
+        path: kMusicCategory,
+        builder: (context, state) => MusicCategoryView(),
+      ),
+      GoRoute(
+        path: kFoodCategory,
+        builder: (context, state) => FoodCategoryView(),
+      ),
+      GoRoute(
+        path: kArtCategory,
+        builder: (context, state) => ArtCategoryView(),
+      ),
       GoRoute(
         path: kOrganizerProfile,
         builder: (context, state) {

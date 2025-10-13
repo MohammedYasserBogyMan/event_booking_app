@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/home/data/model/category_tap_model.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +12,12 @@ class CategoryTapItem extends StatelessWidget {
 
   final bool isSelected;
   final CategoryModel cat;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        log("pressed");
+        pushToNewScreen(context, locationOfNewScreen: cat.route);
       },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
