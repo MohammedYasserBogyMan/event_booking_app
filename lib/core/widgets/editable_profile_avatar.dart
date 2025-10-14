@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:event_booking_app/core/services/image_cache_manager.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -58,23 +58,22 @@ class EditableProfileAvatar extends StatelessWidget {
     }
   }
 
-  ImageProvider _getImageProvider() {
-    if (imageUrl.startsWith('http')) {
-      return CachedNetworkImageProvider(imageUrl);
-    } else {
-      return AssetImage(AssetsData.defaultPhotoForNewUser) as ImageProvider;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CircleAvatar(
-          backgroundColor: Colors.grey[200],
-          radius: radius,
-          backgroundImage: _getImageProvider(),
-        ),
+        imageUrl.startsWith('http')
+            ? ImageCacheManager.buildCachedCircleAvatar(
+                imageUrl: imageUrl,
+                radius: radius,
+              )
+            : CircleAvatar(
+                backgroundColor: Colors.grey[200],
+                radius: radius,
+                backgroundImage: AssetImage(
+                  AssetsData.defaultPhotoForNewUser,
+                ) as ImageProvider,
+              ),
         if (isEditable)
           Positioned(
             bottom: 0,
