@@ -1,4 +1,5 @@
 import 'package:event_booking_app/core/utils/app_router.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/features/home/data/model/category_tap_model.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/category_tap_item.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,14 @@ class HomeViewCategorysTaps extends StatelessWidget {
           final cat = categories[index];
           final isSelected = selectedIndex == index;
           return GestureDetector(
-            onTap: () => onTap(index),
+            onTap: () {
+              onTap(index);
+              pushToNewScreen(
+                context,
+                locationOfNewScreen: cat.route,
+                extra: cat,
+              );
+            },
             child: CategoryTapItem(isSelected: isSelected, cat: cat),
           );
         },

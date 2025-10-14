@@ -7,19 +7,16 @@ import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
+import 'package:event_booking_app/features/home/data/model/category_tap_model.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
-import 'package:event_booking_app/features/home/presentation/view/art_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/bookmark_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/calender_view.dart';
+import 'package:event_booking_app/features/home/presentation/view/category_events_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/contact_us_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/food_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/music_category_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/sports_category_view.dart';
-import 'package:event_booking_app/features/home/presentation/view/tech_category_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
@@ -31,6 +28,7 @@ import 'package:event_booking_app/features/search/presentation/manager/search_cu
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_cubit.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/view/see_all_events_view.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:event_booking_app/features/auth/presentation/view/login_view.dart';
@@ -74,23 +72,88 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: kSportsCategory,
-        builder: (context, state) => SportsCategoryView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel?;
+          if (category == null) {
+            return CategoryEventsView(
+              category: CategoryModel(
+                name: "Sports",
+                icon: Icons.sports,
+                color: const Color(0xffF0635A),
+                route: kSportsCategory,
+              ),
+            );
+          }
+          return CategoryEventsView(category: category);
+        },
       ),
       GoRoute(
         path: kTechCategory,
-        builder: (context, state) => TechCategoryView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel?;
+          if (category == null) {
+            return CategoryEventsView(
+              category: CategoryModel(
+                name: "Tech",
+                icon: Icons.computer,
+                color: const Color(0xff46CDFB),
+                route: kTechCategory,
+              ),
+            );
+          }
+          return CategoryEventsView(category: category);
+        },
       ),
       GoRoute(
         path: kMusicCategory,
-        builder: (context, state) => MusicCategoryView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel?;
+          if (category == null) {
+            return CategoryEventsView(
+              category: CategoryModel(
+                name: "Music",
+                icon: Icons.music_note,
+                color: const Color(0xffF59762),
+                route: kMusicCategory,
+              ),
+            );
+          }
+          return CategoryEventsView(category: category);
+        },
       ),
       GoRoute(
         path: kFoodCategory,
-        builder: (context, state) => FoodCategoryView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel?;
+          if (category == null) {
+            return CategoryEventsView(
+              category: CategoryModel(
+                name: "Food",
+                icon: Icons.restaurant,
+                color: const Color(0xff29D697),
+                route: kFoodCategory,
+              ),
+            );
+          }
+          return CategoryEventsView(category: category);
+        },
       ),
       GoRoute(
         path: kArtCategory,
-        builder: (context, state) => ArtCategoryView(),
+        builder: (context, state) {
+          final category = state.extra as CategoryModel?;
+          if (category == null) {
+            return CategoryEventsView(
+              category: CategoryModel(
+                name: "Art",
+                icon: Icons.brush,
+                color: const Color(0xffF0635A),
+                route: kArtCategory,
+              ),
+            );
+          }
+          return CategoryEventsView(category: category);
+        },
       ),
       GoRoute(
         path: kOrganizerProfile,

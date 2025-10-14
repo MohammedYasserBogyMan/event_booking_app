@@ -5,9 +5,23 @@ import 'package:event_booking_app/features/see_all_events/presentation/manager/s
 class SeeAllEventsCubit extends Cubit<SeeAllEventsStates> {
   SeeAllEventsCubit(this.eventsRepo) : super(InitialSeeAllEventsState());
   final EventsRepo eventsRepo;
+
   fetchEvents() async {
     emit(LoadingSeeAllEventsState());
     var events = await eventsRepo.fetchAllEvents();
+    events.fold(
+      (failure) {
+        emit(FailureSeeAllEventsState(errMessage: failure.message));
+      },
+      (success) {
+        emit(SuccessSeeAllEventsState(events: success));
+      },
+    );
+  }
+
+  fetchEventsByCategory(String category) async {
+    emit(LoadingSeeAllEventsState());
+    var events = await eventsRepo.fetchEventsByCategory(category: category);
     events.fold(
       (failure) {
         emit(FailureSeeAllEventsState(errMessage: failure.message));
