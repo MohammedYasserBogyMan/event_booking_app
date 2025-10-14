@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(java:*)",
+      "Bash(./gradlew:*)",
+      "Bash(powershell:*)",
+      "Bash(flutter:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

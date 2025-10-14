@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
+import 'dart:io';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/editable_profile_avatar.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -10,23 +10,25 @@ class ProfileHeader extends StatelessWidget {
     required this.imageUrl,
     required this.followers,
     required this.following,
+    this.isEditable = false,
+    this.onImageSelected,
   });
   final String name;
   final String imageUrl;
   final int following;
   final int followers;
+  final bool isEditable;
+  final Function(File)? onImageSelected;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          backgroundColor: Colors.white,
+        EditableProfileAvatar(
+          imageUrl: imageUrl,
           radius: 35,
-          backgroundImage:
-              imageUrl.startsWith('http')
-                  ? CachedNetworkImageProvider(imageUrl)
-                  : AssetImage(AssetsData.defaultPhotoForNewUser)
-                      as ImageProvider,
+          isEditable: isEditable,
+          onImageSelected: onImageSelected,
         ),
         SizedBox(height: 20),
         Text(name, style: Styels.textStyleMedium24),
