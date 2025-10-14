@@ -50,6 +50,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
       }
 
       final event = EventModel(
+        id: '',
         title: title,
         description: description,
         category: category,

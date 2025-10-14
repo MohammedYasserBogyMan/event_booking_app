@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EventModel {
+  final String id;
   final String title;
   final String category;
   final String description;
@@ -11,9 +12,10 @@ class EventModel {
   final int attendeeCount;
   final String publisherId;
   final int price;
-  final List<String> searchTermsArray; // <-- جديد
+  final List<String> searchTermsArray;
 
   EventModel({
+    required this.id,
     required this.category,
     required this.title,
     required this.description,
@@ -24,12 +26,13 @@ class EventModel {
     required this.attendeeCount,
     required this.publisherId,
     required this.price,
-    required this.searchTermsArray, // <-- جديد
+    required this.searchTermsArray,
   });
 
   factory EventModel.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map;
     return EventModel(
+      id: doc.id,
       title: data['title'] ?? '',
       category: data['category'] ?? '',
       description: data['description'] ?? '',
@@ -42,7 +45,7 @@ class EventModel {
       price: data['price'] ?? 0,
       searchTermsArray: List<String>.from(
         data['searchTermsArray'] ?? [],
-      ), // <-- جديد
+      ),
     );
   }
 

@@ -23,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
           _buildNavItem(Icons.explore, 'Explore', 0),
           _buildNavItem(Icons.event, 'Events', 1),
           const SizedBox(width: 48),
-          _buildNavItem(Icons.location_on, 'Map', 2),
+          _buildNavItem(Icons.bookmark, 'Bookmarks', 2),
           _buildNavItem(Icons.person, 'Profile', 3),
         ],
       ),

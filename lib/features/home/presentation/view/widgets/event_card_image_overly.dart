@@ -24,7 +24,7 @@ class EventImageWithOverlay extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [DateTag(date: event.date), Align(child: BookmarkIcon())],
+            children: [DateTag(date: event.date), Align(child: BookmarkIcon(eventId: event.id))],
           ),
         ),
       ],

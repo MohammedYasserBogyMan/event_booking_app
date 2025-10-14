@@ -57,4 +57,50 @@ class EventRepoImpl extends EventsRepo {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<EventModel>>> getEventsByIds(
+    List<String> eventIds,
+  ) async {
+    try {
+      if (eventIds.isEmpty) {
+        return const Right([]);
+      }
+
+      List<EventModel> events = [];
+
+      for (String eventId in eventIds) {
+        final doc = await _firestore
+            .collection(kCollectionReference)
+            .doc(eventId)
+            .get();
+
+        if (doc.exists) {
+          events.add(EventModel.fromFirestore(doc));
+        }
+      }
+
+      return Right(events);
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, EventModel>> getEventById(String eventId) async {
+    try {
+      final doc = await _firestore
+          .collection(kCollectionReference)
+          .doc(eventId)
+          .get();
+
+      if (!doc.exists) {
+        return Left(Failure(message: 'Event not found'));
+      }
+
+      return Right(EventModel.fromFirestore(doc));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }
