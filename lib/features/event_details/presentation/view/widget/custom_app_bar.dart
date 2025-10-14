@@ -1,13 +1,19 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/optimized_cached_image.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/banner_widget.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_icon.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.going, required this.imageUrl});
+  const CustomAppBar({
+    super.key,
+    required this.going,
+    required this.imageUrl,
+    required this.eventId,
+  });
   final int going;
   final String imageUrl;
+  final String eventId;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -20,14 +26,17 @@ class CustomAppBar extends StatelessWidget {
         style: Styels.textStyleMedium24.copyWith(color: Colors.white),
       ),
       actions: [
-        Padding(padding: EdgeInsets.only(right: 20), child: CustomIcon()),
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+          child: CustomIcon(eventId: eventId),
+        ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
           children: [
-            CachedNetworkImage(
-              fit: BoxFit.cover,
+            OptimizedCachedImage(
               imageUrl: imageUrl,
+              fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
             ),

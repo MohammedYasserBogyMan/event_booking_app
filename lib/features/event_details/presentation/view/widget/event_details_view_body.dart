@@ -30,6 +30,7 @@ class EventDetailsViewBody extends StatelessWidget {
               CustomAppBar(
                 going: event.attendeeCount,
                 imageUrl: event.imageUrl,
+                eventId: event.id,
               ),
               SliverToBoxAdapter(
                 child: Padding(
