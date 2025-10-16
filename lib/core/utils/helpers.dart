@@ -6,7 +6,7 @@ void showSnackBar(BuildContext context, {required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      duration: Duration(minutes: 1),
+      duration: Duration(milliseconds: 300),
       backgroundColor: AppColor.primary,
       content: Center(
         child: Text(message, style: TextStyle(fontSize: 20, fontFamily: kFont)),
@@ -31,6 +31,5 @@ Future<dynamic> showSheet(BuildContext context, {required Widget child}) {
 }
 
 void openDrawer(BuildContext context) => Scaffold.of(context).openDrawer();
-
 
 bool goToNextFocus(BuildContext context) => FocusScope.of(context).nextFocus();
