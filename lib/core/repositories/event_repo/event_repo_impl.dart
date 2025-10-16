@@ -8,6 +8,8 @@ import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 class EventRepoImpl extends EventsRepo {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  EventRepoImpl(FirebaseFirestore instance);
+
   @override
   Future<Either<Failure, List<EventModel>>> fetchAllEvents() async {
     try {
@@ -70,10 +72,11 @@ class EventRepoImpl extends EventsRepo {
       List<EventModel> events = [];
 
       for (String eventId in eventIds) {
-        final doc = await _firestore
-            .collection(kCollectionReference)
-            .doc(eventId)
-            .get();
+        final doc =
+            await _firestore
+                .collection(kCollectionReference)
+                .doc(eventId)
+                .get();
 
         if (doc.exists) {
           events.add(EventModel.fromFirestore(doc));
@@ -89,16 +92,49 @@ class EventRepoImpl extends EventsRepo {
   @override
   Future<Either<Failure, EventModel>> getEventById(String eventId) async {
     try {
-      final doc = await _firestore
-          .collection(kCollectionReference)
-          .doc(eventId)
-          .get();
+      final doc =
+          await _firestore.collection(kCollectionReference).doc(eventId).get();
 
       if (!doc.exists) {
         return Left(Failure(message: 'Event not found'));
       }
 
       return Right(EventModel.fromFirestore(doc));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<EventModel>>> fetchMyEvents({
+    required String userId,
+  }) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await _firestore
+              .collection(kCollectionReference)
+              .where('publisherId', isEqualTo: userId)
+              .get();
+      List<EventModel> events = [];
+      for (var event in snapshot.docs) {
+        events.add(EventModel.fromFirestore(event));
+      }
+      return Right(events);
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> updateEvent({
+    required EventModel event,
+  }) async {
+    try {
+      await _firestore
+          .collection(kCollectionReference)
+          .doc(event.id)
+          .update(event.toFirestore());
+      return const Right("Event updated successfully");
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }
