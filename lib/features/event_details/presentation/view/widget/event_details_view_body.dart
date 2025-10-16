@@ -1,8 +1,11 @@
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/features/event_details/presentation/manager/publisher/cubit/publisher_cubit.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/buy_ticket_overlay_button.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/custom_app_bar.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/widget/event_info_body.dart';
+import 'package:event_booking_app/features/event_details/presentation/view/widget/edit_event_overlay_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
@@ -23,25 +26,39 @@ class EventDetailsViewBody extends StatelessWidget {
       create:
           (context) =>
               PublisherCubit(userRepo)..getPublisher(event.publisherId),
-      child: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              CustomAppBar(
-                going: event.attendeeCount,
-                imageUrl: event.imageUrl,
-                eventId: event.id,
+      child: BlocBuilder<CurrentUserCubit, CurrentUserState>(
+        builder: (context, currentUserState) {
+          bool isOwner = false;
+
+          if (currentUserState is CurrentUserSuccess) {
+            isOwner = currentUserState.user.uid == event.publisherId;
+          }
+
+          return Stack(
+            children: [
+              CustomScrollView(
+                slivers: [
+                  CustomAppBar(
+                    going: event.attendeeCount,
+                    imageUrl: event.imageUrl,
+                    eventId: event.id,
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: EventInfoBody(eventModel: event),
+                    ),
+                  ),
+                ],
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: EventInfoBody(eventModel: event),
-                ),
-              ),
+              // Show Edit button for owner, Buy Ticket button for others
+              if (isOwner)
+                EditEventOverlayButton(event: event)
+              else
+                BuyTicketOverlayButton(price: event.price),
             ],
-          ),
-          BuyTicketOverlayButton(price: event.price),
-        ],
+          );
+        },
       ),
     );
   }

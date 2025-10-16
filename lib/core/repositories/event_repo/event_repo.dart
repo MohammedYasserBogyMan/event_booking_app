@@ -10,4 +10,6 @@ abstract class EventsRepo {
   Future<Either<Failure, String>> createEvent({required EventModel event});
   Future<Either<Failure, List<EventModel>>> getEventsByIds(List<String> eventIds);
   Future<Either<Failure, EventModel>> getEventById(String eventId);
+  Future<Either<Failure, List<EventModel>>> fetchMyEvents({required String userId});
+  Future<Either<Failure, String>> updateEvent({required EventModel event});
 }
