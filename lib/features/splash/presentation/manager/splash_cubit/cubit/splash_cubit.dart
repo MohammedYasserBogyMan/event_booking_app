@@ -13,8 +13,8 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> decideStartDestination() async {
     emit(SplashLoading());
     try {
-      final firstOpen = await SharedPrefsService.I.isFirstOpen();
-      final rememberMe = await SharedPrefsService.I.getRememberMe();
+      final firstOpen = SharedPrefsService.I.isFirstOpen();
+      final rememberMe = SharedPrefsService.I.getRememberMe();
       final user = FirebaseAuth.instance.currentUser;
 
       log(

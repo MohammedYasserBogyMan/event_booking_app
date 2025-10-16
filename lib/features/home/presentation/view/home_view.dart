@@ -50,12 +50,12 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> goToCreateEvent(BuildContext context) async {
-    final result = pushToNewScreen(
+    final result = await pushToNewScreen(
       context,
       locationOfNewScreen: AppRouter.kCreateEventView,
     );
 
-    if (result == true) {
+    if (result == true && mounted) {
       context.read<HomeCubit>().getAllEvents();
     }
   }

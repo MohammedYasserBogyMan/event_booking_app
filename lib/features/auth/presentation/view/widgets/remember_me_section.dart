@@ -3,7 +3,6 @@ import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/auth/presentation/view/widgets/switch_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RememberMeSection extends StatelessWidget {
   const RememberMeSection({super.key});

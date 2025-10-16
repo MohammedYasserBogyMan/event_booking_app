@@ -44,12 +44,15 @@ class SharedPrefsService {
     final remember = getRememberMe();
     final user = FirebaseAuth.instance.currentUser;
 
+    if (!context.mounted) return;
+
     if (remember && user != null) {
       goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
     } else {
       if (user != null && !remember) {
         await FirebaseAuth.instance.signOut();
       }
+      if (!context.mounted) return;
       goToNewScreen(context, locationOfNewScreen: AppRouter.kLogin);
     }
   }

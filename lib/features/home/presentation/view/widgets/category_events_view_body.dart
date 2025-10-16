@@ -28,7 +28,7 @@ class CategoryEventsViewBody extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: category.color.withOpacity(0.1),
+                    color: category.color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -75,13 +75,13 @@ class CategoryEventsViewBody extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
-                              color: category.color.withOpacity(0.1),
+                              color: category.color.withValues(alpha: 0.1),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
                               category.icon,
                               size: 80,
-                              color: category.color.withOpacity(0.5),
+                              color: category.color.withValues(alpha: 0.5),
                             ),
                           ),
                           const SizedBox(height: 24),

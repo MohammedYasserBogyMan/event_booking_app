@@ -21,6 +21,7 @@ class SignOutHandler extends StatelessWidget {
         if (state is SuccessSignOutState) {
           await context.read<CurrentUserCubit>().reset();
           await SharedPrefsService.I.clearAll();
+          if (!context.mounted) return;
           showSnackBar(context, message: "successSignOut");
           goToNewScreen(context, locationOfNewScreen: AppRouter.kLogin);
         } else if (state is FailureSignOutState) {

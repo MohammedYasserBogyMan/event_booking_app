@@ -43,13 +43,13 @@ class MyProfileViewBody extends StatelessWidget {
                       child: ProfileActionButton(
                         isFilled: false,
                         onPressed: () async {
-                          final result = pushToNewScreen(
+                          final result = await pushToNewScreen(
                             context,
                             locationOfNewScreen: AppRouter.kEditProfileView,
                             extra: user,
                           );
 
-                          if (result == true) {
+                          if (result == true && context.mounted) {
                             context
                                 .read<CurrentUserCubit>()
                                 .fetchCurrentUserInfo();
