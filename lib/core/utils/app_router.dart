@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_booking_app/core/di/service_locator.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/models/user_model.dart';
-import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
-import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
@@ -17,13 +17,14 @@ import 'package:event_booking_app/features/home/presentation/view/helps_and_faqs
 import 'package:event_booking_app/features/home/presentation/view/home_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/massage_view.dart';
 import 'package:event_booking_app/features/home/presentation/view/settings_view.dart';
+import 'package:event_booking_app/features/my_events/presentation/views/edit_event_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/edit_profile_view.dart';
 import 'package:event_booking_app/features/my_profile/presentation/view/my_profile_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/empty_notification_view.dart';
 import 'package:event_booking_app/features/notification/presentation/view/notification_view.dart';
 import 'package:event_booking_app/features/organizer_profile/presentation/view/organizer_profile_view.dart';
-import 'package:event_booking_app/features/search/data/repos/search_repo_imple.dart';
+import 'package:event_booking_app/features/search/data/repos/search_repo.dart';
 import 'package:event_booking_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:event_booking_app/features/search/presentation/view/search_view.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_cubit.dart';
@@ -67,6 +68,7 @@ abstract class AppRouter {
   static const kMusicCategory = "/music_category";
   static const kFoodCategory = "/food_category";
   static const kArtCategory = '/art_category';
+  static const kEditEventView = '/edit-event';
 
   static final router = GoRouter(
     routes: [
@@ -179,7 +181,7 @@ abstract class AppRouter {
             (context, state) => BlocProvider(
               create:
                   (context) =>
-                      SearchCubit(SearchRepoImple(FirebaseFirestore.instance)),
+                      SearchCubit(getIt<SearchRepo>()),
               child: SearchView(),
             ),
       ),
@@ -189,7 +191,7 @@ abstract class AppRouter {
             (context, state) => BlocProvider(
               create:
                   (context) =>
-                      SeeAllEventsCubit(EventRepoImpl())..fetchEvents(),
+                      SeeAllEventsCubit(getIt<EventsRepo>())..fetchEvents(),
               child: SeeAllEventsView(),
             ),
       ),
@@ -230,7 +232,7 @@ abstract class AppRouter {
         path: kHomeView,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => HomeCubit(EventRepoImpl())..getAllEvents(),
+            create: (context) => HomeCubit(getIt<EventsRepo>())..getAllEvents(),
             child: const HomeView(),
           );
         },
@@ -241,7 +243,7 @@ abstract class AppRouter {
           return BlocProvider(
             create:
                 (context) =>
-                    EditProfileCubit(UserRepoImpl(FirebaseFirestore.instance)),
+                    EditProfileCubit(getIt<UserRepo>()),
             child: EditProfileView(user: state.extra as UserModel),
           );
         },
@@ -250,9 +252,16 @@ abstract class AppRouter {
         path: kCreateEventView,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => CreateEventCubit(EventRepoImpl()),
+            create: (context) => CreateEventCubit(getIt<EventsRepo>()),
             child: CreateEventView(),
           );
+        },
+      ),
+      GoRoute(
+        path: kEditEventView,
+        builder: (context, state) {
+          final event = state.extra as EventModel;
+          return EditEventView(event: event);
         },
       ),
     ],

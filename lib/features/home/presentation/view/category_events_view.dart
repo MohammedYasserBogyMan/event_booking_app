@@ -1,4 +1,5 @@
-import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
+import 'package:event_booking_app/core/di/service_locator.dart';
+import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/features/home/data/model/category_tap_model.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/category_events_view_body.dart';
 import 'package:event_booking_app/features/see_all_events/presentation/manager/see_all_events_cubit/see_all_events_cubit.dart';
@@ -12,7 +13,7 @@ class CategoryEventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SeeAllEventsCubit(EventRepoImpl())
+      create: (context) => SeeAllEventsCubit(getIt<EventsRepo>())
           ..fetchEventsByCategory(category.name),
       child: Scaffold(
         body: CategoryEventsViewBody(category: category),
