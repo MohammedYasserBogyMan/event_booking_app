@@ -34,6 +34,7 @@ class _EditEventViewBodyState extends State<EditEventViewBody> {
     'Food',
     'Art',
     'Tech',
+    'Education',
   ];
 
   @override
@@ -46,6 +47,10 @@ class _EditEventViewBodyState extends State<EditEventViewBody> {
     _priceController = TextEditingController(text: widget.event.price.toString());
     _attendeeCountController = TextEditingController(text: widget.event.attendeeCount.toString());
     _selectedDate = widget.event.date;
+    // If the event's category is not in the list, add it to prevent dropdown error
+    if (!_categories.contains(widget.event.category)) {
+      _categories.add(widget.event.category);
+    }
     _selectedCategory = widget.event.category;
   }
 
@@ -162,7 +167,7 @@ class _EditEventViewBodyState extends State<EditEventViewBody> {
               backgroundColor: Colors.green,
             ),
           );
-          context.pop();
+          context.pop(true);
         } else if (state is MyEventsUpdateFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

@@ -14,9 +14,7 @@ class EditEventView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => MyEventsCubit(
-          getIt<EventsRepo>(),
-        ),
+        create: (context) => MyEventsCubit(getIt<EventsRepo>()),
         child: EditEventViewBody(event: event),
       ),
     );
