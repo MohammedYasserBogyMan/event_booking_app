@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:event_booking_app/core/di/service_locator.dart';
 import 'package:event_booking_app/core/repositories/bookmark_repo/bookmark_repo.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
@@ -21,7 +22,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefsService.I.init();
   await setupServiceLocator();
-  runApp(const EventBooking());
+  runApp(DevicePreview(enabled: !true, builder: (context) => EventBooking()));
 }
 
 class EventBooking extends StatelessWidget {
@@ -32,18 +33,13 @@ class EventBooking extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create:
-              (context) => AuthCubit(
-                getIt<AuthRepo>(),
-                getIt<UserRepo>(),
-              ),
+          create: (context) => AuthCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
         ),
         BlocProvider(
           create:
-              (context) => CurrentUserCubit(
-                getIt<UserRepo>(),
-                getIt<AuthRepo>(),
-              )..fetchCurrentUserInfo(),
+              (context) =>
+                  CurrentUserCubit(getIt<UserRepo>(), getIt<AuthRepo>())
+                    ..fetchCurrentUserInfo(),
         ),
         BlocProvider(
           create:
@@ -54,6 +50,8 @@ class EventBooking extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        builder: DevicePreview.appBuilder,
+        locale: DevicePreview.locale(context),
         theme: AppTheme.lightTheme,
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,

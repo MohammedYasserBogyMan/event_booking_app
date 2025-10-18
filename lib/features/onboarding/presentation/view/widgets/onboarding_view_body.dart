@@ -1,8 +1,7 @@
 import 'package:event_booking_app/core/services/shared_prefs_service.dart';
 import 'package:event_booking_app/core/utils/onboarding_list.dart';
-import 'package:event_booking_app/features/onboarding/presentation/view/widgets/custom_painted_background.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_footer.dart';
-import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_pages.dart';
+import 'package:event_booking_app/features/onboarding/presentation/view/widgets/onboarding_page_view.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingViewBody extends StatefulWidget {
@@ -13,12 +12,18 @@ class OnboardingViewBody extends StatefulWidget {
 }
 
 class _OnboardingViewBodyState extends State<OnboardingViewBody> {
-  final PageController _controller = PageController();
-  int _currentPage = 0;
+  int currentPage = 0;
+  late PageController pageController;
+  @override
+  void initState() {
+    pageController = PageController();
+    listenToPageChanges();
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _controller.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -26,54 +31,39 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Align(
+        OnBoardingPageView(pageController: pageController),
+        Align(
           alignment: Alignment.bottomCenter,
-          child: CustomPaintedBackground(),
-        ),
-        Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _controller,
-                itemCount: onboardingList.length,
-                onPageChanged: (index) => setState(() => _currentPage = index),
-                itemBuilder: (context, index) {
-                  final item = onboardingList[index];
-                  return OnboardingPage(
-                    imagePath: item.imagePath,
-                    title: item.title,
-                    description: item.description,
-                  );
-                },
-              ),
-            ),
-            OnboardingFooter(
-              currentPage: _currentPage,
-              pageCount: onboardingList.length,
-              onNext:
-                  _currentPage == 2
-                      ? () {
-                        _onSkip();
-                      }
-                      : _onNext,
-              onSkip: _onSkip,
-            ),
-          ],
+          child: OnboardingFooter(
+            currentIndex: currentPage,
+            onSkip: skipOnBoardingPage,
+            onNext:
+                currentPage == onboardingList.length - 1
+                    ? skipOnBoardingPage
+                    : nextOnBoardingPage,
+          ),
         ),
       ],
     );
   }
 
-  void _onNext() {
-    if (_currentPage < onboardingList.length - 1) {
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.ease,
+  void listenToPageChanges() {
+    pageController.addListener(() {
+      currentPage = pageController.page!.round();
+      setState(() {});
+    });
+  }
+
+  void nextOnBoardingPage() {
+    if (currentPage < onboardingList.length - 1) {
+      pageController.nextPage(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
       );
     }
   }
 
-  void _onSkip() async {
+  Future<void> skipOnBoardingPage() async {
     await SharedPrefsService.I.handleOnboardingCompletion(context);
   }
 }

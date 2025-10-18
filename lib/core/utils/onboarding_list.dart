@@ -1,6 +1,6 @@
 import 'package:event_booking_app/features/onboarding/data/model/onboarding_model.dart';
 
-List<OnboardingModel> onboardingList = [
+const List<OnboardingModel> onboardingList = [
   OnboardingModel(
     title: ' Explore Upcoming and \nNearby Events ',
     description:

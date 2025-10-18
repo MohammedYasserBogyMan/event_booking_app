@@ -3,7 +3,7 @@ class OnboardingModel {
   final String description;
   final String imagePath;
 
-  OnboardingModel({
+  const OnboardingModel({
     required this.title,
     required this.description,
     required this.imagePath,
