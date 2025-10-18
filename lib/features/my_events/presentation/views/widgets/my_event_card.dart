@@ -3,7 +3,9 @@ import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/features/my_events/presentation/manager/my_events_cubit/my_events_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -75,13 +77,19 @@ class MyEventCard extends StatelessWidget {
                     top: 8,
                     right: 8,
                     child: GestureDetector(
-                      onTap: () {
-                        // TODO: Navigate to edit event view
-                        // pushToNewScreen(
-                        //   context,
-                        //   locationOfNewScreen: AppRouter.kEditEventView,
-                        //   extra: event,
-                        // );
+                      onTap: () async {
+                        final result = await pushToNewScreen(
+                          context,
+                          locationOfNewScreen: AppRouter.kEditEventView,
+                          extra: event,
+                        );
+                        if (result == true && context.mounted) {
+                          // Refresh the events list after successful update
+                          final userId = event.publisherId;
+                          if (context.mounted) {
+                            context.read<MyEventsCubit>().getMyEvents(userId);
+                          }
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
