@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/onboarding/data/model/onboarding_model.dart';
 import 'package:event_booking_app/features/onboarding/presentation/view/widgets/custom_container.dart';
@@ -11,8 +9,8 @@ class CustomOnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(MediaQuery.sizeOf(context).width.toString());
-    log(MediaQuery.sizeOf(context).height.toString());
+    // log(MediaQuery.sizeOf(context).width.toString());
+    // log(MediaQuery.sizeOf(context).height.toString());
 
     return Stack(
       children: [

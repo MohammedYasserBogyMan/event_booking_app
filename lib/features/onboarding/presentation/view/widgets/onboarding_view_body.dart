@@ -35,6 +35,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         Align(
           alignment: Alignment.bottomCenter,
           child: OnboardingFooter(
+            pageController: pageController,
             currentIndex: currentPage,
             onSkip: skipOnBoardingPage,
             onNext:
