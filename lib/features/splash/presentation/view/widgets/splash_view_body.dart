@@ -1,11 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/features/splash/presentation/manager/splash_cubit/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -22,13 +20,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void initState() {
     super.initState();
-
     slidingTransitionAnimation();
     _controller.forward();
-
-    Future.delayed(const Duration(seconds: 5), () {
-      BlocProvider.of<SplashCubit>(context).decideStartDestination();
-    });
+    decideStartDestination();
   }
 
   @override
@@ -42,11 +36,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
     return BlocListener<SplashCubit, SplashState>(
       listener: (context, state) {
         if (state is GoOnboarding) {
-          context.go(AppRouter.kOnboarding);
+          goToNewScreen(context, locationOfNewScreen: AppRouter.kOnboarding);
         } else if (state is GoHome) {
-          context.go(AppRouter.kHomeView);
+          goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
         } else if (state is GoLogin) {
-          context.go(AppRouter.kLogin);
+          goToNewScreen(context, locationOfNewScreen: AppRouter.kLogin);
         }
       },
       child: Center(
@@ -56,6 +50,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
         ),
       ),
     );
+  }
+
+  void decideStartDestination() {
+    Future.delayed(const Duration(seconds: 5), () {
+      BlocProvider.of<SplashCubit>(context).decideStartDestination();
+    });
   }
 
   void slidingTransitionAnimation() {

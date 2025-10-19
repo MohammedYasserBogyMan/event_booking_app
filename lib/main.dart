@@ -22,7 +22,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPrefsService.I.init();
   await setupServiceLocator();
-  runApp(DevicePreview(enabled: !true, builder: (context) => EventBooking()));
+  runApp(DevicePreview(enabled: true, builder: (context) => EventBooking()));
 }
 
 class EventBooking extends StatelessWidget {
