@@ -1,7 +1,7 @@
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_header_with_category.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/event_section.dart';
-import 'package:event_booking_app/features/home/presentation/view/widgets/invite_card.dart';
+import 'package:event_booking_app/features/home/presentation/view/widgets/custom_invite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,8 +38,9 @@ class HomeViewBody extends StatelessWidget {
 
               // Invite Card
               const SliverToBoxAdapter(
-                child: AspectRatio(aspectRatio: 2.5, child: InviteCard()),
+                child: CustomInviteCard(),
               ),
+
               const SliverToBoxAdapter(
                 child: SizedBox(height: kSectionSpacing),
               ),
