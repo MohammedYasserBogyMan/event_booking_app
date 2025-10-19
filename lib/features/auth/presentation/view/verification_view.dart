@@ -9,7 +9,12 @@ class VerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(),
       body: SafeArea(child: VerificationViewBody(userModel: userModel)),
     );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar();
   }
 }

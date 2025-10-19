@@ -27,6 +27,7 @@ class LoginViewBody extends StatelessWidget {
               SocialLoginOptions(),
               const SizedBox(height: 20),
               LoginRichText(),
+              const SizedBox(height: 38),
             ],
           ),
         ),

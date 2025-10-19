@@ -26,10 +26,7 @@ class LoginRichText extends StatelessWidget {
                 },
                 child: Hero(
                   tag: "Sign up",
-                  child: Text(
-                    "Sign up",
-                    style: Styels.textStyleRegular15,
-                  ),
+                  child: Text("Sign up", style: Styels.textStyleRegular15),
                 ),
               ),
             ),

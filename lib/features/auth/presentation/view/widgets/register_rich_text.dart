@@ -14,6 +14,7 @@ class RegisterRichText extends StatelessWidget {
           "Already have an account? ",
           style: Styels.textStyleRegular15.copyWith(color: Colors.black),
         ),
+        const Flexible(child: SizedBox(width: 2)),
         GestureDetector(
           onTap: () {
             goToBackScreen(context);

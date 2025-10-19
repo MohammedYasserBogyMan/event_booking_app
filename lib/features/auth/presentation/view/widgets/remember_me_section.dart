@@ -22,6 +22,7 @@ class RememberMeSection extends StatelessWidget {
             ),
           ],
         ),
+        Flexible(child: const SizedBox(width: 66)),
         GestureDetector(
           onTap: () {
             pushToNewScreen(

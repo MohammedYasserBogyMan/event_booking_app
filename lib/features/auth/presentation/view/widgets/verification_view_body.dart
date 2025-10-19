@@ -16,7 +16,7 @@ class VerificationViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             VerificationHeader(email: userModel.email),
             const SizedBox(height: 27),
             VerificarionAuthFormFields(userModel: userModel),

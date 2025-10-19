@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,13 @@ class SocialLoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          showSnackBar(
+            context,
+            message:
+                "Not exist until now,\nplease use another method to signIn or signUp",
+          );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

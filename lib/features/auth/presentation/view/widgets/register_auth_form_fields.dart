@@ -166,5 +166,3 @@ class _RegistrationAuthFormFieldsState
     );
   }
 }
-
-

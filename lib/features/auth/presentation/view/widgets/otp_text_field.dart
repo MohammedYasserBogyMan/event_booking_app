@@ -29,7 +29,7 @@ class OtpTextField extends StatelessWidget {
         decoration: InputDecoration(
           focusedErrorBorder: buildBorder(color: Colors.red),
           errorBorder: buildBorder(color: Colors.red),
-          enabledBorder: buildBorder(color: AppColor.primary),
+          enabledBorder: buildBorder(color: Color(0xffE4DFDF)),
           focusedBorder: buildBorder(color: AppColor.primary),
         ),
       ),

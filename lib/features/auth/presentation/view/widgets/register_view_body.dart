@@ -22,6 +22,7 @@ class RegisterViewBody extends StatelessWidget {
             SocialLoginOptions(),
             const SizedBox(height: 20),
             RegisterRichText(),
+            const SizedBox(height: 34),
           ],
         ),
       ),
