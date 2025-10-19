@@ -9,23 +9,28 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.white,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(left: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 50),
-              CustomDrawerHeader(),
-              const SizedBox(height: 50),
-              DrawerMenuList(),
-              const SizedBox(height: 50),
-              CustomDrawerFooter(),
-            ],
-          ),
+      child: Padding(
+        padding: EdgeInsets.only(left: 30),
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 50),
+                  CustomDrawerHeader(),
+                  const SizedBox(height: 50),
+                  DrawerMenuList(),
+                  Expanded(child: const SizedBox(height: 20)),
+                  CustomDrawerFooter(),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-

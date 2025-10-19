@@ -1,9 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/features/home/presentation/view/widgets/custom_drawer_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,15 +26,7 @@ class _CustomDrawerHeaderState extends State<CustomDrawerHeader> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.transparent,
-                backgroundImage:
-                    currentUser.photoUrl.isNotEmpty &&
-                            currentUser.photoUrl.startsWith('http')
-                        ? CachedNetworkImageProvider(currentUser.photoUrl)
-                        : AssetImage(AssetsData.defaultPhotoForNewUser),
-                radius: 30,
-              ),
+              CustomDrawerPhoto(currentUser: currentUser),
               const SizedBox(height: 15),
               Text(
                 "${currentUser.firstName} ${currentUser.lastName}",

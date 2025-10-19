@@ -13,7 +13,7 @@ class DrawerMenuList extends StatelessWidget {
     ),
     DrawerMenuItemModel(
       text: "Message",
-      icon: Icons.message_outlined,
+      icon: Icons.chat_bubble_outline,
       route: AppRouter.kMassageView,
     ),
     DrawerMenuItemModel(
@@ -43,7 +43,7 @@ class DrawerMenuList extends StatelessWidget {
     ),
     DrawerMenuItemModel(
       text: "Sign Out",
-      icon: Icons.search,
+      icon: Icons.logout_rounded,
       route: AppRouter.kSignOutView,
     ),
   ];
