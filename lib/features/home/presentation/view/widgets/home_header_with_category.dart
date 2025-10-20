@@ -30,9 +30,11 @@ class _HomeHeaderWithCategoryState extends State<HomeHeaderWithCategory> {
               left: 0,
               right: 0,
               top: MediaQuery.of(context).size.height * 0.22,
-              child: HomeViewCategorysTaps(
-                selectedIndex: selectedCategoryIndex,
-                onTap: _onCategoryChanged,
+              child: Center(
+                child: HomeViewCategorysTaps(
+                  selectedIndex: selectedCategoryIndex,
+                  onTap: _onCategoryChanged,
+                ),
               ),
             ),
           ],

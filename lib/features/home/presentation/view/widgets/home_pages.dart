@@ -7,9 +7,9 @@ import '../../../../my_events/presentation/views/my_events_view.dart';
 
 class HomePages {
   static List<Widget> pages = [
-    const HomeViewBody(),
-    const MyEventsView(),
-    const BookmarksView(),
-    MyProfileView(),
+    HomeViewBody(),
+    SafeArea(top: false, child: MyEventsView()),
+    SafeArea(top: false, child: BookmarksView()),
+    SafeArea(top: false, child: MyProfileView()),
   ];
 }

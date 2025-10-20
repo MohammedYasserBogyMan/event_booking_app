@@ -22,25 +22,27 @@ class HomeViewBody extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
+
+
               // home header
               const SliverToBoxAdapter(child: HomeHeaderWithCategory()),
               const SliverToBoxAdapter(
                 child: SizedBox(height: kHeaderCategorySpacing),
               ),
 
+
               // Upcoming
               SliverToBoxAdapter(
-                child: EventSection(title: 'Upcoming Events', events: events),
+                child: EventSection(title: "Upcoming Events", events: events),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(height: kSectionSpacing),
               ),
 
-              // Invite Card
-              const SliverToBoxAdapter(
-                child: CustomInviteCard(),
-              ),
 
+
+              // Invite Card
+              const SliverToBoxAdapter(child: CustomInviteCard()),
               const SliverToBoxAdapter(
                 child: SizedBox(height: kSectionSpacing),
               ),
@@ -49,9 +51,9 @@ class HomeViewBody extends StatelessWidget {
               SliverToBoxAdapter(
                 child: EventSection(title: 'Nearby You', events: events),
               ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: kSectionSpacing),
-              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 25)),
+
+
             ],
           );
         } else if (state is HomeFailure) {

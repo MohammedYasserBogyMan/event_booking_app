@@ -14,23 +14,25 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        pushToNewScreen(
-          context,
-          locationOfNewScreen: AppRouter.kEventDetailsView,
-          extra: event,
-        );
-      },
-      child: Container(
-        width: 260,
-        margin: const EdgeInsets.only(right: 16),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: SingleChildScrollView(
+    return AspectRatio(
+      aspectRatio: 237 / 255,
+      child: GestureDetector(
+        onTap: () {
+          pushToNewScreen(
+            context,
+            locationOfNewScreen: AppRouter.kEventDetailsView,
+            extra: event,
+          );
+        },
+        child: Container(
+          width: MediaQuery.sizeOf(context).width * 0.2,
+          height: MediaQuery.sizeOf(context).height * 0.4,
+          margin: const EdgeInsets.only(right: 16),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

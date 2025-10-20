@@ -11,19 +11,16 @@ class EventSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double kEventCardHeight = MediaQuery.sizeOf(context).height * .31;
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HomeEventSectionHeader(title: title),
-          const SizedBox(height: 15),
-          SizedBox(
-            height: kEventCardHeight,
-            child: EventsListView(events: events),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HomeEventSectionHeader(title: title),
+        const SizedBox(height: 15),
+        SizedBox(
+          height: MediaQuery.sizeOf(context).width / (237 / 215),
+          child: EventsListView(events: events),
+        ),
+      ],
     );
   }
 }

@@ -20,13 +20,14 @@ class CategoryTapItem extends StatelessWidget {
         pushToNewScreen(context, locationOfNewScreen: cat.route);
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.only(right: 11),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
         decoration: BoxDecoration(
           color: cat.color,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(cat.icon, color: Colors.white, size: 20),
             const SizedBox(width: 8),
