@@ -40,6 +40,7 @@ class MyProfileViewBody extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       width: 220,
+                      height: 50,
                       child: ProfileActionButton(
                         isFilled: false,
                         onPressed: () async {

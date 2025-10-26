@@ -54,20 +54,26 @@ class OrganizerProfileViewBody extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: ProfileActionButton(
-                          onPressed: () {},
-                          icon: Icons.person_add_alt_1_outlined,
-                          text: "Follow",
-                          isFilled: true,
+                        child: SizedBox(
+                          height: 60,
+                          child: ProfileActionButton(
+                            onPressed: () {},
+                            icon: Icons.person_add_alt_1_outlined,
+                            text: "Follow",
+                            isFilled: true,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 15),
+                      const SizedBox(width: 10),
                       Expanded(
-                        child: ProfileActionButton(
-                          onPressed: () {},
-                          icon: Icons.message_outlined,
-                          text: "Message",
-                          isFilled: false,
+                        child: SizedBox(
+                          height: 60,
+                          child: ProfileActionButton(
+                            onPressed: () {},
+                            icon: Icons.chat_bubble_outline,
+                            text: "Message",
+                            isFilled: false,
+                          ),
                         ),
                       ),
                     ],

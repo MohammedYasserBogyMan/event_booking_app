@@ -36,24 +36,24 @@ class ProfileHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                Text("$following", style: Styels.textStyleMedium16),
-                Text(
-                  "Following",
-                  style: Styels.textStyleRegular14,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Column(
+                children: [
+                  Text("$following", style: Styels.textStyleMedium16),
+                  Text("Following", style: Styels.textStyleRegular14),
+                ],
+              ),
             ),
-            SizedBox(height: 35, child: VerticalDivider()),
-            Column(
-              children: [
-                Text("$followers", style: Styels.textStyleMedium16),
-                Text(
-                  "Followers",
-                  style: Styels.textStyleRegular14,
-                ),
-              ],
+            const SizedBox(height: 40, child: VerticalDivider()),
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Column(
+                children: [
+                  Text("$followers", style: Styels.textStyleMedium16),
+                  Text("Followers", style: Styels.textStyleRegular14),
+                ],
+              ),
             ),
           ],
         ),

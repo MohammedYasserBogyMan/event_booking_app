@@ -13,7 +13,8 @@ class NewsCard extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 3,
       child: Card(
-        elevation: 4,
+        shadowColor: const Color.fromARGB(45, 158, 158, 158),
+        elevation: 10,
         color: AppColor.lightBackground,
         child: Row(
           children: [
@@ -36,7 +37,12 @@ class NewsCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Text(eventModel.title, style: Styels.textStyleRegular15.copyWith(color: Colors.black)),
+                  Text(
+                    eventModel.title,
+                    style: Styels.textStyleRegular15.copyWith(
+                      color: Colors.black,
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,

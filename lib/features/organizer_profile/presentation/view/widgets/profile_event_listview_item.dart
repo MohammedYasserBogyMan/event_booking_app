@@ -13,7 +13,8 @@ class ProfileEventItem extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 2.9,
       child: Card(
-        elevation: 6,
+        shadowColor: const Color.fromARGB(50, 158, 158, 158),
+        elevation: 10,
         color: AppColor.lightBackground,
         child: Row(
           children: [
@@ -35,10 +36,7 @@ class ProfileEventItem extends StatelessWidget {
                     style: Styels.textStyleMedium12,
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    events.title,
-                    style: Styels.textStyleMedium18,
-                  ),
+                  Text(events.title, style: Styels.textStyleMedium18),
                 ],
               ),
             ),

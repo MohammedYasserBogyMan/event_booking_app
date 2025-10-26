@@ -14,7 +14,8 @@ class NewsCard extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 2.91,
       child: Card(
-        elevation: 6,
+        shadowColor: const Color.fromARGB(70, 158, 158, 158),
+        elevation: 10,
         color: AppColor.lightBackground,
         child: Row(
           children: [

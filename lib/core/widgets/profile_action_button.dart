@@ -16,28 +16,25 @@ class ProfileActionButton extends StatelessWidget {
   final bool isFilled;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 70,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          foregroundColor:
-              isFilled ? AppColor.lightBackground : AppColor.primary,
-          backgroundColor:
-              isFilled ? AppColor.primary : AppColor.lightBackground,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: AppColor.primary),
-            borderRadius: BorderRadius.circular(20),
-          ),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: isFilled ? AppColor.lightBackground : AppColor.primary,
+        backgroundColor: isFilled ? AppColor.primary : AppColor.lightBackground,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: AppColor.primary),
+          borderRadius: BorderRadius.circular(10),
         ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 30),
-            const Spacer(),
-            Text(text, style: Styels.textStyleRegular24),
-          ],
-        ),
+      ),
+      onPressed: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Spacer(),
+          Icon(icon, size: 25),
+          const Spacer(),
+          Text(text, style: Styels.textStyleRegular19),
+          const Spacer(),
+        ],
       ),
     );
   }

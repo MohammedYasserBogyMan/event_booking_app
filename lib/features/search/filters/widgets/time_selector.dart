@@ -29,11 +29,9 @@ class _TimeSelectorState extends State<TimeSelector> {
               padding: const EdgeInsets.only(right: 8.0),
               child: ChoiceChip(
                 backgroundColor: Colors.white,
+
                 showCheckmark: false,
-                label: Text(
-                  times[index],
-                  style: Styels.textStyleMedium15.copyWith(color: Colors.white),
-                ),
+                label: Text(times[index], style: Styels.textStyleMedium15),
                 selected: isSelected,
                 onSelected: (_) {
                   setState(() => selectedIndex = index);
