@@ -7,6 +7,7 @@ import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:event_booking_app/features/bookmarks/presentation/manager/bookmark_cubit/bookmark_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/firebase_options.dart';
@@ -34,6 +35,9 @@ class EventBooking extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
+        ),
+        BlocProvider(
+          create: (context) => LoginCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
         ),
         BlocProvider(
           create:

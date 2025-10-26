@@ -2,15 +2,6 @@ abstract class AuthStates {}
 
 class AuthInitial extends AuthStates {}
 
-// Login States
-class SuccessLoginState extends AuthStates {}
-
-class FailureLoginState extends AuthStates {
-  final String errMessage;
-  FailureLoginState({required this.errMessage});
-}
-
-class LoadingLoginState extends AuthStates {}
 
 // Register States
 class SuccessRegisterState extends AuthStates {}

@@ -22,7 +22,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     super.initState();
     slidingTransitionAnimation();
     _controller.forward();
-    decideStartDestination();
+    decideStartDestination(context);
   }
 
   @override
@@ -52,7 +52,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
   }
 
-  void decideStartDestination() {
+  void decideStartDestination(context) {
     Future.delayed(const Duration(seconds: 5), () {
       BlocProvider.of<SplashCubit>(context).decideStartDestination();
     });
