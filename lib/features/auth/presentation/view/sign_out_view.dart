@@ -14,9 +14,8 @@ class SignOutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
       builder: (context, state) {
-        bool isLoading = state is LoadingSignOutState;
         return ModalCircularProgress(
-          inAsyncCall: isLoading,
+          inAsyncCall: state is LoadingSignOutState ? true : false,
           child: Scaffold(
             appBar: _buildAppBar(),
             body: SafeArea(child: SignOutViewBody()),

@@ -11,9 +11,8 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
       builder: (context, state) {
-        bool isLoading = state is LoadingLoginState;
         return ModalCircularProgress(
-          inAsyncCall: isLoading,
+          inAsyncCall: state is LoadingLoginState ? true : false,
           child: const Scaffold(body: SafeArea(child: LoginViewBody())),
         );
       },

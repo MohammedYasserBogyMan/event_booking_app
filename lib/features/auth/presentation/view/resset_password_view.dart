@@ -12,9 +12,8 @@ class RessetPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
       builder: (context, state) {
-        bool isLoading = state is LoadingResetState;
         return ModalCircularProgress(
-          inAsyncCall: isLoading,
+          inAsyncCall: state is LoadingResetState ? true : false,
           child: Scaffold(
             appBar: _buildAppBar(),
             body: SafeArea(child: ResetViewBody()),

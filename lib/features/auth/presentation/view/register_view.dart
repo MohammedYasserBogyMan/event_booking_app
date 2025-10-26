@@ -12,9 +12,8 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthStates>(
       builder: (context, state) {
-        bool isLoading = state is LoadingRegisterState;
         return ModalCircularProgress(
-          inAsyncCall: isLoading,
+          inAsyncCall: state is LoadingRegisterState ? true : false,
           child: Scaffold(
             appBar: _buildAppBar(),
             body: SafeArea(child: RegisterViewBody()),
