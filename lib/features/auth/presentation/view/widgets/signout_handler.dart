@@ -6,8 +6,8 @@ import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/features/auth/logic/auth_functions.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_cubit.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +16,7 @@ class SignOutHandler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthStates>(
+    return BlocConsumer<SignoutCubit, SignoutStates>(
       listener: (context, state) async {
         if (state is SuccessSignOutState) {
           await context.read<CurrentUserCubit>().reset();

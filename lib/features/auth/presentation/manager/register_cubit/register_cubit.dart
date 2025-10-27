@@ -2,14 +2,14 @@ import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AuthCubit extends Cubit<AuthStates> {
+class RegisterCubit extends Cubit<RegisterStates>{
+
   final UserRepo userRepo;
   final AuthRepo authRepo;
-  AuthCubit(this.authRepo, this.userRepo) : super(AuthInitial());
-
+  RegisterCubit(this.authRepo, this.userRepo) : super(InitialRegisterState());
   Future<void> register({
     required String email,
     required String password,
@@ -60,30 +60,7 @@ class AuthCubit extends Cubit<AuthStates> {
       },
     );
   }
-
-  Future<void> resetPassword({required String email}) async {
-    emit(LoadingResetState());
-    final reset = await authRepo.resetPassword(email: email);
-    reset.fold(
-      (failure) {
-        emit(FailureRegisterState(errMessage: failure.errMessage));
-      },
-      (reset) {
-        emit(SuccessRegisterState());
-      },
-    );
-  }
-
-  Future<void> signOut() async {
-    emit(LoadingSignOutState());
-    final signOut = await authRepo.signOut();
-    signOut.fold(
-      (failure) {
-        emit(FailureSignOutState(errMessage: failure.errMessage));
-      },
-      (reset) {
-        emit(SuccessSignOutState());
-      },
-    );
-  }
+  
+ 
 }
+

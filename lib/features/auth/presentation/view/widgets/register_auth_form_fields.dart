@@ -6,8 +6,8 @@ import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:event_booking_app/core/widgets/register_form_fields.dart';
 import 'package:event_booking_app/features/auth/logic/auth_functions.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/auth_cubit/auth_states.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +40,7 @@ class _RegistrationAuthFormFieldsState
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthStates>(
+    return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
         if (state is LoadingRegisterState) {
         } else if (state is SuccessRegisterState) {
