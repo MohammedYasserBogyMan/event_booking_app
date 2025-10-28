@@ -8,9 +8,8 @@ import 'package:event_booking_app/features/home/presentation/view/widgets/event_
 import 'package:flutter/material.dart';
 
 class EventCard extends StatelessWidget {
-  final EventModel event;
-
   const EventCard({super.key, required this.event});
+  final EventModel event;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +24,8 @@ class EventCard extends StatelessWidget {
           );
         },
         child: Container(
-          width: MediaQuery.sizeOf(context).width * 0.2,
-          height: MediaQuery.sizeOf(context).height * 0.4,
           margin: const EdgeInsets.only(right: 16),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(top:10,right: 10,left: 10),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(18),
@@ -40,7 +37,7 @@ class EventCard extends StatelessWidget {
               const SizedBox(height: 14),
               Text(
                 event.title,
-                style: Styels.textStyleMedium18,
+                style: Styels.textStyleMedium20,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

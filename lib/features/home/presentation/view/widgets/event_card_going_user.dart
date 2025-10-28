@@ -30,7 +30,7 @@ class GoingUsersSection extends StatelessWidget {
         Text(
           '+$going Going',
           style: Styels.textStyleMedium12.copyWith(
-            color:AppColor.actionTextColor,
+            color: AppColor.actionTextColor,
           ),
         ),
       ],

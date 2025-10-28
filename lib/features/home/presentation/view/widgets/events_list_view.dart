@@ -8,15 +8,6 @@ class EventsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return SingleChildScrollView(
-    //   scrollDirection: Axis.horizontal,
-    //   child: Row(
-    //     children:
-    //         events.map((e) {
-    //           return IntrinsicWidth(child: EventCard(event: e));
-    //         }).toList(),
-    //   ),
-    // );
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),

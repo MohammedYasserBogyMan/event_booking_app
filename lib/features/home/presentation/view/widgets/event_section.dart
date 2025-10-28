@@ -17,7 +17,7 @@ class EventSection extends StatelessWidget {
         HomeEventSectionHeader(title: title),
         const SizedBox(height: 15),
         SizedBox(
-          height: MediaQuery.sizeOf(context).width / (237 / 215),
+          height: MediaQuery.sizeOf(context).height * .35,
           child: EventsListView(events: events),
         ),
       ],

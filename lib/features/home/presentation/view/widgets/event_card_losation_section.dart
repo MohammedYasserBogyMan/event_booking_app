@@ -10,12 +10,12 @@ class LocationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.location_on, size: 20, color: Colors.grey),
+        const Icon(Icons.location_on, size: 22, color: Colors.grey),
         const SizedBox(width: 4),
         Expanded(
           child: Text(
             location,
-            style: Styels.textStyleRegular13.copyWith(color: Colors.grey),
+            style: Styels.textStyleRegular14.copyWith(color: Colors.grey),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
