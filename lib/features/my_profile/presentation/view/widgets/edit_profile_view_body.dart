@@ -110,6 +110,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                   ),
                   const SizedBox(height: 30),
                   CustomTextFiled(
+                    initialValue: widget.user.firstName,
                     onSaved: (p0) {
                       fName = p0;
                     },
@@ -118,6 +119,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                   ),
                   const SizedBox(height: 15),
                   CustomTextFiled(
+                    initialValue: widget.user.lastName,
                     onSaved: (p0) {
                       lname = p0;
                     },
@@ -126,6 +128,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                   ),
                   const SizedBox(height: 15),
                   CustomTextFiled(
+                    initialValue: widget.user.about,
                     onSaved: (p0) {
                       about = p0;
                     },
@@ -134,6 +137,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                   ),
                   const SizedBox(height: 15),
                   CustomTextFiled(
+                    initialValue: widget.user.location,
                     onSaved: (p0) {
                       location = p0;
                     },
@@ -149,10 +153,10 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                           if (formkey.currentState!.validate()) {
                             formkey.currentState!.save();
                             final updatedUser = widget.user.copyWith(
-                              firstName: fName,
-                              lastName: lname,
-                              about: about,
-                              location: location,
+                              firstName: fName ?? widget.user.firstName,
+                              lastName: lname ?? widget.user.lastName,
+                              about: about ?? widget.user.about,
+                              location: location ?? widget.user.location,
                             );
                             context.read<EditProfileCubit>().updateUser(
                               updatedUser,

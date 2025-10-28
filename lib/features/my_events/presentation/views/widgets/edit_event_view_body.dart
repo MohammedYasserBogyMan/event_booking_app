@@ -134,6 +134,8 @@ class _EditEventViewBodyState extends State<EditEventViewBody> {
         subLocation: _subLocationController.text.trim(),
         imageUrl: widget.event.imageUrl,
         attendeeCount: int.tryParse(_attendeeCountController.text) ?? 0,
+        maxCapacity: widget.event.maxCapacity,
+        attendeeIds: widget.event.attendeeIds,
         publisherId: widget.event.publisherId,
         price: int.tryParse(_priceController.text) ?? 0,
         searchTermsArray: _generateSearchTerms(_titleController.text.trim()),

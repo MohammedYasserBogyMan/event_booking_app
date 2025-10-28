@@ -12,7 +12,8 @@ class CreateEventTextFields extends StatelessWidget {
       {"key": "description", "icon": Icons.description, "hint": "Description"},
       {"key": "location", "icon": Icons.location_on, "hint": "Location"},
       {"key": "subLocation", "icon": Icons.map, "hint": "Sub Location"},
-      {"key": "attendeesCount", "icon": Icons.people, "hint": "attendeesCount"},
+      {"key": "attendeesCount", "icon": Icons.people, "hint": "Initial Attendees Count"},
+      {"key": "maxCapacity", "icon": Icons.groups, "hint": "Maximum Capacity"},
       {"key": "price", "icon": Icons.attach_money, "hint": "Price"},
     ];
     return Column(

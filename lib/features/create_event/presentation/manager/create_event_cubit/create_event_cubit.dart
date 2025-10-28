@@ -34,6 +34,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     File? image,
     String? price,
     String? attendeesCount,
+    String? maxCapacity,
   }) async {
     emit(CreateEventLoading());
 
@@ -59,6 +60,8 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         subLocation: subLocation,
         imageUrl: imageUrl ?? "",
         attendeeCount: int.tryParse(attendeesCount ?? "0") ?? 0,
+        maxCapacity: int.tryParse(maxCapacity ?? "100") ?? 100,
+        attendeeIds: [],
         publisherId: userId,
         price: int.tryParse(price ?? "0") ?? 0,
         searchTermsArray: _generateSearchTerms(title),

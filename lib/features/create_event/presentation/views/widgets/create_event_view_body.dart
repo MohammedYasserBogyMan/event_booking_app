@@ -23,7 +23,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   DateTime? date;
-  String? title, description, location, subLocation, price, attendeesCount;
+  String? title, description, location, subLocation, price, attendeesCount, maxCapacity;
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +106,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                       subLocation = values["subLocation"];
                       price = values["price"];
                       attendeesCount = values["attendeesCount"];
+                      maxCapacity = values["maxCapacity"];
                     },
                   ),
 
@@ -145,6 +146,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                                       category: selectedValue!,
                                       price: price!,
                                       attendeesCount: attendeesCount,
+                                      maxCapacity: maxCapacity,
                                       date: date!,
                                       image: selectedImage,
                                     );
