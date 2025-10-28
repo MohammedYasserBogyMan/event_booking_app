@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/repositories/bookmark_repo/bookmark_repo.dart';
 import 'package:event_booking_app/core/repositories/bookmark_repo/bookmark_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/booking_repo/booking_repo.dart';
+import 'package:event_booking_app/core/repositories/booking_repo/booking_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
@@ -44,5 +46,10 @@ Future<void> setupServiceLocator() async {
   // Search Repository
   getIt.registerLazySingleton<SearchRepo>(
     () => SearchRepoImple(getIt<FirebaseFirestore>()),
+  );
+
+  // Booking Repository
+  getIt.registerLazySingleton<BookingRepo>(
+    () => BookingRepoImpl(getIt<FirebaseFirestore>()),
   );
 }

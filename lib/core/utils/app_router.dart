@@ -1,9 +1,13 @@
 import 'package:event_booking_app/core/di/service_locator.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/models/user_model.dart';
+import 'package:event_booking_app/core/repositories/booking_repo/booking_repo.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/view/sign_out_view.dart';
+import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
+import 'package:event_booking_app/features/booking/presentation/views/my_bookings_screen.dart';
+import 'package:event_booking_app/features/booking/presentation/views/payment_screen.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/create_event_view.dart';
 import 'package:event_booking_app/features/event_details/presentation/view/event_details_view.dart';
@@ -69,6 +73,8 @@ abstract class AppRouter {
   static const kFoodCategory = "/food_category";
   static const kArtCategory = '/art_category';
   static const kEditEventView = '/edit-event';
+  static const kMyBookingsView = '/my-bookings';
+  static const kPaymentView = '/payment';
 
   static final router = GoRouter(
     routes: [
@@ -262,6 +268,25 @@ abstract class AppRouter {
         builder: (context, state) {
           final event = state.extra as EventModel;
           return EditEventView(event: event);
+        },
+      ),
+      GoRoute(
+        path: kMyBookingsView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => BookingCubit(getIt<BookingRepo>()),
+            child: const MyBookingsScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: kPaymentView,
+        builder: (context, state) {
+          final event = state.extra as EventModel;
+          return BlocProvider(
+            create: (context) => BookingCubit(getIt<BookingRepo>()),
+            child: PaymentScreen(event: event),
+          );
         },
       ),
     ],
