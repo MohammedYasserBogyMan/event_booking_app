@@ -15,12 +15,17 @@ class CustomDrawerPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: Colors.transparent,
-      backgroundImage:
-          currentUser.photoUrl.isNotEmpty &&
-                  currentUser.photoUrl.startsWith('http')
-              ? CachedNetworkImageProvider(currentUser.photoUrl)
-              : AssetImage(AssetsData.defaultPhotoForNewUser),
+      backgroundImage: _getImageProvider(),
       radius: 30,
     );
+  }
+
+  ImageProvider _getImageProvider() {
+    if (currentUser.photoUrl.isNotEmpty &&
+        (currentUser.photoUrl.startsWith('http://') ||
+            currentUser.photoUrl.startsWith('https://'))) {
+      return CachedNetworkImageProvider(currentUser.photoUrl);
+    }
+    return const AssetImage(AssetsData.defaultPhotoForNewUser);
   }
 }

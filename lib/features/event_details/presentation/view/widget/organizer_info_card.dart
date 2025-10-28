@@ -22,11 +22,7 @@ class OrganizerInfoCard extends StatelessWidget {
         CircleAvatar(
           backgroundColor: Colors.white,
           radius: 25,
-          backgroundImage:
-              organizerEventPhoto.isNotEmpty &&
-                      organizerEventPhoto.startsWith('http')
-                  ? CachedNetworkImageProvider(organizerEventPhoto)
-                  : AssetImage(AssetsData.defaultPhotoForNewUser),
+          backgroundImage: _getImageProvider(),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 13),
@@ -50,5 +46,14 @@ class OrganizerInfoCard extends StatelessWidget {
         const FollowButton(text: "Follow"),
       ],
     );
+  }
+
+  ImageProvider _getImageProvider() {
+    if (organizerEventPhoto.isNotEmpty &&
+        (organizerEventPhoto.startsWith('http://') ||
+            organizerEventPhoto.startsWith('https://'))) {
+      return CachedNetworkImageProvider(organizerEventPhoto);
+    }
+    return const AssetImage(AssetsData.defaultPhotoForNewUser);
   }
 }

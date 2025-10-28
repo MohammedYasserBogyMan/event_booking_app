@@ -45,11 +45,15 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   ImageProvider _getImageProvider() {
     if (selectedImage != null) {
       return FileImage(selectedImage!);
-    } else if (widget.user.photoUrl.startsWith('http')) {
-      return CachedNetworkImageProvider(widget.user.photoUrl);
-    } else {
-      return AssetImage(AssetsData.defaultPhotoForNewUser) as ImageProvider;
     }
+
+    if (widget.user.photoUrl.isNotEmpty &&
+        (widget.user.photoUrl.startsWith('http://') ||
+            widget.user.photoUrl.startsWith('https://'))) {
+      return CachedNetworkImageProvider(widget.user.photoUrl);
+    }
+
+    return const AssetImage(AssetsData.defaultPhotoForNewUser);
   }
 
   @override
@@ -61,9 +65,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
           context.read<CurrentUserCubit>().fetchCurrentUserInfo();
           showSnackBar(context, message: 'Profile updated successfully!');
         } else if (state is EditProfileFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          showSnackBar(context, message: state.message);
         }
       },
       builder: (context, state) {

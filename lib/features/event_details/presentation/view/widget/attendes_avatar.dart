@@ -21,15 +21,26 @@ class AttendesAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: 15,
         backgroundColor: isPlaceholder ? Colors.grey[300] : null,
-        foregroundImage: isPlaceholder
-            ? AssetImage(AssetsData.eventDetailLogo)
-            : (user?.photoUrl != null && user!.photoUrl.isNotEmpty)
-                ? CachedNetworkImageProvider(user!.photoUrl)
-                : AssetImage(AssetsData.eventDetailLogo) as ImageProvider,
+        foregroundImage: _getImageProvider(),
         child: isPlaceholder
             ? Icon(Icons.person, size: 16, color: Colors.grey[400])
             : null,
       ),
     );
+  }
+
+  ImageProvider _getImageProvider() {
+    if (isPlaceholder) {
+      return const AssetImage(AssetsData.eventDetailLogo);
+    }
+
+    if (user?.photoUrl != null &&
+        user!.photoUrl.isNotEmpty &&
+        (user!.photoUrl.startsWith('http://') ||
+            user!.photoUrl.startsWith('https://'))) {
+      return CachedNetworkImageProvider(user!.photoUrl);
+    }
+
+    return const AssetImage(AssetsData.eventDetailLogo);
   }
 }
