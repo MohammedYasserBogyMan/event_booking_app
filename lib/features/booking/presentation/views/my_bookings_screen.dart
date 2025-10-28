@@ -7,6 +7,9 @@ import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_state.dart';
+import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:go_router/go_router.dart';
 import 'package:event_booking_app/core/di/service_locator.dart';
 
@@ -36,32 +39,36 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.lightBackground,
       appBar: AppBar(
-        title: const Text('My Bookings'),
+        backgroundColor: AppColor.lightBackground,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'My Bookings',
+          style: Styels.textStyleMedium24,
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => context.pop(),
+        ),
       ),
       body: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {
           if (state is BookingCancelled) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Booking cancelled successfully'),
-                backgroundColor: Colors.green,
-              ),
-            );
+            showSnackBar(context, message: 'Booking cancelled successfully');
             _loadBookings();
           } else if (state is BookingError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
-              ),
-            );
+            showSnackBar(context, message: state.message);
           }
         },
         builder: (context, state) {
           if (state is BookingLoading && state is! BookingsLoaded) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColor.primary,
+                strokeWidth: 3,
+              ),
             );
           }
 
@@ -71,24 +78,31 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.event_busy,
-                      size: 80,
-                      color: Colors.grey[400],
+                    Container(
+                      padding: const EdgeInsets.all(30),
+                      decoration: BoxDecoration(
+                        color: AppColor.primary.withValues(alpha: 0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.event_busy,
+                        size: 80,
+                        color: AppColor.primary,
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
                     Text(
                       'No bookings yet',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.grey[600],
-                          ),
+                      style: Styels.textStyleMedium22.copyWith(
+                        color: Colors.black,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Start booking events to see them here',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey[500],
-                          ),
+                      style: Styels.textStyleRegular16.copyWith(
+                        color: AppColor.lightgray,
+                      ),
                     ),
                   ],
                 ),
@@ -118,22 +132,44 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.event_note,
-                  size: 80,
-                  color: Colors.grey[400],
+                Container(
+                  padding: const EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    color: AppColor.primary.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.event_note,
+                    size: 80,
+                    color: AppColor.primary,
+                  ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 Text(
                   'Load your bookings',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                  style: Styels.textStyleMedium22.copyWith(
+                    color: Colors.black,
+                  ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _loadBookings,
-                  child: const Text('Refresh'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primary,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 16,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    'Refresh',
+                    style: Styels.textStyleMedium16.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -147,14 +183,33 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Cancel Booking'),
-        content: const Text(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        title: Text(
+          'Cancel Booking',
+          style: Styels.textStyleMedium20.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Text(
           'Are you sure you want to cancel this booking? This action cannot be undone.',
+          style: Styels.textStyleRegular16.copyWith(
+            color: AppColor.lightgray,
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('Keep Booking'),
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            ),
+            child: Text(
+              'Keep Booking',
+              style: Styels.textStyleMedium16.copyWith(
+                color: AppColor.lightgray,
+              ),
+            ),
           ),
           ElevatedButton(
             onPressed: () {
@@ -169,9 +224,18 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
+              backgroundColor: AppColor.errorColor,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
-            child: const Text('Cancel Booking'),
+            child: Text(
+              'Cancel Booking',
+              style: Styels.textStyleMedium16.copyWith(
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -196,10 +260,20 @@ class _BookingCard extends StatelessWidget {
       future: _getEventDetails(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Card(
+          return Card(
+            margin: const EdgeInsets.only(bottom: 16),
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Center(child: CircularProgressIndicator()),
+              padding: EdgeInsets.all(60),
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: AppColor.primary,
+                  strokeWidth: 3,
+                ),
+              ),
             ),
           );
         }
@@ -212,14 +286,18 @@ class _BookingCard extends StatelessWidget {
 
         return Card(
           margin: const EdgeInsets.only(bottom: 16),
-          elevation: 2,
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: InkWell(
             onTap: () {
               // Navigate to event details
               context.push('/event-details', extra: event);
             },
+            borderRadius: BorderRadius.circular(20),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -227,18 +305,25 @@ class _BookingCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12),
                         child: Image.network(
                           event.imageUrl,
-                          width: 80,
-                          height: 80,
+                          width: 90,
+                          height: 90,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Container(
-                            width: 80,
-                            height: 80,
-                            color: Colors.grey[300],
-                            child: const Icon(Icons.event),
+                            width: 90,
+                            height: 90,
+                            decoration: BoxDecoration(
+                              color: AppColor.primary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              Icons.event,
+                              color: AppColor.primary,
+                              size: 40,
+                            ),
                           ),
                         ),
                       ),
@@ -249,24 +334,27 @@ class _BookingCard extends StatelessWidget {
                           children: [
                             Text(
                               event.title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(fontWeight: FontWeight.bold),
+                              style: Styels.textStyleMedium18.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 6),
                             Row(
                               children: [
-                                Icon(Icons.location_on,
-                                    size: 14, color: Colors.grey[600]),
+                                Icon(
+                                  Icons.location_on,
+                                  size: 16,
+                                  color: AppColor.lightgray,
+                                ),
                                 const SizedBox(width: 4),
                                 Expanded(
                                   child: Text(
                                     event.location,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(color: Colors.grey[600]),
+                                    style: Styels.textStyleRegular14.copyWith(
+                                      color: AppColor.lightgray,
+                                    ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -276,15 +364,17 @@ class _BookingCard extends StatelessWidget {
                             const SizedBox(height: 4),
                             Row(
                               children: [
-                                Icon(Icons.calendar_today,
-                                    size: 14, color: Colors.grey[600]),
+                                Icon(
+                                  Icons.calendar_today,
+                                  size: 16,
+                                  color: AppColor.lightgray,
+                                ),
                                 const SizedBox(width: 4),
                                 Text(
                                   '${event.date.day}/${event.date.month}/${event.date.year}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(color: Colors.grey[600]),
+                                  style: Styels.textStyleRegular14.copyWith(
+                                    color: AppColor.lightgray,
+                                  ),
                                 ),
                               ],
                             ),
@@ -294,7 +384,7 @@ class _BookingCard extends StatelessWidget {
                       _buildStatusChip(booking.status),
                     ],
                   ),
-                  const Divider(height: 24),
+                  const Divider(height: 28),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -303,18 +393,16 @@ class _BookingCard extends StatelessWidget {
                         children: [
                           Text(
                             'Ticket Number',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: Colors.grey[600]),
+                            style: Styels.textStyleRegular12.copyWith(
+                              color: AppColor.lightgray,
+                            ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 4),
                           Text(
                             booking.ticketNumber,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(fontWeight: FontWeight.bold),
+                            style: Styels.textStyleMedium16.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -323,37 +411,43 @@ class _BookingCard extends StatelessWidget {
                         children: [
                           Text(
                             'Price',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: Colors.grey[600]),
+                            style: Styels.textStyleRegular12.copyWith(
+                              color: AppColor.lightgray,
+                            ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 4),
                           Text(
                             '\$${booking.price}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
-                                ),
+                            style: Styels.textStyleBold18.copyWith(
+                              color: AppColor.primary,
+                              fontSize: 20,
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
                   if (booking.status == BookingStatus.confirmed) ...[
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
+                      height: 50,
                       child: OutlinedButton.icon(
                         onPressed: onCancel,
-                        icon: const Icon(Icons.cancel_outlined),
-                        label: const Text('Cancel Booking'),
+                        icon: const Icon(Icons.cancel_outlined, size: 20),
+                        label: Text(
+                          'Cancel Booking',
+                          style: Styels.textStyleMedium16,
+                        ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.red,
-                          side: const BorderSide(color: Colors.red),
+                          foregroundColor: AppColor.errorColor,
+                          side: BorderSide(
+                            color: AppColor.errorColor,
+                            width: 1.5,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ),
@@ -383,34 +477,33 @@ class _BookingCard extends StatelessWidget {
 
     switch (status) {
       case BookingStatus.confirmed:
-        backgroundColor = Colors.green;
+        backgroundColor = const Color(0xFF34C759); // Green
         textColor = Colors.white;
         label = 'Confirmed';
         break;
       case BookingStatus.cancelled:
-        backgroundColor = Colors.red;
+        backgroundColor = AppColor.errorColor;
         textColor = Colors.white;
         label = 'Cancelled';
         break;
       case BookingStatus.completed:
-        backgroundColor = Colors.blue;
+        backgroundColor = AppColor.primary;
         textColor = Colors.white;
         label = 'Completed';
         break;
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         label,
-        style: TextStyle(
+        style: Styels.textStyleRegular12.copyWith(
           color: textColor,
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

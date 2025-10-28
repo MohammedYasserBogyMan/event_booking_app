@@ -5,6 +5,10 @@ import 'package:event_booking_app/core/controllers/current_user_cubit/current_us
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_state.dart';
+import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/utils/styels.dart';
+import 'package:event_booking_app/core/widgets/custom_button.dart';
 import 'package:go_router/go_router.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -23,32 +27,32 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.lightBackground,
       appBar: AppBar(
-        title: const Text('Payment'),
+        backgroundColor: AppColor.lightBackground,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Payment',
+          style: Styels.textStyleMedium24,
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => context.pop(),
         ),
       ),
       body: BlocListener<BookingCubit, BookingState>(
         listener: (context, state) {
           if (state is BookingSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Booking confirmed! Ticket: ${state.booking.ticketNumber}'),
-                backgroundColor: Colors.green,
-              ),
+            showSnackBar(
+              context,
+              message: 'Booking confirmed! Ticket: ${state.booking.ticketNumber}',
             );
             // Navigate back twice to return to event details
             context.pop();
             context.pop();
           } else if (state is BookingError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
-              ),
-            );
+            showSnackBar(context, message: state.message);
             setState(() {
               isProcessing = false;
             });
@@ -57,8 +61,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: BlocBuilder<BookingCubit, BookingState>(
           builder: (context, state) {
             if (state is BookingLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColor.primary,
+                  strokeWidth: 3,
+                ),
               );
             }
 
@@ -69,32 +76,44 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 children: [
                   // Event Summary Card
                   Card(
-                    elevation: 2,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Event Summary',
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Styels.textStyleMedium20.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           const SizedBox(height: 12),
                           Row(
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(12),
                                 child: Image.network(
                                   widget.event.imageUrl,
-                                  width: 80,
-                                  height: 80,
+                                  width: 90,
+                                  height: 90,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
                                       Container(
-                                    width: 80,
-                                    height: 80,
-                                    color: Colors.grey[300],
-                                    child: const Icon(Icons.event),
+                                    width: 90,
+                                    height: 90,
+                                    decoration: BoxDecoration(
+                                      color: AppColor.primary.withValues(alpha: 0.1),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Icon(
+                                      Icons.event,
+                                      color: AppColor.primary,
+                                      size: 40,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -105,40 +124,71 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   children: [
                                     Text(
                                       widget.event.title,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(fontWeight: FontWeight.bold),
+                                      style: Styels.textStyleMedium18.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on,
+                                          size: 16,
+                                          color: AppColor.lightgray,
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Expanded(
+                                          child: Text(
+                                            widget.event.location,
+                                            style: Styels.textStyleRegular14.copyWith(
+                                              color: AppColor.lightgray,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 4),
-                                    Text(
-                                      widget.event.location,
-                                      style: Theme.of(context).textTheme.bodySmall,
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      '${widget.event.date.day}/${widget.event.date.month}/${widget.event.date.year}',
-                                      style: Theme.of(context).textTheme.bodySmall,
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_today,
+                                          size: 16,
+                                          color: AppColor.lightgray,
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          '${widget.event.date.day}/${widget.event.date.month}/${widget.event.date.year}',
+                                          style: Styels.textStyleRegular14.copyWith(
+                                            color: AppColor.lightgray,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                          const Divider(height: 24),
+                          const Divider(height: 32),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Price:',
-                                style: Theme.of(context).textTheme.titleMedium,
+                                'Total Price:',
+                                style: Styels.textStyleMedium16.copyWith(
+                                  color: AppColor.lightgray,
+                                ),
                               ),
                               Text(
                                 '\$${widget.event.price}',
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                                style: Styels.textStyleBold18.copyWith(
+                                  color: AppColor.primary,
+                                  fontSize: 24,
+                                ),
                               ),
                             ],
                           ),
@@ -151,9 +201,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   // Payment Method
                   Text(
                     'Payment Method',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Styels.textStyleMedium20.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 16),
 
                   _buildPaymentOption(
                     icon: Icons.credit_card,
@@ -182,30 +234,58 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   if (selectedPaymentMethod == 'credit_card') ...[
                     Text(
                       'Card Details',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Styels.textStyleMedium18.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Card Number',
+                        labelStyle: Styels.textStyleRegular14,
                         hintText: '1234 5678 9012 3456',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                        hintStyle: Styels.textStyleRegular14.copyWith(
+                          color: AppColor.lightgray,
                         ),
-                        prefixIcon: const Icon(Icons.credit_card),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColor.lightgray),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColor.lightgray),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColor.primary, width: 2),
+                        ),
+                        prefixIcon: Icon(Icons.credit_card, color: AppColor.primary),
                       ),
                       keyboardType: TextInputType.number,
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
                     Row(
                       children: [
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(
                               labelText: 'Expiry Date',
+                              labelStyle: Styels.textStyleRegular14,
                               hintText: 'MM/YY',
+                              hintStyle: Styels.textStyleRegular14.copyWith(
+                                color: AppColor.lightgray,
+                              ),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.lightgray),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.lightgray),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.primary, width: 2),
                               ),
                             ),
                             keyboardType: TextInputType.datetime,
@@ -216,9 +296,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           child: TextField(
                             decoration: InputDecoration(
                               labelText: 'CVV',
+                              labelStyle: Styels.textStyleRegular14,
                               hintText: '123',
+                              hintStyle: Styels.textStyleRegular14.copyWith(
+                                color: AppColor.lightgray,
+                              ),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.lightgray),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.lightgray),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: AppColor.primary, width: 2),
                               ),
                             ),
                             keyboardType: TextInputType.number,
@@ -232,55 +325,47 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   const SizedBox(height: 32),
 
                   // Confirm Payment Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: isProcessing ? null : _handlePayment,
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: isProcessing
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: Colors.white,
-                              ),
-                            )
-                          : Text(
-                              'Confirm Payment - \$${widget.event.price}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                  isProcessing
+                      ? Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: AppColor.primary.withValues(alpha: 0.5),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3,
+                              color: Colors.white,
                             ),
-                    ),
-                  ),
+                          ),
+                        )
+                      : CustomButton(
+                          text: 'PAY - \$${widget.event.price}',
+                          onPressed: _handlePayment,
+                        ),
 
                   const SizedBox(height: 16),
 
                   // Security Note
                   Container(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green.withOpacity(0.3)),
+                      color: AppColor.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: AppColor.primary.withValues(alpha: 0.3),
+                      ),
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.lock, color: Colors.green[700], size: 20),
-                        const SizedBox(width: 8),
+                        Icon(Icons.lock, color: AppColor.primary, size: 24),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
                             'Your payment is secure and encrypted',
-                            style: TextStyle(
-                              color: Colors.green[700],
-                              fontSize: 12,
+                            style: Styels.textStyleRegular14.copyWith(
+                              color: AppColor.primary,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -310,49 +395,69 @@ class _PaymentScreenState extends State<PaymentScreen> {
           selectedPaymentMethod = value;
         });
       },
+      borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected
-                ? Theme.of(context).primaryColor
-                : Colors.grey[300]!,
-            width: isSelected ? 2 : 1,
+            color: isSelected ? AppColor.primary : AppColor.lightgray,
+            width: isSelected ? 2.5 : 1,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(16),
           color: isSelected
-              ? Theme.of(context).primaryColor.withOpacity(0.05)
-              : null,
+              ? AppColor.primary.withValues(alpha: 0.08)
+              : Colors.white,
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: isSelected ? Theme.of(context).primaryColor : Colors.grey,
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? AppColor.primary.withValues(alpha: 0.15)
+                    : AppColor.lightgray.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? AppColor.primary : AppColor.lightgray,
+                size: 24,
+              ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: isSelected ? Theme.of(context).primaryColor : null,
+                    style: Styels.textStyleMedium16.copyWith(
+                      color: isSelected ? AppColor.primary : Colors.black,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Styels.textStyleRegular12.copyWith(
+                      color: AppColor.lightgray,
+                    ),
                   ),
                 ],
               ),
             ),
             if (isSelected)
-              Icon(
-                Icons.check_circle,
-                color: Theme.of(context).primaryColor,
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: AppColor.primary,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.check,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
           ],
         ),
@@ -368,12 +473,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     // Get current user
     final currentUserState = context.read<CurrentUserCubit>().state;
     if (currentUserState is! CurrentUserSuccess) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please login to continue'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      showSnackBar(context, message: 'Please login to continue');
       setState(() {
         isProcessing = false;
       });

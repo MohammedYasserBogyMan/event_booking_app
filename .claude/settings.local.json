@@ -4,7 +4,8 @@
       "Bash(java:*)",
       "Bash(./gradlew:*)",
       "Bash(powershell:*)",
-      "Bash(flutter:*)"
+      "Bash(flutter:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
