@@ -27,6 +27,11 @@ class DrawerMenuList extends StatelessWidget {
       route: AppRouter.kBookMarkView,
     ),
     DrawerMenuItemModel(
+      text: "My Bookings",
+      icon: Icons.confirmation_number_outlined,
+      route: AppRouter.kMyBookingsView,
+    ),
+    DrawerMenuItemModel(
       text: "Contact Us",
       icon: Icons.mail_outline,
       route: AppRouter.kContactUsView,

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 
-class EventDetailsViewBody extends StatelessWidget {
+class EventDetailsViewBody extends StatefulWidget {
   final EventModel event;
   final UserRepo userRepo;
 
@@ -21,17 +21,48 @@ class EventDetailsViewBody extends StatelessWidget {
   });
 
   @override
+  State<EventDetailsViewBody> createState() => _EventDetailsViewBodyState();
+}
+
+class _EventDetailsViewBodyState extends State<EventDetailsViewBody> {
+  bool isBooked = false;
+  bool isCheckingBooking = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkBookingStatus();
+  }
+
+  void _checkBookingStatus() async {
+    final currentUserState = context.read<CurrentUserCubit>().state;
+    if (currentUserState is CurrentUserSuccess) {
+      final userId = currentUserState.user.uid;
+
+      // Check using the event model directly
+      setState(() {
+        isBooked = widget.event.isUserAttending(userId);
+        isCheckingBooking = false;
+      });
+    } else {
+      setState(() {
+        isCheckingBooking = false;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create:
           (context) =>
-              PublisherCubit(userRepo)..getPublisher(event.publisherId),
+              PublisherCubit(widget.userRepo)..getPublisher(widget.event.publisherId),
       child: BlocBuilder<CurrentUserCubit, CurrentUserState>(
         builder: (context, currentUserState) {
           bool isOwner = false;
 
           if (currentUserState is CurrentUserSuccess) {
-            isOwner = currentUserState.user.uid == event.publisherId;
+            isOwner = currentUserState.user.uid == widget.event.publisherId;
           }
 
           return Stack(
@@ -39,23 +70,30 @@ class EventDetailsViewBody extends StatelessWidget {
               CustomScrollView(
                 slivers: [
                   CustomAppBar(
-                    going: event.attendeeCount,
-                    imageUrl: event.imageUrl,
-                    eventId: event.id,
+                    going: widget.event.attendeeCount,
+                    imageUrl: widget.event.imageUrl,
+                    eventId: widget.event.id,
+                    event: widget.event,
+                    userRepo: widget.userRepo,
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: EventInfoBody(eventModel: event),
+                      child: EventInfoBody(eventModel: widget.event),
                     ),
                   ),
                 ],
               ),
               // Show Edit button for owner, Buy Ticket button for others
               if (isOwner)
-                EditEventOverlayButton(event: event)
+                EditEventOverlayButton(event: widget.event)
               else
-                BuyTicketOverlayButton(price: event.price),
+                BuyTicketOverlayButton(
+                  price: widget.event.price,
+                  event: widget.event,
+                  isBooked: isBooked,
+                  isFull: widget.event.isFull,
+                ),
             ],
           );
         },

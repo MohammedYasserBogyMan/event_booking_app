@@ -1,3 +1,5 @@
+import 'package:event_booking_app/core/di/service_locator.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
@@ -42,7 +44,10 @@ class EventCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
-              GoingUsersSection(going: event.attendeeCount),
+              GoingUsersSection(
+                event: event,
+                userRepo: getIt<UserRepo>(),
+              ),
               const SizedBox(height: 10),
               LocationSection(location: event.location),
             ],

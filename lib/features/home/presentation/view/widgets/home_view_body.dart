@@ -13,6 +13,10 @@ class HomeViewBody extends StatelessWidget {
   static const double kSectionSpacing = 16;
   static const double kHeaderCategorySpacing = 20;
 
+  Future<void> _onRefresh(BuildContext context) async {
+    await context.read<HomeCubit>().getAllEvents();
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;
@@ -26,34 +30,37 @@ class HomeViewBody extends StatelessWidget {
         } else if (state is HomeSuccess) {
           final events = state.events;
 
-          return CustomScrollView(
-            slivers: [
-              // home header
-              const SliverToBoxAdapter(child: HomeHeaderWithCategory()),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: kHeaderCategorySpacing),
-              ),
+          return RefreshIndicator(
+            onRefresh: () => _onRefresh(context),
+            child: CustomScrollView(
+              slivers: [
+                // home header
+                const SliverToBoxAdapter(child: HomeHeaderWithCategory()),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: kHeaderCategorySpacing),
+                ),
 
-              // Upcoming
-              SliverToBoxAdapter(
-                child: EventSection(title: "Upcoming Events", events: events),
-              ),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: kSectionSpacing),
-              ),
+                // Upcoming
+                SliverToBoxAdapter(
+                  child: EventSection(title: "Upcoming Events", events: events),
+                ),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: kSectionSpacing),
+                ),
 
-              // Invite Card
-              const SliverToBoxAdapter(child: CustomInviteCard()),
-              const SliverToBoxAdapter(
-                child: SizedBox(height: kSectionSpacing),
-              ),
+                // Invite Card
+                const SliverToBoxAdapter(child: CustomInviteCard()),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: kSectionSpacing),
+                ),
 
-              // Nearby
-              SliverToBoxAdapter(
-                child: EventSection(title: 'Nearby You', events: events),
-              ),
-              const SliverToBoxAdapter(child: SizedBox(height: 25)),
-            ],
+                // Nearby
+                SliverToBoxAdapter(
+                  child: EventSection(title: 'Nearby You', events: events),
+                ),
+                const SliverToBoxAdapter(child: SizedBox(height: 25)),
+              ],
+            ),
           );
         } else if (state is HomeFailure) {
           return Center(child: Text(state.message));
