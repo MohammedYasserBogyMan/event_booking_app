@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_header_with_category.dart';
-import 'package:event_booking_app/features/home/presentation/view/widgets/event_section.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_invite_card.dart';
+import 'package:event_booking_app/features/home/presentation/view/widgets/near_by_you_events.dart';
+import 'package:event_booking_app/features/home/presentation/view/widgets/upcoming_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,10 +18,6 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.sizeOf(context).width;
-    log("this is a width of home screen $width");
-    var height = MediaQuery.sizeOf(context).height;
-    log("this is a width of home screen $height");
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoading) {
@@ -41,9 +36,8 @@ class HomeViewBody extends StatelessWidget {
                 ),
 
                 // Upcoming
-                SliverToBoxAdapter(
-                  child: EventSection(title: "Upcoming Events", events: events),
-                ),
+                SliverToBoxAdapter(child: UpcomingEvents(events: events)),
+
                 const SliverToBoxAdapter(
                   child: SizedBox(height: kSectionSpacing),
                 ),
@@ -55,9 +49,7 @@ class HomeViewBody extends StatelessWidget {
                 ),
 
                 // Nearby
-                SliverToBoxAdapter(
-                  child: EventSection(title: 'Nearby You', events: events),
-                ),
+                SliverToBoxAdapter(child: NearbyYouEvents(events: events)),
                 const SliverToBoxAdapter(child: SizedBox(height: 25)),
               ],
             ),
