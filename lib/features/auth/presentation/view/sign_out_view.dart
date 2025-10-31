@@ -1,9 +1,8 @@
-import 'package:event_booking_app/core/constants/app_color.dart';
-import 'package:event_booking_app/core/utils/styels.dart';
-import 'package:event_booking_app/core/widgets/modal_circular_progress.dart';
+import 'package:event_booking_app/core/di/service_locator.dart';
+import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
+import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_states.dart';
-import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_out_view_body.dart';
+import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_out_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,24 +11,9 @@ class SignOutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignoutCubit, SignoutStates>(
-      builder: (context, state) {
-        return ModalCircularProgress(
-          inAsyncCall: state is LoadingSignOutState ? true : false,
-          child: Scaffold(
-            appBar: _buildAppBar(),
-            body: SafeArea(child: SignOutViewBody()),
-          ),
-        );
-      },
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: Text("Sign Out", style: Styels.textStyleRegular24),
-      centerTitle: true,
-      backgroundColor: AppColor.primary,
+    return BlocProvider(
+      create: (context) => SignOutCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
+      child: SignOutBlocBuilder(),
     );
   }
 }

@@ -9,7 +9,6 @@ import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_cubit.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:event_booking_app/features/bookmarks/presentation/manager/bookmark_cubit/bookmark_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
@@ -38,10 +37,6 @@ class EventBooking extends StatelessWidget {
       providers: [
         BlocProvider(
           create:
-              (context) => SignoutCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
-        ),
-        BlocProvider(
-          create:
               (context) =>
                   ResetPasswordCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
         ),
@@ -65,9 +60,7 @@ class EventBooking extends StatelessWidget {
                 eventRepo: getIt<EventsRepo>(),
               ),
         ),
-        BlocProvider(
-          create: (context) => BookingCubit(getIt<BookingRepo>()),
-        ),
+        BlocProvider(create: (context) => BookingCubit(getIt<BookingRepo>())),
       ],
       child: MaterialApp.router(
         theme: AppTheme.lightTheme,
