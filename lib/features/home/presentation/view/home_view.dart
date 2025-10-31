@@ -21,49 +21,68 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
+  bool _notificationsInitialized = false;
 
   @override
   void initState() {
     super.initState();
-    _loadNotifications();
+    // Try to initialize notifications immediately
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _tryInitializeNotifications();
+    });
   }
 
-  void _loadNotifications() {
+  void _tryInitializeNotifications() {
+    if (_notificationsInitialized) return;
+
     final currentUserState = context.read<CurrentUserCubit>().state;
+
     if (currentUserState is CurrentUserSuccess) {
       context.read<NotificationCubit>().watchNotifications(
             userId: currentUserState.user.uid,
           );
+      _notificationsInitialized = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffF9f9fb),
-      drawer: const HomeDrawer(),
-      body: HomePages.pages[currentIndex],
-      bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 4,
-        onPressed: () {},
-        backgroundColor: AppColor.primary,
-        shape: const CircleBorder(),
-        child: IconButton(
-          onPressed: () async {
-            await goToCreateEvent(context);
+    return BlocListener<CurrentUserCubit, CurrentUserState>(
+      listener: (context, state) {
+        // Initialize notifications when user logs in
+        if (state is CurrentUserSuccess && !_notificationsInitialized) {
+          context.read<NotificationCubit>().watchNotifications(
+                userId: state.user.uid,
+              );
+          _notificationsInitialized = true;
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Color(0xffF9f9fb),
+        drawer: const HomeDrawer(),
+        body: HomePages.pages[currentIndex],
+        bottomNavigationBar: CustomBottomNavBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
           },
-          icon: Image.asset(AssetsData.addIcon, width: 20, height: 20),
         ),
+        floatingActionButton: FloatingActionButton(
+          elevation: 4,
+          onPressed: () {},
+          backgroundColor: AppColor.primary,
+          shape: const CircleBorder(),
+          child: IconButton(
+            onPressed: () async {
+              await goToCreateEvent(context);
+            },
+            icon: Image.asset(AssetsData.addIcon, width: 20, height: 20),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

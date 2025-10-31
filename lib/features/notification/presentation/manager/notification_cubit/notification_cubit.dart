@@ -45,17 +45,12 @@ class NotificationCubit extends Cubit<NotificationState> {
 
     _notificationsSubscription = notificationRepo
         .watchUserNotifications(userId: userId)
-        .listen((result) async {
+        .listen((result) {
       result.fold(
         (failure) => emit(NotificationFailure(message: failure.message)),
-        (notifications) async {
-          // Get unread count
-          final unreadCountResult =
-              await notificationRepo.getUnreadCount(userId: userId);
-          final unreadCount = unreadCountResult.fold(
-            (failure) => 0,
-            (count) => count,
-          );
+        (notifications) {
+          // Calculate unread count directly from notifications list
+          final unreadCount = notifications.where((n) => !n.isRead).length;
 
           emit(NotificationLoaded(
             notifications: notifications,
