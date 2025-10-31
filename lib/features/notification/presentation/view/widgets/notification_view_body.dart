@@ -1,5 +1,10 @@
+import 'package:event_booking_app/core/controllers/chat_cubit/chat_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
+import 'package:event_booking_app/core/di/service_locator.dart';
+import 'package:event_booking_app/core/repositories/messaging_repo/messaging_repo.dart';
+import 'package:event_booking_app/features/messaging/presentation/view/chat_view.dart';
+import 'package:event_booking_app/features/notification/data/models/app_notification.dart';
 import 'package:event_booking_app/features/notification/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:event_booking_app/features/notification/presentation/view/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +30,37 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
       context.read<NotificationCubit>().watchNotifications(
             userId: currentUserState.user.uid,
           );
+    }
+  }
+
+  void _handleNotificationTap(BuildContext context, AppNotification notification) {
+    switch (notification.type) {
+      case NotificationType.message:
+        // Navigate to chat with the sender
+        final senderId = notification.data?['senderId'] as String?;
+        if (senderId != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => ChatCubit(messagingRepo: getIt<MessagingRepo>()),
+                child: ChatView(
+                  otherUserId: senderId,
+                  otherUserName: notification.fromUserName,
+                  otherUserPhoto: notification.fromUserImage,
+                ),
+              ),
+            ),
+          );
+        }
+        break;
+
+      case NotificationType.follow:
+      case NotificationType.booking:
+      case NotificationType.eventUpdate:
+      case NotificationType.info:
+        // TODO: Add navigation for other notification types if needed
+        break;
     }
   }
 
@@ -122,6 +158,9 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
                             userId: currentUserState.user.uid,
                           );
                     }
+
+                    // Navigate based on notification type
+                    _handleNotificationTap(context, notification);
                   },
                 );
               },

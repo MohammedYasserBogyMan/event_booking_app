@@ -1,4 +1,6 @@
 import 'package:event_booking_app/core/constants/app_color.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
@@ -6,6 +8,7 @@ import 'package:event_booking_app/features/home/presentation/manager/home_cubit/
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_bottom_navbar.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_drawer.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_pages.dart';
+import 'package:event_booking_app/features/notification/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +21,21 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadNotifications();
+  }
+
+  void _loadNotifications() {
+    final currentUserState = context.read<CurrentUserCubit>().state;
+    if (currentUserState is CurrentUserSuccess) {
+      context.read<NotificationCubit>().watchNotifications(
+            userId: currentUserState.user.uid,
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
