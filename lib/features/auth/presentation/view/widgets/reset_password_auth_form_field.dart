@@ -32,10 +32,10 @@ class _ResetPasswordAuthFormFieldState
       listener: (context, state) {
         if (state is LoadingResetState) {
         } else if (state is SuccessResetState) {
-          showSnackBar(context, message: "success Reset");
+          showSuccessSnackBar(context, message: "Password reset link sent successfully");
           goToNewScreen(context, locationOfNewScreen: AppRouter.kLogin);
         } else if (state is FailureResetState) {
-          showSnackBar(context, message: state.errMessage);
+          showErrorSnackBar(context, message: state.errMessage);
         }
       },
       builder:

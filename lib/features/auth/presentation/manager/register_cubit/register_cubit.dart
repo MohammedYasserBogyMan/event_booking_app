@@ -43,6 +43,7 @@ class RegisterCubit extends Cubit<RegisterStates>{
               location: location,
               about: about,
               followersCount: 0,
+              followingCount: 0,
             );
 
             // نحفظه في Firestore

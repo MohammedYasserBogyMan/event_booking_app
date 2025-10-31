@@ -44,7 +44,7 @@ class _RegistrationAuthFormFieldsState
       listener: (context, state) {
         if (state is LoadingRegisterState) {
         } else if (state is SuccessRegisterState) {
-          showSnackBar(context, message: "SuccessRegister");
+          showSuccessSnackBar(context, message: "Registration successful");
           final newUser = UserModel(
             uid: FirebaseAuth.instance.currentUser!.uid,
             firstName: name!,
@@ -54,6 +54,7 @@ class _RegistrationAuthFormFieldsState
             location: "",
             about: "",
             followersCount: 0,
+            followingCount: 0,
           );
           pushToNewScreen(
             context,
@@ -61,7 +62,7 @@ class _RegistrationAuthFormFieldsState
             extra: newUser,
           );
         } else if (state is FailureRegisterState) {
-          showSnackBar(context, message: state.errMessage);
+          showErrorSnackBar(context, message: state.errMessage);
         }
       },
       builder:

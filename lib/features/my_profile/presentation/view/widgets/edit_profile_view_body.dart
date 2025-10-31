@@ -63,9 +63,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
         if (state is EditProfileSuccess) {
           pushToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
           context.read<CurrentUserCubit>().fetchCurrentUserInfo();
-          showSnackBar(context, message: 'Profile updated successfully!');
+          showSuccessSnackBar(context, message: 'Profile updated successfully');
         } else if (state is EditProfileFailure) {
-          showSnackBar(context, message: state.message);
+          showErrorSnackBar(context, message: state.message);
         }
       },
       builder: (context, state) {

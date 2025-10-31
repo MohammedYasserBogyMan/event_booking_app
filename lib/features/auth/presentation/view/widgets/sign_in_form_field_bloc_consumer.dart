@@ -14,10 +14,10 @@ class SignInFormFieldsBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is SuccessLoginState) {
-          showSnackBar(context, message: "Success Login");
+          showSuccessSnackBar(context, message: "Login successful");
           goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
         } else if (state is FailureLoginState) {
-          showSnackBar(context, message: state.errMessage);
+          showErrorSnackBar(context, message: state.errMessage);
         }
       },
       builder: (context, state) {
