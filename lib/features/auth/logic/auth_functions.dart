@@ -40,4 +40,4 @@ void resetPasswordToOurApplication(
 }
 
 Future<void> signOutFromOurApplication(BuildContext context) =>
-    BlocProvider.of<SignoutCubit>(context).signOut();
+    BlocProvider.of<SignOutCubit>(context).signOut();

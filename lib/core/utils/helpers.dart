@@ -26,9 +26,7 @@ void showSnackBar(BuildContext context, {required String message}) {
       backgroundColor: Colors.blue,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       margin: const EdgeInsets.all(16),
     ),
   );
@@ -57,9 +55,7 @@ void showSuccessSnackBar(BuildContext context, {required String message}) {
       backgroundColor: Colors.green,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       margin: const EdgeInsets.all(16),
     ),
   );
@@ -88,9 +84,7 @@ void showErrorSnackBar(BuildContext context, {required String message}) {
       backgroundColor: Colors.red,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       margin: const EdgeInsets.all(16),
     ),
   );

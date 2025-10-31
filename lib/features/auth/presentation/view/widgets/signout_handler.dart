@@ -16,7 +16,7 @@ class SignOutHandler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignoutCubit, SignoutStates>(
+    return BlocConsumer<SignOutCubit, SignoutStates>(
       listener: (context, state) async {
         if (state is SuccessSignOutState) {
           await context.read<CurrentUserCubit>().reset();

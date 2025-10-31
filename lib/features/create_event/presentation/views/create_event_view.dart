@@ -12,7 +12,7 @@ class CreateEventView extends StatelessWidget {
     return BlocBuilder<CreateEventCubit, CreateEventState>(
       builder: (context, state) {
         bool isLoading = state is CreateEventLoading;
-        return ModalCircularProgress(
+        return CustomModalCircularProgress(
           inAsyncCall: isLoading,
           child: Scaffold(
             backgroundColor: Colors.white,

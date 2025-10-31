@@ -8,7 +8,7 @@ class ReviewsTap extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: 0,
         itemBuilder: (context, index) {
           return Center(child: Text("ReviewsTab"));
         },

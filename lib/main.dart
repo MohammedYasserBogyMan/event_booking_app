@@ -12,10 +12,6 @@ import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/login_cubit/login_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/signout_cubit/signout_cubit.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:event_booking_app/features/bookmarks/presentation/manager/bookmark_cubit/bookmark_cubit.dart';
 import 'package:event_booking_app/features/notification/data/repositories/notification_repo.dart';
@@ -45,22 +41,6 @@ class EventBooking extends StatelessWidget {
       providers: [
         BlocProvider(
           create:
-              (context) => SignoutCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
-        ),
-        BlocProvider(
-          create:
-              (context) =>
-                  ResetPasswordCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
-        ),
-        BlocProvider(
-          create:
-              (context) => RegisterCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
-        ),
-        BlocProvider(
-          create: (context) => LoginCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
-        ),
-        BlocProvider(
-          create:
               (context) =>
                   CurrentUserCubit(getIt<UserRepo>(), getIt<AuthRepo>())
                     ..fetchCurrentUserInfo(),
@@ -72,20 +52,23 @@ class EventBooking extends StatelessWidget {
                 eventRepo: getIt<EventsRepo>(),
               ),
         ),
-        BlocProvider(
-          create: (context) => BookingCubit(getIt<BookingRepo>()),
-        ),
+        BlocProvider(create: (context) => BookingCubit(getIt<BookingRepo>())),
         BlocProvider(
           create: (context) => FollowCubit(followRepo: getIt<FollowRepo>()),
         ),
         BlocProvider(
-          create: (context) => ConversationsCubit(messagingRepo: getIt<MessagingRepo>()),
+          create:
+              (context) =>
+                  ConversationsCubit(messagingRepo: getIt<MessagingRepo>()),
         ),
         BlocProvider(
           create: (context) => ChatCubit(messagingRepo: getIt<MessagingRepo>()),
         ),
         BlocProvider(
-          create: (context) => NotificationCubit(notificationRepo: getIt<NotificationRepo>()),
+          create:
+              (context) => NotificationCubit(
+                notificationRepo: getIt<NotificationRepo>(),
+              ),
         ),
       ],
       child: MaterialApp.router(

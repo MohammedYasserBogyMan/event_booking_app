@@ -15,7 +15,7 @@ class EditProfileView extends StatelessWidget {
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       builder: (context, state) {
         bool isLoading = state is EditProfileLoading;
-        return ModalCircularProgress(
+        return CustomModalCircularProgress(
           inAsyncCall: isLoading,
           child: Scaffold(
             appBar: AppBar(
