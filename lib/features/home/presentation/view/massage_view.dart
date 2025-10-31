@@ -1,3 +1,4 @@
+import 'package:event_booking_app/features/messaging/presentation/view/conversations_view.dart';
 import 'package:flutter/material.dart';
 
 class MassageView extends StatelessWidget {
@@ -5,6 +6,7 @@ class MassageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("MassageView")));
+    // Redirect to the new conversations view
+    return const ConversationsView();
   }
 }
