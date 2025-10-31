@@ -1,4 +1,6 @@
+import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
+import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
 
@@ -33,17 +35,25 @@ class CustomHomeAppbar extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            color: Colors.white.withAlpha(20),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Icon(
-            Icons.notifications_active_outlined,
-            color: Colors.white,
-            size: 30,
+        GestureDetector(
+          onTap: () {
+            pushToNewScreen(
+              context,
+              locationOfNewScreen: AppRouter.kNotificationView,
+            );
+          },
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              color: Colors.white.withAlpha(20),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Icon(
+              Icons.notifications_active_outlined,
+              color: Colors.white,
+              size: 30,
+            ),
           ),
         ),
       ],

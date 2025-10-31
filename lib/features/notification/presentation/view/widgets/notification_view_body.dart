@@ -1,77 +1,136 @@
-import 'package:event_booking_app/core/utils/assets.dart';
-import 'package:event_booking_app/features/notification/data/models/app_notification.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
+import 'package:event_booking_app/features/notification/presentation/manager/notification_cubit/notification_cubit.dart';
 import 'package:event_booking_app/features/notification/presentation/view/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotificationViewBody extends StatelessWidget {
-  NotificationViewBody({super.key});
-  final List<AppNotification> notifications = [
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "12:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.followRequest,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "5:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.message,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "8:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.message,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "00:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.message,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "3:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.message,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "9:30",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.followRequest,
-    ),
-    AppNotification(
-      userImage: AssetsData.notificationImage,
-      name: "Abdallah Mohamed",
-      date: "12:10",
-      userMessageNotification: "Mohammed Started following you",
-      type: NotificationType.followRequest,
-    ),
-  ];
+class NotificationViewBody extends StatefulWidget {
+  const NotificationViewBody({super.key});
+
+  @override
+  State<NotificationViewBody> createState() => _NotificationViewBodyState();
+}
+
+class _NotificationViewBodyState extends State<NotificationViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    _loadNotifications();
+  }
+
+  void _loadNotifications() {
+    final currentUserState = context.read<CurrentUserCubit>().state;
+    if (currentUserState is CurrentUserSuccess) {
+      context.read<NotificationCubit>().watchNotifications(
+            userId: currentUserState.user.uid,
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          NotificationWidget(notificationModel: notifications[0]),
-          NotificationWidget(notificationModel: notifications[1]),
-          NotificationWidget(notificationModel: notifications[2]),
-          NotificationWidget(notificationModel: notifications[3]),
-          NotificationWidget(notificationModel: notifications[4]),
-          NotificationWidget(notificationModel: notifications[5]),
-          NotificationWidget(notificationModel: notifications[6]),
-          NotificationWidget(notificationModel: notifications[6]),
-          NotificationWidget(notificationModel: notifications[6]),
-        ],
-      ),
+    final currentUserState = context.read<CurrentUserCubit>().state;
+    if (currentUserState is! CurrentUserSuccess) {
+      return const Center(
+        child: Text('Please sign in to view notifications'),
+      );
+    }
+
+    return BlocBuilder<NotificationCubit, NotificationState>(
+      builder: (context, state) {
+        if (state is NotificationLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (state is NotificationFailure) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                const SizedBox(height: 16),
+                Text(
+                  'Failed to load notifications',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  state.message,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _loadNotifications,
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          );
+        }
+
+        if (state is NotificationLoaded) {
+          if (state.notifications.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.notifications_none,
+                    size: 64,
+                    color: Colors.grey[400],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'No notifications yet',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Colors.grey[600],
+                        ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'When you get notifications, they will appear here',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.grey[500],
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          }
+
+          return RefreshIndicator(
+            onRefresh: () async {
+              _loadNotifications();
+            },
+            child: ListView.separated(
+              itemCount: state.notifications.length,
+              separatorBuilder: (context, index) => const Divider(height: 1),
+              itemBuilder: (context, index) {
+                final notification = state.notifications[index];
+                return NotificationWidget(
+                  notificationModel: notification,
+                  onTap: () {
+                    // Mark as read when tapped
+                    if (!notification.isRead) {
+                      context.read<NotificationCubit>().markAsRead(
+                            notificationId: notification.id,
+                            userId: currentUserState.user.uid,
+                          );
+                    }
+                  },
+                );
+              },
+            ),
+          );
+        }
+
+        return const SizedBox.shrink();
+      },
     );
   }
 }

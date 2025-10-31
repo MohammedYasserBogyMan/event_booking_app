@@ -1,3 +1,6 @@
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
+import 'package:event_booking_app/core/controllers/follow_cubit/follow_cubit.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
@@ -11,29 +14,63 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EventInfoBody extends StatelessWidget {
+class EventInfoBody extends StatefulWidget {
   const EventInfoBody({super.key, required this.eventModel});
   final EventModel eventModel;
 
   @override
+  State<EventInfoBody> createState() => _EventInfoBodyState();
+}
+
+class _EventInfoBodyState extends State<EventInfoBody> {
+  bool _isFollowing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkFollowStatus();
+  }
+
+  Future<void> _checkFollowStatus() async {
+    final currentUserState = context.read<CurrentUserCubit>().state;
+    if (currentUserState is CurrentUserSuccess) {
+      final currentUserId = currentUserState.user.uid;
+      if (widget.eventModel.publisherId.isNotEmpty) {
+        context.read<FollowCubit>().checkFollowStatus(
+              followerId: currentUserId,
+              followingId: widget.eventModel.publisherId,
+            );
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
+    return BlocListener<FollowCubit, FollowState>(
+      listener: (context, state) {
+        if (state is FollowSuccess) {
+          setState(() {
+            _isFollowing = state.isFollowing;
+          });
+        }
+      },
+      child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 25),
-        Text(eventModel.title, style: Styels.textStyleRegular35),
+        Text(widget.eventModel.title, style: Styels.textStyleRegular35),
         const SizedBox(height: 20),
         EventInfoTile(
           imageIcon: AssetsData.dateIcon,
-          title: dateFormat(dateTime: eventModel.date),
+          title: dateFormat(dateTime: widget.eventModel.date),
           subtitle:
-              "${dayFormat(dateTime: eventModel.date)} ${timeRange(dateTime: eventModel.date)}",
+              "${dayFormat(dateTime: widget.eventModel.date)} ${timeRange(dateTime: widget.eventModel.date)}",
         ),
         const SizedBox(height: 15),
         EventInfoTile(
           imageIcon: AssetsData.mapIcon,
-          title: eventModel.location,
-          subtitle: eventModel.subLocation,
+          title: widget.eventModel.location,
+          subtitle: widget.eventModel.subLocation,
         ),
         const SizedBox(height: 30),
 
@@ -56,6 +93,8 @@ class EventInfoBody extends StatelessWidget {
                   organizerEventPhoto: user.photoUrl,
                   name: user.fullName,
                   job: "Organizer",
+                  organizerId: user.uid,
+                  isFollowing: _isFollowing,
                 ),
               );
             } else {
@@ -63,14 +102,17 @@ class EventInfoBody extends StatelessWidget {
                 organizerEventPhoto: AssetsData.organizerEventPhoto,
                 name: "Unknown",
                 job: "Organizer",
+                organizerId: '',
+                isFollowing: false,
               );
             }
           },
         ),
 
         const SizedBox(height: 40),
-        AboutSection(aboutDescription: eventModel.description),
-      ],
+        AboutSection(aboutDescription: widget.eventModel.description),
+        ],
+      ),
     );
   }
 }

@@ -10,10 +10,14 @@ class OrganizerInfoCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.job,
+    required this.organizerId,
+    required this.isFollowing,
   });
   final String name;
   final String job;
   final String organizerEventPhoto;
+  final String organizerId;
+  final bool isFollowing;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,10 @@ class OrganizerInfoCard extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        const FollowButton(text: "Follow"),
+        FollowButton(
+          organizerId: organizerId,
+          isFollowing: isFollowing,
+        ),
       ],
     );
   }
