@@ -5,10 +5,16 @@ import 'package:event_booking_app/core/repositories/booking_repo/booking_repo.da
 import 'package:event_booking_app/core/repositories/booking_repo/booking_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo.dart';
 import 'package:event_booking_app/core/repositories/event_repo/event_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/follow_repo/follow_repo.dart';
+import 'package:event_booking_app/core/repositories/follow_repo/follow_repo_impl.dart';
+import 'package:event_booking_app/core/repositories/messaging_repo/messaging_repo.dart';
+import 'package:event_booking_app/core/repositories/messaging_repo/messaging_repo_impl.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
+import 'package:event_booking_app/features/notification/data/repositories/notification_repo.dart';
+import 'package:event_booking_app/features/notification/data/repositories/notification_repo_impl.dart';
 import 'package:event_booking_app/features/search/data/repos/search_repo.dart';
 import 'package:event_booking_app/features/search/data/repos/search_repo_imple.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,5 +57,20 @@ Future<void> setupServiceLocator() async {
   // Booking Repository
   getIt.registerLazySingleton<BookingRepo>(
     () => BookingRepoImpl(getIt<FirebaseFirestore>()),
+  );
+
+  // Follow Repository
+  getIt.registerLazySingleton<FollowRepo>(
+    () => FollowRepoImpl(firestore: getIt<FirebaseFirestore>()),
+  );
+
+  // Messaging Repository
+  getIt.registerLazySingleton<MessagingRepo>(
+    () => MessagingRepoImpl(firestore: getIt<FirebaseFirestore>()),
+  );
+
+  // Notification Repository
+  getIt.registerLazySingleton<NotificationRepo>(
+    () => NotificationRepoImpl(firestore: getIt<FirebaseFirestore>()),
   );
 }
