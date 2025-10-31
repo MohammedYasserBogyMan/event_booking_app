@@ -41,10 +41,6 @@ class EventBooking extends StatelessWidget {
         ),
         BlocProvider(
           create:
-              (context) => RegisterCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
-        ),
-        BlocProvider(
-          create:
               (context) =>
                   CurrentUserCubit(getIt<UserRepo>(), getIt<AuthRepo>())
                     ..fetchCurrentUserInfo(),
