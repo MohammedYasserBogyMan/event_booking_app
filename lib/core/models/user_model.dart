@@ -9,6 +9,7 @@ class UserModel {
   final String location;
   final String about;
   final int followersCount;
+  final int followingCount;
 
   UserModel({
     required this.uid,
@@ -19,6 +20,7 @@ class UserModel {
     required this.location,
     required this.about,
     required this.followersCount,
+    required this.followingCount,
   });
 
   UserModel copyWith({
@@ -29,6 +31,7 @@ class UserModel {
     String? location,
     String? about,
     int? followersCount,
+    int? followingCount,
   }) {
     return UserModel(
       uid: uid,
@@ -39,6 +42,7 @@ class UserModel {
       location: location ?? this.location,
       about: about ?? this.about,
       followersCount: followersCount ?? this.followersCount,
+      followingCount: followingCount ?? this.followingCount,
     );
   }
 
@@ -53,6 +57,7 @@ class UserModel {
       location: data['location'] ?? '',
       about: data['about'] ?? '',
       followersCount: data['followersCount'] ?? 0,
+      followingCount: data['followingCount'] ?? 0,
     );
   }
 
@@ -66,6 +71,7 @@ class UserModel {
       'location': location,
       'about': about,
       'followersCount': followersCount,
+      'followingCount': followingCount,
     };
   }
 
