@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 class MyEventsGridView extends StatelessWidget {
   final List<EventModel> events;
 
-  const MyEventsGridView({
-    super.key,
-    required this.events,
-  });
+  const MyEventsGridView({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class MyEventsGridView extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 0.7,
+          childAspectRatio: 0.6,
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
         ),
