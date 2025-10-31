@@ -27,10 +27,7 @@ class CustomHomeAppbar extends StatelessWidget {
                 Icon(Icons.arrow_drop_down, color: Colors.white),
               ],
             ),
-            Text(
-              'New York, USA',
-              style: Styels.textStyleRegular13,
-            ),
+            Text("not defined", style: Styels.textStyleRegular13),
           ],
         ),
         Container(
@@ -49,5 +46,4 @@ class CustomHomeAppbar extends StatelessWidget {
       ],
     );
   }
-
 }

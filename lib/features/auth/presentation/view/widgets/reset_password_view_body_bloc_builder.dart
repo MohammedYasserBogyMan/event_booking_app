@@ -13,7 +13,7 @@ class ResetPasswordViewBodyBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ResetPasswordCubit, ResetPasswordStates>(
       builder: (context, state) {
-        return ModalCircularProgress(
+        return CustomModalCircularProgress(
           inAsyncCall: state is LoadingResetState ? true : false,
           child: Scaffold(
             appBar: buildAppBar(),

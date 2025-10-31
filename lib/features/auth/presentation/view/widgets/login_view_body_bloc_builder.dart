@@ -12,7 +12,7 @@ class LoginViewBodyBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginStates>(
       builder: (context, state) {
-        return ModalCircularProgress(
+        return CustomModalCircularProgress(
           inAsyncCall: state is LoadingLoginState ? true : false,
           child: const Scaffold(body: SafeArea(child: LoginViewBody())),
         );

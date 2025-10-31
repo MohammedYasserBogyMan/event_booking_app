@@ -13,7 +13,7 @@ class RegisterViewBodyBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterCubit, RegisterStates>(
         builder: (context, state) {
-          return ModalCircularProgress(
+          return CustomModalCircularProgress(
             inAsyncCall: state is LoadingRegisterState ? true : false,
             child: Scaffold(
               appBar: buildAppBar(),
