@@ -2,6 +2,7 @@ import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/models/event_model.dart';
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:event_booking_app/features/my_events/presentation/manager/my_events_cubit/my_events_cubit.dart';
 import 'package:flutter/material.dart';
@@ -163,20 +164,10 @@ class _EditEventViewBodyState extends State<EditEventViewBody> {
     return BlocListener<MyEventsCubit, MyEventsState>(
       listener: (context, state) {
         if (state is MyEventsUpdateSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.green,
-            ),
-          );
+          showSuccessSnackBar(context, message: state.message);
           context.pop(true);
         } else if (state is MyEventsUpdateFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-              backgroundColor: Colors.red,
-            ),
-          );
+          showErrorSnackBar(context, message: state.message);
         }
       },
       child: Scaffold(

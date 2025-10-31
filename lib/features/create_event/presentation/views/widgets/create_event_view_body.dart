@@ -30,15 +30,15 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
     return BlocConsumer<CreateEventCubit, CreateEventState>(
       listener: (context, state) {
         if (state is CreateEventSuccess) {
-          showSnackBar(
+          showSuccessSnackBar(
             context,
-            message: "✅ Event Created Successfully!",
+            message: "Event created successfully",
           );
           Navigator.pop(context, true);
         } else if (state is CreateEventFailure) {
-          showSnackBar(
+          showErrorSnackBar(
             context,
-            message: "❌ ${state.error}",
+            message: state.error,
           );
         }
       },
@@ -56,7 +56,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                 children: [
                   // Header
                   const Text(
-                    '📝 Event Details',
+                    'Event Details',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
 
                   // Form Fields Section
                   const Text(
-                    'ℹ️ Basic Information',
+                    'Basic Information',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -188,7 +188,7 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                               ],
                             )
                           : const Text(
-                              "🎉 Create Event",
+                              "Create Event",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

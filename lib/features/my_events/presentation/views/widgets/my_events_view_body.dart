@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/features/my_events/presentation/manager/my_events_cubit/my_events_cubit.dart';
 import 'package:event_booking_app/features/my_events/presentation/views/widgets/my_events_grid_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,19 +48,9 @@ class _MyEventsViewBodyState extends State<MyEventsViewBody> {
               child: BlocConsumer<MyEventsCubit, MyEventsState>(
                 listener: (context, state) {
                   if (state is MyEventsUpdateSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
+                    showSuccessSnackBar(context, message: state.message);
                   } else if (state is MyEventsUpdateFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
+                    showErrorSnackBar(context, message: state.message);
                   }
                 },
                 builder: (context, state) {

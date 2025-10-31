@@ -44,15 +44,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
       body: BlocListener<BookingCubit, BookingState>(
         listener: (context, state) {
           if (state is BookingSuccess) {
-            showSnackBar(
+            showSuccessSnackBar(
               context,
-              message: 'Booking confirmed! Ticket: ${state.booking.ticketNumber}',
+              message: 'Booking confirmed - Ticket: ${state.booking.ticketNumber}',
             );
             // Navigate back twice to return to event details
             context.pop();
             context.pop();
           } else if (state is BookingError) {
-            showSnackBar(context, message: state.message);
+            showErrorSnackBar(context, message: state.message);
             setState(() {
               isProcessing = false;
             });
@@ -473,7 +473,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     // Get current user
     final currentUserState = context.read<CurrentUserCubit>().state;
     if (currentUserState is! CurrentUserSuccess) {
-      showSnackBar(context, message: 'Please login to continue');
+      showErrorSnackBar(context, message: 'Please login to continue');
       setState(() {
         isProcessing = false;
       });

@@ -56,10 +56,10 @@ class _MyBookingsScreenState extends State<MyBookingsScreen> {
       body: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {
           if (state is BookingCancelled) {
-            showSnackBar(context, message: 'Booking cancelled successfully');
+            showSuccessSnackBar(context, message: 'Booking cancelled successfully');
             _loadBookings();
           } else if (state is BookingError) {
-            showSnackBar(context, message: state.message);
+            showErrorSnackBar(context, message: state.message);
           }
         },
         builder: (context, state) {
