@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/modal_circular_progress.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/reset_password_cubit/reset_password_states.dart';
@@ -15,8 +14,7 @@ class ResetPasswordViewBodyBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return CustomModalCircularProgress(
           inAsyncCall: state is LoadingResetState ? true : false,
-          child: Scaffold(
-            appBar: buildAppBar(),
+          child: const Scaffold(
             body: SafeArea(child: ResetViewBody()),
           ),
         );

@@ -1,4 +1,3 @@
-import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/modal_circular_progress.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_states.dart';
@@ -15,8 +14,7 @@ class RegisterViewBodyBlocBuilder extends StatelessWidget {
         builder: (context, state) {
           return CustomModalCircularProgress(
             inAsyncCall: state is LoadingRegisterState ? true : false,
-            child: Scaffold(
-              appBar: buildAppBar(),
+            child: const Scaffold(
               body: SafeArea(child: RegisterViewBody()),
             ),
           );
