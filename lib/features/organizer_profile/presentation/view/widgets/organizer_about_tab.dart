@@ -6,6 +6,18 @@ class AboutTab extends StatelessWidget {
   final String aboutText;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(aboutText, style: Styels.textStyleMedium22));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Text(
+            aboutText,
+            style: Styels.textStyleRegular16.copyWith(color: Colors.black),
+          ),
+        ],
+      ),
+    );
   }
 }
