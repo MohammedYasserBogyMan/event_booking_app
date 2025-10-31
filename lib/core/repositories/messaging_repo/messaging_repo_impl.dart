@@ -73,7 +73,11 @@ class MessagingRepoImpl implements MessagingRepo {
             final senderDoc = await _usersCollection.doc(senderId).get();
             if (senderDoc.exists) {
               final senderData = senderDoc.data() as Map<String, dynamic>;
-              final senderName = senderData['fullName'] ?? 'Someone';
+              final firstName = senderData['firstName'] ?? '';
+              final lastName = senderData['lastName'] ?? '';
+              final senderName = '$firstName $lastName'.trim().isEmpty
+                  ? 'Someone'
+                  : '$firstName $lastName'.trim();
               final senderImage = senderData['photoUrl'] ?? '';
 
               // Create a preview of the message (truncate if too long)

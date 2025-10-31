@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:event_booking_app/core/models/booking_model.dart';
 import 'package:event_booking_app/core/repositories/booking_repo/booking_repo.dart';
 import 'package:event_booking_app/core/utils/errors.dart';
+import 'package:event_booking_app/core/utils/notification_helper.dart';
 
 class BookingRepoImpl implements BookingRepo {
   final FirebaseFirestore firestore;
@@ -66,6 +67,45 @@ class BookingRepoImpl implements BookingRepo {
           return newBooking;
         },
       );
+
+      // Send notification to event organizer
+      try {
+        // Get event details
+        final eventDoc = await firestore.collection('events').doc(eventId).get();
+        if (eventDoc.exists) {
+          final eventData = eventDoc.data()!;
+          final organizerId = eventData['organizerId'] as String?;
+          final eventTitle = eventData['title'] as String? ?? 'Event';
+
+          // Only send notification if the booker is not the organizer
+          if (organizerId != null && organizerId != userId) {
+            // Get booker's information
+            final bookerDoc = await firestore.collection('users').doc(userId).get();
+            if (bookerDoc.exists) {
+              final bookerData = bookerDoc.data() as Map<String, dynamic>;
+              final firstName = bookerData['firstName'] ?? '';
+              final lastName = bookerData['lastName'] ?? '';
+              final bookerName = '$firstName $lastName'.trim().isEmpty
+                  ? 'Someone'
+                  : '$firstName $lastName'.trim();
+              final bookerImage = bookerData['photoUrl'] ?? '';
+
+              // Create booking notification
+              await NotificationHelper.createBookingNotification(
+                organizerId: organizerId,
+                bookerId: userId,
+                bookerName: bookerName,
+                bookerImage: bookerImage,
+                eventTitle: eventTitle,
+                eventId: eventId,
+              );
+            }
+          }
+        }
+      } catch (e) {
+        // Log error but don't fail the booking action
+        print('Failed to create booking notification: ${e.toString()}');
+      }
 
       return right(booking);
     } catch (e) {

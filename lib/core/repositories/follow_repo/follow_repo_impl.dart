@@ -71,7 +71,11 @@ class FollowRepoImpl implements FollowRepo {
         final followerDoc = await _usersCollection.doc(followerId).get();
         if (followerDoc.exists) {
           final followerData = followerDoc.data() as Map<String, dynamic>;
-          final followerName = followerData['fullName'] ?? 'Someone';
+          final firstName = followerData['firstName'] ?? '';
+          final lastName = followerData['lastName'] ?? '';
+          final followerName = '$firstName $lastName'.trim().isEmpty
+              ? 'Someone'
+              : '$firstName $lastName'.trim();
           final followerImage = followerData['photoUrl'] ?? '';
 
           // Create follow notification
