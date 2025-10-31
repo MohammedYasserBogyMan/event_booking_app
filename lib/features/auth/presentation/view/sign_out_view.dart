@@ -13,7 +13,7 @@ class SignOutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignOutCubit(getIt<UserRepo>(), getIt<AuthRepo>()),
-      child: SignOutBlocBuilder(),
+      child: SignOutViewBodyBlocBuilder(),
     );
   }
 }

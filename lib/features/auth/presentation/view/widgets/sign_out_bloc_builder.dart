@@ -5,8 +5,8 @@ import 'package:event_booking_app/features/auth/presentation/view/widgets/sign_o
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignOutBlocBuilder extends StatelessWidget {
-  const SignOutBlocBuilder({super.key});
+class SignOutViewBodyBlocBuilder extends StatelessWidget {
+  const SignOutViewBodyBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {

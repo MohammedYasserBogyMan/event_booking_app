@@ -6,7 +6,6 @@ import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/theme/app_theme.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
-import 'package:event_booking_app/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import 'package:event_booking_app/features/booking/presentation/cubit/booking_cubit.dart';
@@ -43,9 +42,6 @@ class EventBooking extends StatelessWidget {
         BlocProvider(
           create:
               (context) => RegisterCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
-        ),
-        BlocProvider(
-          create: (context) => LoginCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
         ),
         BlocProvider(
           create:
