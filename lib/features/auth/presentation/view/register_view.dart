@@ -16,8 +16,4 @@ class RegisterView extends StatelessWidget {
       child: RegisterViewBodyBlocBuilder(),
     );
   }
-
-  AppBar buildAppBar() {
-    return AppBar();
-  }
 }

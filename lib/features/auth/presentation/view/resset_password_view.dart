@@ -17,8 +17,4 @@ class RessetPasswordView extends StatelessWidget {
       child: ResetPasswordViewBodyBlocBuilder(),
     );
   }
-
-  AppBar buildAppBar() {
-    return AppBar();
-  }
 }
