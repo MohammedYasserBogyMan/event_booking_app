@@ -1,5 +1,3 @@
-import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
-import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';

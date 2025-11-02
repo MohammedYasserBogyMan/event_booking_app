@@ -54,12 +54,14 @@ dependencies:
   syncfusion_flutter_core: ^30.2.4
   syncfusion_flutter_sliders: ^30.2.4
 
+
 dev_dependencies:
   bloc: ^9.0.0
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   shared_preferences: ^2.5.3
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -96,3 +98,20 @@ flutter:
           weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/TECH.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  adaptive_icon_background: "#3f38dd"
+  adaptive_icon_foreground: "assets/images/TECH.png"
+  web:
+    generate: true
+    image_path: "assets/images/TECH.png"
+    background_color: "#3f38dd"
+    theme_color: "#3f38dd"
+  windows:
+    generate: true
+    image_path: "assets/images/TECH.png"
+    icon_size: 48 # min:48, max:256, default: 48

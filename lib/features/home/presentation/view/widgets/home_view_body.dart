@@ -27,6 +27,7 @@ class HomeViewBody extends StatelessWidget {
           final events = state.events;
 
           return RefreshIndicator(
+            color: AppColor.primary,
             onRefresh: () => _onRefresh(context),
             child: CustomScrollView(
               slivers: [
