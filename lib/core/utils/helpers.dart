@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 /// Default duration for SnackBars
@@ -52,7 +53,7 @@ void showSuccessSnackBar(BuildContext context, {required String message}) {
           ),
         ],
       ),
-      backgroundColor: Colors.green,
+      backgroundColor: AppColor.primary,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -81,7 +82,7 @@ void showErrorSnackBar(BuildContext context, {required String message}) {
           ),
         ],
       ),
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.grey,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

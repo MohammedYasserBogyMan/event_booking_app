@@ -56,11 +56,11 @@ class _RegistrationAuthFormFieldsState
             followersCount: 0,
             followingCount: 0,
           );
-          pushToNewScreen(
-            context,
-            locationOfNewScreen: AppRouter.kVerification,
-            extra: newUser,
-          );
+          goToNewScreen(
+                    context,
+                    locationOfNewScreen: AppRouter.kEditProfileView,
+                    extra: newUser,
+                  );
         } else if (state is FailureRegisterState) {
           showErrorSnackBar(context, message: state.errMessage);
         }

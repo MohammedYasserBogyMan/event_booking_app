@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/home_header_with_category.dart';
 import 'package:event_booking_app/features/home/presentation/view/widgets/custom_invite_card.dart';
@@ -21,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is HomeLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(color: AppColor.primary,));
         } else if (state is HomeSuccess) {
           final events = state.events;
 
