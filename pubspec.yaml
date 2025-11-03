@@ -102,16 +102,16 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/TECH.png"
+  image_path: assets/images/TECH (1).png
   min_sdk_android: 21 # android min sdk min:16, default 21
   adaptive_icon_background: "#3f38dd"
-  adaptive_icon_foreground: "assets/images/TECH.png"
+  adaptive_icon_foreground: assets/images/TECH (1).png
   web:
     generate: true
-    image_path: "assets/images/TECH.png"
+    image_path: assets/images/TECH (1).png
     background_color: "#3f38dd"
     theme_color: "#3f38dd"
   windows:
     generate: true
-    image_path: "assets/images/TECH.png"
+    image_path: assets/images/TECH (1).png
     icon_size: 48 # min:48, max:256, default: 48
