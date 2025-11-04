@@ -24,7 +24,7 @@ void showSnackBar(BuildContext context, {required String message}) {
           ),
         ],
       ),
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColor.primary,
       duration: _defaultDuration,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

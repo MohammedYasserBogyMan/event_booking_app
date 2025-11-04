@@ -1,3 +1,4 @@
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/styels.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class SocialLoginButton extends StatelessWidget {
       height: 60,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          overlayColor: AppColor.primary,
           elevation: 0,
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
