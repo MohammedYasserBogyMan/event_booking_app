@@ -16,6 +16,17 @@ class SignInFormFieldsBlocConsumer extends StatelessWidget {
         if (state is SuccessLoginState) {
           showSuccessSnackBar(context, message: "Login successful");
           goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
+        } else if (state is EmailNotVerifiedState) {
+          showSnackBar(
+            context,
+            message:
+                "Please verify your email before logging in. Check your inbox.",
+          );
+          goToNewScreen(
+            context,
+            locationOfNewScreen: AppRouter.kVerification,
+            extra: state.userModel,
+          );
         } else if (state is FailureLoginState) {
           showErrorSnackBar(context, message: state.errMessage);
         }

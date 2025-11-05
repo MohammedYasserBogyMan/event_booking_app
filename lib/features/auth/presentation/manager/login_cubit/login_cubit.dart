@@ -18,19 +18,54 @@ class LoginCubit extends Cubit<LoginStates> {
   }) async {
     emit(LoadingLoginState());
     final result = await authRepo.login(email: email, password: password);
-    result.fold(
-      (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
+    await result.fold(
+      (failure) async {
+        emit(FailureLoginState(errMessage: failure.errMessage));
+      },
       (success) async {
-        final rememberMe = SharedPrefsService.I.getRememberMe();
-        if (rememberMe) {
-          await SharedPrefsService.I.setRememberMe(true);
-        }
-        final idRes = await authRepo.getCurrentUserId();
-        idRes.fold(
-          (failure) => emit(FailureLoginState(errMessage: failure.errMessage)),
-          (uid) {
-            context.read<CurrentUserCubit>().fetchCurrentUserInfo();
-            emit(SuccessLoginState());
+        // Check if email is verified
+        final verificationResult = await authRepo.checkEmailVerified();
+
+        await verificationResult.fold(
+          (failure) async {
+            emit(FailureLoginState(errMessage: failure.errMessage));
+          },
+          (isVerified) async {
+            if (!isVerified) {
+              // Email not verified - get user data and redirect to verification
+              final idRes = await authRepo.getCurrentUserId();
+              await idRes.fold(
+                (failure) async {
+                  emit(FailureLoginState(errMessage: failure.errMessage));
+                },
+                (uid) async {
+                  final userRes = await userRepo.getUserByUid(uid);
+                  userRes.fold(
+                    (failure) {
+                      emit(FailureLoginState(errMessage: failure.errMessage));
+                    },
+                    (user) {
+                      emit(EmailNotVerifiedState(userModel: user));
+                    },
+                  );
+                },
+              );
+            } else {
+              // Email verified - proceed with login
+              final rememberMe = SharedPrefsService.I.getRememberMe();
+              if (rememberMe) {
+                await SharedPrefsService.I.setRememberMe(true);
+              }
+              final idRes = await authRepo.getCurrentUserId();
+              idRes.fold(
+                (failure) =>
+                    emit(FailureLoginState(errMessage: failure.errMessage)),
+                (uid) {
+                  context.read<CurrentUserCubit>().fetchCurrentUserInfo();
+                  emit(SuccessLoginState());
+                },
+              );
+            }
           },
         );
       },
