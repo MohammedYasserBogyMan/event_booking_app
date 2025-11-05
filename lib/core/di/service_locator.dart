@@ -13,6 +13,8 @@ import 'package:event_booking_app/core/repositories/user_repo/user_repo.dart';
 import 'package:event_booking_app/core/repositories/user_repo/user_repo_impl.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:event_booking_app/features/auth/data/repos/auth_repo_imple.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/email_verification_cubit/email_verification_cubit.dart';
+import 'package:event_booking_app/features/auth/presentation/manager/google_signin_cubit/google_signin_cubit.dart';
 import 'package:event_booking_app/features/notification/data/repositories/notification_repo.dart';
 import 'package:event_booking_app/features/notification/data/repositories/notification_repo_impl.dart';
 import 'package:event_booking_app/features/search/data/repos/search_repo.dart';
@@ -72,5 +74,15 @@ Future<void> setupServiceLocator() async {
   // Notification Repository
   getIt.registerLazySingleton<NotificationRepo>(
     () => NotificationRepoImpl(firestore: getIt<FirebaseFirestore>()),
+  );
+
+  // Email Verification Cubit (Factory - new instance each time)
+  getIt.registerFactory<EmailVerificationCubit>(
+    () => EmailVerificationCubit(getIt<AuthRepo>()),
+  );
+
+  // Google Sign-In Cubit (Factory - new instance each time)
+  getIt.registerFactory<GoogleSignInCubit>(
+    () => GoogleSignInCubit(getIt<AuthRepo>()),
   );
 }
