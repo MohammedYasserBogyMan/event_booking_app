@@ -83,6 +83,6 @@ Future<void> setupServiceLocator() async {
 
   // Google Sign-In Cubit (Factory - new instance each time)
   getIt.registerFactory<GoogleSignInCubit>(
-    () => GoogleSignInCubit(getIt<AuthRepo>()),
+    () => GoogleSignInCubit(getIt<AuthRepo>(), getIt<UserRepo>()),
   );
 }

@@ -22,10 +22,21 @@ class SocialLoginOptions extends StatelessWidget {
       child: BlocConsumer<GoogleSignInCubit, GoogleSignInState>(
         listener: (context, state) {
           if (state is SuccessGoogleSignInState) {
-            // Fetch current user data
+            // Existing user - Fetch current user data and go to home
             BlocProvider.of<CurrentUserCubit>(context).fetchCurrentUserInfo();
-            showSuccessSnackBar(context, message: "Signed in successfully!");
+            showSuccessSnackBar(context, message: "Welcome back!");
             goToNewScreen(context, locationOfNewScreen: AppRouter.kHomeView);
+          } else if (state is NewUserGoogleSignInState) {
+            // New user - Go to edit profile to complete registration
+            showSuccessSnackBar(
+              context,
+              message: "Welcome! Please complete your profile",
+            );
+            goToNewScreen(
+              context,
+              locationOfNewScreen: AppRouter.kEditProfileView,
+              extra: state.userModel,
+            );
           } else if (state is FailureGoogleSignInState) {
             showErrorSnackBar(context, message: state.errMessage);
           }
