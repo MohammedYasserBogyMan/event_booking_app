@@ -1,6 +1,4 @@
-import 'package:event_booking_app/core/models/user_model.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
-import 'package:event_booking_app/core/utils/assets.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
@@ -8,7 +6,6 @@ import 'package:event_booking_app/core/widgets/register_form_fields.dart';
 import 'package:event_booking_app/features/auth/logic/auth_functions.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:event_booking_app/features/auth/presentation/manager/register_cubit/register_states.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -44,23 +41,17 @@ class _RegistrationAuthFormFieldsState
       listener: (context, state) {
         if (state is LoadingRegisterState) {
         } else if (state is SuccessRegisterState) {
-          showSuccessSnackBar(context, message: "Registration successful");
-          final newUser = UserModel(
-            uid: FirebaseAuth.instance.currentUser!.uid,
-            firstName: name!,
-            lastName: "",
-            email: email!,
-            photoUrl: AssetsData.defaultPhotoForNewUser,
-            location: "",
-            about: "",
-            followersCount: 0,
-            followingCount: 0,
+          showSuccessSnackBar(
+            context,
+            message:
+                "Registration successful! Please verify your email to continue.",
           );
+          // Redirect to verification screen, not profile editing
           goToNewScreen(
-                    context,
-                    locationOfNewScreen: AppRouter.kEditProfileView,
-                    extra: newUser,
-                  );
+            context,
+            locationOfNewScreen: AppRouter.kVerification,
+            extra: state.userModel,
+          );
         } else if (state is FailureRegisterState) {
           showErrorSnackBar(context, message: state.errMessage);
         }

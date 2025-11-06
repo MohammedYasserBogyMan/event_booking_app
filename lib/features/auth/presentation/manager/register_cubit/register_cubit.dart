@@ -52,8 +52,8 @@ class RegisterCubit extends Cubit<RegisterStates>{
               (failure) =>
                   emit(FailureRegisterState(errMessage: failure.errMessage)),
               (_) async {
-                // ممكن هنا تعيد إرسال verification أو عمل أي خطوة تانية
-                emit(SuccessRegisterState());
+                // Send user model with state to redirect to verification
+                emit(SuccessRegisterState(userModel: newUser));
               },
             );
           },
