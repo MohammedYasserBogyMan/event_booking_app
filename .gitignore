@@ -45,3 +45,14 @@ app.*.map.json
 /android/app/release
 android/app/build.gradle.kts
 android/gradle/wrapper/gradle-wrapper.properties
+
+# Claude settings
+.claude/settings.local.json
+
+# Documentation files (optional - remove if needed)
+*.md
+!README.md
+
+# Temp files
+nul
+*.bat
