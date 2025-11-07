@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/assets.dart';
@@ -8,6 +10,7 @@ import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
 import 'package:event_booking_app/core/widgets/custom_text_filed.dart';
 import 'package:event_booking_app/core/widgets/custom_button.dart';
+import 'package:event_booking_app/core/widgets/location_picker_widget.dart';
 import 'package:event_booking_app/features/my_profile/presentation/manager/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,9 +28,18 @@ class EditProfileViewBody extends StatefulWidget {
 
 class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   String? fName, lname, about, location;
+  GeoPoint? locationCoordinates;
   File? selectedImage;
   GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize with user's existing location data
+    location = widget.user.location;
+    locationCoordinates = widget.user.locationCoordinates;
+  }
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(
@@ -138,14 +150,62 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                     hintText: "About",
                   ),
                   const SizedBox(height: 15),
-                  CustomTextFiled(
-                    initialValue: widget.user.location,
-                    onSaved: (p0) {
-                      location = p0;
+
+                  // Location Picker Button
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LocationPickerWidget(
+                            initialLocation: locationCoordinates,
+                            initialAddress: location,
+                            onLocationSelected: (coordinates, address) {
+                              setState(() {
+                                locationCoordinates = coordinates;
+                                location = address;
+                              });
+                            },
+                          ),
+                        ),
+                      );
                     },
-                    icon: Icons.location_on_outlined,
-                    hintText: "Location",
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade300),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: locationCoordinates != null
+                                ? AppColor.primary
+                                : Colors.grey,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              location ?? 'Select Your Location',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: locationCoordinates != null
+                                    ? Colors.black87
+                                    : Colors.grey,
+                              ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Colors.grey.shade400,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
+
                   const SizedBox(height: 30),
                   state is EditProfileLoading
                       ? const CircularProgressIndicator()
@@ -159,6 +219,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                               lastName: lname ?? widget.user.lastName,
                               about: about ?? widget.user.about,
                               location: location ?? widget.user.location,
+                              locationCoordinates: locationCoordinates ?? widget.user.locationCoordinates,
                             );
                             context.read<EditProfileCubit>().updateUser(
                               updatedUser,

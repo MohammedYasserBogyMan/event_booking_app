@@ -1,3 +1,5 @@
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_cubit.dart';
+import 'package:event_booking_app/core/controllers/current_user_cubit/current_user_state.dart';
 import 'package:event_booking_app/core/utils/app_router.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/utils/navigation.dart';
@@ -18,21 +20,37 @@ class CustomHomeAppbar extends StatelessWidget {
           onTap: () => openDrawer(context),
           child: Icon(Icons.menu, color: Colors.white, size: 30),
         ),
-        Column(
-          children: [
-            Row(
+        BlocBuilder<CurrentUserCubit, CurrentUserState>(
+          builder: (context, state) {
+            String userLocation = "Not set";
+
+            if (state is CurrentUserSuccess && state.user.location.isNotEmpty) {
+              userLocation = state.user.location;
+            }
+
+            return Column(
               children: [
-                Text(
-                  'Current Location',
-                  style: Styels.textStyleRegular12.copyWith(
-                    color: const Color.fromARGB(162, 255, 255, 255),
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      'Current Location',
+                      style: Styels.textStyleRegular12.copyWith(
+                        color: const Color.fromARGB(162, 255, 255, 255),
+                      ),
+                    ),
+                    Icon(Icons.arrow_drop_down, color: Colors.white),
+                  ],
                 ),
-                Icon(Icons.arrow_drop_down, color: Colors.white),
+                Text(
+                  userLocation,
+                  style: Styels.textStyleRegular13.copyWith(
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  maxLines: 1,
+                ),
               ],
-            ),
-            Text("not defined", style: Styels.textStyleRegular13),
-          ],
+            );
+          },
         ),
         GestureDetector(
           onTap: () {

@@ -62,6 +62,30 @@ class MyProfileViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 35),
+
+                  // Location Section
+                  if (user.location.isNotEmpty) ...[
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: Color(0xff5669FF),
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            user.location,
+                            style: Styels.textStyleMedium16.copyWith(
+                              color: const Color(0xff747688),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+
                   Text(
                     "About Me",
                     style: Styels.textStyleMedium18.copyWith(

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "15877777638",
+    "firebase_url": "https://event-booking-44324-default-rtdb.firebaseio.com",
     "project_id": "event-booking-44324",
     "storage_bucket": "event-booking-44324.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.event_booking_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "15877777638-bvdinhq9r4djuuf5fdgclrogcgnj0jl1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.event_booking_app",
+            "certificate_hash": "1287ad2e43fb5ac1b819575c77172de39ace4033"
+          }
+        },
+        {
+          "client_id": "15877777638-vs46ih7jafv09863u20apqtcmov4a7ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA8061IXWEvTGpc2LP2Ws26WHWNdCqi1AI"
@@ -20,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15877777638-vs46ih7jafv09863u20apqtcmov4a7ua.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "15877777638-icsmh5ctf0u8md8s6dn8infcdvtpkduj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eventBookingApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -35,6 +36,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
     String? price,
     String? attendeesCount,
     String? maxCapacity,
+    GeoPoint? locationCoordinates,
   }) async {
     emit(CreateEventLoading());
 
@@ -58,6 +60,7 @@ class CreateEventCubit extends Cubit<CreateEventState> {
         date: date,
         location: location,
         subLocation: subLocation,
+        locationCoordinates: locationCoordinates,
         imageUrl: imageUrl ?? "",
         attendeeCount: int.tryParse(attendeesCount ?? "0") ?? 0,
         maxCapacity: int.tryParse(maxCapacity ?? "100") ?? 100,

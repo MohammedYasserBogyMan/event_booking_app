@@ -13,6 +13,8 @@ import 'package:event_booking_app/features/event_details/presentation/view/widge
 import 'package:event_booking_app/features/event_details/presentation/view/widget/organizer_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EventInfoBody extends StatefulWidget {
   const EventInfoBody({super.key, required this.eventModel});
@@ -72,6 +74,100 @@ class _EventInfoBodyState extends State<EventInfoBody> {
           title: widget.eventModel.location,
           subtitle: widget.eventModel.subLocation,
         ),
+        const SizedBox(height: 15),
+
+        // Google Maps widget to show event location
+        if (widget.eventModel.locationCoordinates != null)
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.shade300),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Stack(
+              children: [
+                GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                      widget.eventModel.locationCoordinates!.latitude,
+                      widget.eventModel.locationCoordinates!.longitude,
+                    ),
+                    zoom: 14,
+                  ),
+                  markers: {
+                    Marker(
+                      markerId: const MarkerId('event_location'),
+                      position: LatLng(
+                        widget.eventModel.locationCoordinates!.latitude,
+                        widget.eventModel.locationCoordinates!.longitude,
+                      ),
+                      infoWindow: InfoWindow(
+                        title: widget.eventModel.title,
+                        snippet: widget.eventModel.location,
+                      ),
+                    ),
+                  },
+                  zoomControlsEnabled: false,
+                  myLocationButtonEnabled: false,
+                  scrollGesturesEnabled: false,
+                  zoomGesturesEnabled: false,
+                  tiltGesturesEnabled: false,
+                  rotateGesturesEnabled: false,
+                ),
+                // Tap overlay to open in Google Maps
+                Positioned.fill(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () async {
+                        final lat = widget.eventModel.locationCoordinates!.latitude;
+                        final lng = widget.eventModel.locationCoordinates!.longitude;
+                        final url = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lng');
+
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        }
+                      },
+                      child: Container(
+                        alignment: Alignment.bottomRight,
+                        padding: const EdgeInsets.all(8),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.2),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.open_in_new, size: 16, color: Color(0xff5669FF)),
+                              SizedBox(width: 4),
+                              Text(
+                                'Open in Maps',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xff5669FF),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         const SizedBox(height: 30),
 
         BlocBuilder<PublisherCubit, PublisherState>(

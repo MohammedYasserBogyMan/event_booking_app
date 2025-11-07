@@ -6,7 +6,8 @@ class UserModel {
   final String lastName;
   final String email;
   final String photoUrl;
-  final String location;
+  final String location; // City name (e.g., "Cairo, Egypt")
+  final GeoPoint? locationCoordinates; // Geographic coordinates (lat, lng)
   final String about;
   final int followersCount;
   final int followingCount;
@@ -18,6 +19,7 @@ class UserModel {
     required this.email,
     required this.photoUrl,
     required this.location,
+    this.locationCoordinates,
     required this.about,
     required this.followersCount,
     required this.followingCount,
@@ -29,6 +31,7 @@ class UserModel {
     String? email,
     String? photoUrl,
     String? location,
+    GeoPoint? locationCoordinates,
     String? about,
     int? followersCount,
     int? followingCount,
@@ -40,6 +43,7 @@ class UserModel {
       email: email ?? this.email,
       photoUrl: photoUrl ?? this.photoUrl,
       location: location ?? this.location,
+      locationCoordinates: locationCoordinates ?? this.locationCoordinates,
       about: about ?? this.about,
       followersCount: followersCount ?? this.followersCount,
       followingCount: followingCount ?? this.followingCount,
@@ -55,6 +59,7 @@ class UserModel {
       email: data['email'] ?? '',
       photoUrl: data['photoUrl'] ?? '',
       location: data['location'] ?? '',
+      locationCoordinates: data['locationCoordinates'] as GeoPoint?,
       about: data['about'] ?? '',
       followersCount: data['followersCount'] ?? 0,
       followingCount: data['followingCount'] ?? 0,
@@ -69,6 +74,7 @@ class UserModel {
       'email': email,
       'photoUrl': photoUrl,
       'location': location,
+      'locationCoordinates': locationCoordinates,
       'about': about,
       'followersCount': followersCount,
       'followingCount': followingCount,

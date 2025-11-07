@@ -6,8 +6,9 @@ class EventModel {
   final String category;
   final String description;
   final DateTime date;
-  final String location;
-  final String subLocation;
+  final String location; // City/area name (e.g., "Cairo, Egypt")
+  final String subLocation; // Venue/address (e.g., "Cairo Stadium")
+  final GeoPoint? locationCoordinates; // Geographic coordinates (lat, lng)
   final String imageUrl;
   final int attendeeCount;
   final int maxCapacity;
@@ -24,6 +25,7 @@ class EventModel {
     required this.date,
     required this.location,
     required this.subLocation,
+    this.locationCoordinates,
     required this.imageUrl,
     required this.attendeeCount,
     required this.maxCapacity,
@@ -43,6 +45,7 @@ class EventModel {
       date: (data['date'] as Timestamp).toDate(),
       location: data['location'] ?? '',
       subLocation: data['subLocation'] ?? '',
+      locationCoordinates: data['locationCoordinates'] as GeoPoint?,
       imageUrl: data['imageUrl'] ?? '',
       attendeeCount: data['attendeeCount'] ?? 0,
       maxCapacity: data['maxCapacity'] ?? 100,
@@ -65,6 +68,7 @@ class EventModel {
       'date': Timestamp.fromDate(date),
       'location': location,
       'subLocation': subLocation,
+      'locationCoordinates': locationCoordinates,
       'imageUrl': imageUrl,
       'attendeeCount': attendeeCount,
       'maxCapacity': maxCapacity,
@@ -87,6 +91,7 @@ class EventModel {
     DateTime? date,
     String? location,
     String? subLocation,
+    GeoPoint? locationCoordinates,
     String? imageUrl,
     int? attendeeCount,
     int? maxCapacity,
@@ -103,6 +108,7 @@ class EventModel {
       date: date ?? this.date,
       location: location ?? this.location,
       subLocation: subLocation ?? this.subLocation,
+      locationCoordinates: locationCoordinates ?? this.locationCoordinates,
       imageUrl: imageUrl ?? this.imageUrl,
       attendeeCount: attendeeCount ?? this.attendeeCount,
       maxCapacity: maxCapacity ?? this.maxCapacity,

@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_booking_app/core/constants/app_color.dart';
 import 'package:event_booking_app/core/utils/helpers.dart';
 import 'package:event_booking_app/core/widgets/date_picker_field.dart';
+import 'package:event_booking_app/core/widgets/location_picker_widget.dart';
 import 'package:event_booking_app/features/create_event/presentation/manager/create_event_cubit/create_event_cubit.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/widgets/image_picker_field.dart';
 import 'package:event_booking_app/features/create_event/presentation/views/widgets/create_event_fields.dart';
@@ -23,7 +25,9 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   DateTime? date;
-  String? title, description, location, subLocation, price, attendeesCount, maxCapacity;
+  String? title, description, subLocation, price, attendeesCount, maxCapacity;
+  GeoPoint? locationCoordinates;
+  String? locationAddress; // City/Area from map
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +106,6 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                     onSaved: (values) {
                       title = values["title"];
                       description = values["description"];
-                      location = values["location"];
                       subLocation = values["subLocation"];
                       price = values["price"];
                       attendeesCount = values["attendeesCount"];
@@ -126,6 +129,63 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                     onDateSelected: (picked) => setState(() => date = picked),
                   ),
 
+                  const SizedBox(height: 24),
+
+                  // Location Picker Button
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LocationPickerWidget(
+                            initialLocation: locationCoordinates,
+                            initialAddress: locationAddress,
+                            onLocationSelected: (coordinates, address) {
+                              setState(() {
+                                locationCoordinates = coordinates;
+                                locationAddress = address;
+                              });
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade300),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: locationCoordinates != null
+                                ? AppColor.primary
+                                : Colors.grey,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              locationAddress ?? 'Select Event Location on Map',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: locationCoordinates != null
+                                    ? Colors.black87
+                                    : Colors.grey,
+                              ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Colors.grey.shade400,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
                   const SizedBox(height: 40),
 
                   // Create Button
@@ -141,14 +201,15 @@ class _CreateEventViewBodyState extends State<CreateEventViewBody> {
                                 context.read<CreateEventCubit>().submitEvent(
                                       title: title!,
                                       description: description!,
-                                      location: location!,
-                                      subLocation: subLocation!,
+                                      location: locationAddress ?? 'Unknown Location',
+                                      subLocation: subLocation ?? '',
                                       category: selectedValue!,
                                       price: price!,
                                       attendeesCount: attendeesCount,
                                       maxCapacity: maxCapacity,
                                       date: date!,
                                       image: selectedImage,
+                                      locationCoordinates: locationCoordinates,
                                     );
                               } else {
                                 setState(() {

@@ -10,8 +10,7 @@ class CreateEventTextFields extends StatelessWidget {
     final List<Map<String, dynamic>> fields = [
       {"key": "title", "icon": Icons.title, "hint": "Event Title"},
       {"key": "description", "icon": Icons.description, "hint": "Description"},
-      {"key": "location", "icon": Icons.location_on, "hint": "Location"},
-      {"key": "subLocation", "icon": Icons.map, "hint": "Sub Location"},
+      {"key": "subLocation", "icon": Icons.place, "hint": "Venue/Address (e.g., Cairo Stadium)"},
       {"key": "attendeesCount", "icon": Icons.people, "hint": "Initial Attendees Count"},
       {"key": "maxCapacity", "icon": Icons.groups, "hint": "Maximum Capacity"},
       {"key": "price", "icon": Icons.attach_money, "hint": "Price"},
