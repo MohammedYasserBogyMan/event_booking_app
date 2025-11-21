@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="Tech Events"
+        android:label="Events Hub"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
